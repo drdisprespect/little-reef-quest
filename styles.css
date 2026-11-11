@@ -525,6 +525,36 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   50% { transform: rotate(10deg); }
 }
 
+.lulu-crying,
+.lumei-crying {
+  transform-origin: center bottom;
+  animation: crySniffle 0.9s ease-in-out infinite;
+}
+
+@keyframes crySniffle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(1.5px) rotate(-1deg); }
+  50% { transform: translateY(0.5px) rotate(0.8deg); }
+  75% { transform: translateY(2px) rotate(-0.8deg); }
+}
+
+.tear-drop {
+  transform-box: fill-box;
+  transform-origin: center top;
+  animation: tearDropFall 1.15s ease-in infinite;
+}
+
+.tear-drop.tear-delay {
+  animation-delay: 0.55s;
+}
+
+@keyframes tearDropFall {
+  0% { transform: translateY(0) scale(0.75); opacity: 0; }
+  20% { transform: translateY(3px) scale(1); opacity: 0.95; }
+  80% { transform: translateY(17px) scale(0.95); opacity: 0.9; }
+  100% { transform: translateY(24px) scale(0.7); opacity: 0; }
+}
+
 .speech-bubble {
   max-width: 600px;
   margin: 0 auto 18px;
@@ -1529,11 +1559,47 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .cheer-mascots {
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
   max-width: 100%;
+  padding-top: 8px;
+}
+
+.cheer-mascot {
+  transform: scale(var(--chonk-x, 1), var(--chonk-y, 1));
+  transform-origin: bottom center;
+  transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hangyodon-popper {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  pointer-events: none;
+  z-index: 6;
+  animation: hangyodonBurst 1.1s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+@keyframes hangyodonBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--hx, 0px) * 0.42), calc(-50% + var(--hy-peak, -75px))) scale(1.14) rotate(calc(var(--hrot, 18deg) * 0.45));
+  }
+  72% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--hx, 40px) * 0.88), calc(-50% + var(--hy-end, 16px) * 0.72)) scale(0.98) rotate(calc(var(--hrot, 18deg) * 0.85));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--hx, 50px)), calc(-50% + var(--hy-end, 34px))) scale(0.75) rotate(var(--hrot, 18deg));
+  }
 }
 
 .cheer-caption {
@@ -1689,7 +1755,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .chance-arena.no-is-pixel {
-  gap: 6px;
+  gap: 0;
 }
 
 .chance-yes-btn,
@@ -1749,12 +1815,12 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 .chance-no-btn.is-pixel:focus,
 .chance-no-btn.is-pixel:focus-visible,
 .chance-no-btn.is-pixel:disabled {
-  width: 1px;
-  height: 1px;
+  width: 0;
+  height: 0;
   min-width: 0;
   min-height: 0;
-  max-width: 1px;
-  max-height: 1px;
+  max-width: 0;
+  max-height: 0;
   padding: 0;
   border-width: 0;
   border-radius: 0;
@@ -1763,8 +1829,8 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   line-height: 0;
   gap: 0;
   overflow: hidden;
-  background: var(--outline-soft);
-  opacity: 0.75;
+  background: transparent;
+  opacity: 0;
   transform: none;
   pointer-events: none;
   cursor: default;
@@ -1792,10 +1858,6 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 
 .copy-reply-btn {
   margin-top: 6px;
-}
-
-.chance-reset-btn {
-  margin-top: 4px;
 }
 
 /* Modal */
@@ -2056,6 +2118,20 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .garden-polaroid.is-landscape {
     max-width: 215px;
   }
+
+  .cheer-mascots {
+    gap: 2px;
+  }
+
+  #finale-lulu svg {
+    max-width: 94px;
+    height: auto;
+  }
+
+  #finale-lumei svg {
+    max-width: 78px;
+    height: auto;
+  }
 }
 
 @media (max-width: 359px) {
@@ -2077,6 +2153,9 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .wax-seal-btn,
   .lulu-pupil,
   .sweatdrop,
+  .lulu-crying,
+  .lumei-crying,
+  .tear-drop,
   .arm-wave-left,
   .arm-wave-right,
   .reflection-note,
@@ -2094,8 +2173,13 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .cheer-mascot.mascot-boop svg,
   .envelope-closed.opening .envelope-flap,
   .confetti-piece,
-  .mascot-sparkle {
+  .mascot-sparkle,
+  .hangyodon-popper {
     animation: none !important;
+    transition: none !important;
+  }
+
+  .cheer-mascot {
     transition: none !important;
   }
 

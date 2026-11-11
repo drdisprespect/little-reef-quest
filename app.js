@@ -1197,6 +1197,7 @@
   const headpatBtn = document.getElementById('headpat-btn');
   const headpatCountEl = document.getElementById('headpat-count');
   const cheerCaption = document.getElementById('cheer-caption');
+  const cheerMascotsWrap = document.querySelector('.cheer-mascots');
   let headpats = 0;
 
   const CHEERS = [
@@ -1207,14 +1208,60 @@
     'Teary eyes in office like the good old days muahahha, love you Peanut! 🌷'
   ];
 
+  function updateFinaleChonk() {
+    const steps = Math.min(headpats, 8);
+    const lumeiX = (1 + steps * 0.055).toFixed(3);
+    const lumeiY = (1 + steps * 0.025).toFixed(3);
+    const luluX = (1 + steps * 0.032).toFixed(3);
+    const luluY = (1 + steps * 0.014).toFixed(3);
+    finaleLumei.style.setProperty('--chonk-x', lumeiX);
+    finaleLumei.style.setProperty('--chonk-y', lumeiY);
+    finaleLulu.style.setProperty('--chonk-x', luluX);
+    finaleLulu.style.setProperty('--chonk-y', luluY);
+  }
+
+  function spawnHangyodonBurst(count = 4) {
+    if (!cheerMascotsWrap || prefersReducedMotion()) return;
+    for (let i = 0; i < count; i++) {
+      const pop = document.createElement('span');
+      pop.className = 'hangyodon-popper';
+      pop.setAttribute('aria-hidden', 'true');
+      const size = 36 + Math.floor(Math.random() * 14);
+      pop.innerHTML = MascotArt.miniHangyodonSVG(size);
+      const spread = (i - (count - 1) / 2) * 44 + (Math.random() * 20 - 10);
+      const peakY = -58 - Math.random() * 44;
+      const endY = -4 + Math.random() * 34;
+      const rot = Math.round((spread >= 0 ? 1 : -1) * (14 + Math.random() * 22));
+      pop.style.setProperty('--hx', `${Math.round(spread)}px`);
+      pop.style.setProperty('--hy-peak', `${Math.round(peakY)}px`);
+      pop.style.setProperty('--hy-end', `${Math.round(endY)}px`);
+      pop.style.setProperty('--hrot', `${rot}deg`);
+      cheerMascotsWrap.appendChild(pop);
+      setTimeout(() => pop.remove(), 1120);
+    }
+  }
+
   headpatBtn.addEventListener('click', () => {
     headpats += 1;
     headpatCountEl.textContent = String(headpats);
     cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
+    updateFinaleChonk();
     boopMascot(finaleLulu, false);
     boopMascot(finaleLumei, false);
+    spawnHangyodonBurst(4);
     playChime(587.33 + (headpats % 5) * 45, 0.16);
     spawnConfetti(12, ['✨', '💛', '🌸', '🍊']);
+  });
+
+  [finaleLulu, finaleLumei].forEach((el) => {
+    if (!el) return;
+    el.addEventListener('click', () => {
+      headpats += 1;
+      headpatCountEl.textContent = String(headpats);
+      cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
+      updateFinaleChonk();
+      spawnHangyodonBurst(3);
+    });
   });
 
   document.getElementById('open-collage-modal').addEventListener('click', () => {
@@ -1266,7 +1313,6 @@
   const chanceYesBtn = document.getElementById('chance-yes-btn');
   const chanceNoBtn = document.getElementById('chance-no-btn');
   const chanceResult = document.getElementById('chance-result');
-  const chanceResetBtn = document.getElementById('chance-reset-btn');
   const statusChapChance = document.getElementById('status-chap-chance');
   const chanceTabPill = document.querySelector('.chap-pill[data-chap="chance"]');
 
@@ -1277,7 +1323,7 @@
       dialogue: '“Will you forgive me and give me one more chance to earn back your trust, your love, and our forever?”',
       yesText: "🌸 Yes, let's give us another chance ♡",
       noText: '🤔 Still deciding...',
-      yesSize: '1.0rem',
+      yesSize: '1.00rem',
       yesPad: '12px 22px',
       noSize: '0.98rem',
       noPad: '12px 22px',
@@ -1290,89 +1336,75 @@
       dialogue: '“Fair, I know I disappointed you and hurt you deeply. What if I spend every day proving I truly treasure you now?”',
       yesText: '💛 Earn back my trust step by step',
       noText: '🍊 Still unsure...',
-      yesSize: '1.07rem',
+      yesSize: '1.05rem',
       yesPad: '13px 24px',
       noSize: '0.84rem',
       noPad: '9px 16px',
       noBw: '2px',
-      noOpacity: '0.96'
+      noOpacity: '0.95'
     },
     {
-      luluMood: 'shy',
-      lumeiMood: 'happy',
+      luluMood: 'crying',
+      lumeiMood: 'curious',
       dialogue: '“Even after my team meeting my first thought is still ‘ughhh miss you so much tooty’... plus I owe you two giant caramel popcorn bags from Tiong Bahru!”',
       yesText: '🍿 Two giant caramel popcorn bags!',
       noText: '🤨 Still thinking...',
-      yesSize: '1.15rem',
+      yesSize: '1.10rem',
       yesPad: '14px 26px',
       noSize: '0.70rem',
       noPad: '6px 12px',
       noBw: '2px',
-      noOpacity: '0.92'
+      noOpacity: '0.90'
     },
     {
-      luluMood: 'pleading',
-      lumeiMood: 'curious',
+      luluMood: 'crying',
+      lumeiMood: 'crying',
       dialogue: '“We already had our real talk, and whenever we hit a problem in the future I promise we’ll talk it out calmly together through thick and thin, zero blame or defensiveness on my side.”',
       yesText: '🕊️ Talking it out together, let’s try again',
       noText: '🙈 Hmm not yet',
-      yesSize: '1.23rem',
+      yesSize: '1.15rem',
       yesPad: '15px 28px',
       noSize: '0.56rem',
-      noPad: '4px 9px',
+      noPad: '5px 10px',
       noBw: '1.5px',
-      noOpacity: '0.88'
+      noOpacity: '0.85'
     },
     {
-      luluMood: 'pleading',
-      lumeiMood: 'curious',
+      luluMood: 'crying',
+      lumeiMood: 'crying',
       dialogue: '“I loved you 3 weeks ago and I love you even more now. 2 weeks ago I added a +1 for the Google EOY Party at Marquee hoping you would go...”',
       yesText: '🪩 Save that Marquee +1 for me!',
       noText: '🤏 tiny maybe',
-      yesSize: '1.31rem',
+      yesSize: '1.20rem',
       yesPad: '16px 30px',
-      noSize: '0.42rem',
-      noPad: '3px 7px',
+      noSize: '0.46rem',
+      noPad: '4px 8px',
       noBw: '1.5px',
-      noOpacity: '0.82',
+      noOpacity: '0.78',
       isTiny: true
     },
     {
-      luluMood: 'pleading',
-      lumeiMood: 'happy',
-      dialogue: '“OMG I MISSED UR NAGGING HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ 😭 Plus Mini Lumei literally brought out her sign!”',
-      yesText: '🎙️ Fine, come get nagged by Tooty!',
-      noText: '🔬 smaller still',
-      yesSize: '1.39rem',
+      luluMood: 'crying',
+      lumeiMood: 'crying',
+      dialogue: '“OMG I MISSED UR NAGGING HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ 😭 Look, Lulu & Lumei are both crying now... wait don’t shrink it any smaller!!”',
+      yesText: '🎙️ Fine, come wipe my tears & get nagged!',
+      noText: '🥹 almost gone...',
+      yesSize: '1.25rem',
       yesPad: '17px 32px',
-      noSize: '0.30rem',
-      noPad: '2px 5px',
-      noBw: '1px',
-      noOpacity: '0.76',
-      isTiny: true
-    },
-    {
-      luluMood: 'pleading',
-      lumeiMood: 'happy',
-      dialogue: '“Teary eyes in office like the good old days muahahha... strongest, smartest, most kind woman I know. Look how close to 1px this No button is!!”',
-      yesText: '💐 Okay you giant goofball, YES!',
-      noText: '🫧 1px away...',
-      yesSize: '1.46rem',
-      yesPad: '18px 34px',
-      noSize: '0.22rem',
-      noPad: '1px 3px',
+      noSize: '0.38rem',
+      noPad: '3px 6px',
       noBw: '1px',
       noOpacity: '0.70',
       isTiny: true
     },
     {
-      luluMood: 'pleading',
-      lumeiMood: 'happy',
-      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now)... GUYS ONLY YES IS LEFT LETS GOOOOO 🍊💛”',
+      luluMood: 'crying',
+      lumeiMood: 'crying',
+      dialogue: '“Uh oh, the No button shrank so small it’s completely gone now 😭 Teary eyes in office like the good old days muahahha... only Yes is left for Lulu & Lumei 🍊💛”',
       yesText: '✨ YES, LETS GOOOOO LUMEI & LULU! 🍊',
       noText: '',
-      yesSize: '1.54rem',
-      yesPad: '19px 36px',
+      yesSize: '1.31rem',
+      yesPad: '18px 34px',
       isPixel: true
     }
   ];
@@ -1411,8 +1443,7 @@
       chanceNoBtn.disabled = true;
       chanceNoBtn.setAttribute('aria-disabled', 'true');
       chanceNoBtn.tabIndex = -1;
-      statusChapChance.textContent = 'Only 1px Left 👀';
-      chanceResetBtn.classList.remove('hidden');
+      statusChapChance.textContent = 'Only Yes Left 🥹';
       return;
     }
 
@@ -1427,28 +1458,9 @@
     chanceNoBtn.style.setProperty('--no-op', step.noOpacity);
   }
 
-  function resetChanceSection() {
-    chanceNoCount = 0;
-    chanceArena.classList.remove('hidden', 'no-is-pixel');
-    chanceNoBtn.classList.remove('is-tiny', 'is-pixel');
-    chanceNoBtn.style.removeProperty('--no-fs');
-    chanceNoBtn.style.removeProperty('--no-pad');
-    chanceNoBtn.style.removeProperty('--no-bw');
-    chanceNoBtn.style.removeProperty('--no-op');
-    chanceNoBtn.disabled = false;
-    chanceNoBtn.removeAttribute('aria-disabled');
-    chanceNoBtn.removeAttribute('aria-hidden');
-    chanceNoBtn.tabIndex = 0;
-    chanceResult.classList.add('hidden');
-    chanceResult.innerHTML = '';
-    chanceResetBtn.classList.add('hidden');
-    statusChapChance.textContent = 'Waiting on You 🍊';
-    if (chanceTabPill) chanceTabPill.classList.remove('done');
-    renderChanceStep();
-  }
-
   chanceNoBtn.addEventListener('click', () => {
-    if (chanceNoCount >= CHANCE_STEPS.length - 1) return;
+    const current = CHANCE_STEPS[chanceNoCount];
+    if (current.isPixel || chanceNoCount >= CHANCE_STEPS.length - 1) return;
     chanceNoCount += 1;
     playChime(440 - chanceNoCount * 28, 0.14, 'triangle');
     renderChanceStep();
@@ -1458,17 +1470,16 @@
     chanceArena.classList.add('hidden');
     chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
     chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 136);
-    chanceDialogue.textContent = '“Haha just kidding about making No 1px, take all your time, zero rush, love you very much ♡”';
+    chanceDialogue.textContent = '“Yay tears dried up right away!! Haha just kidding about making No disappear, take all your time, zero rush, love you very much ♡”';
     statusChapChance.textContent = 'Take Your Time 💛';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Just kidding about forcing you with a 1px No button, <strong class="js-nick-inline">${getActiveNickname()}</strong>, take your time and don’t feel rushed at all. Love you very much, Lumei / Toot / Tooty / Baobao / Peanut ♡</p>
+      <p>Just kidding about making the No button disappear, <strong class="js-nick-inline">${getActiveNickname()}</strong>, take your time and don’t feel rushed at all. Love you very much, Lumei / Toot / Tooty / Baobao / Peanut ♡</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
         📋 Copy quick text: "Hey Lulu 🍊 saw your site, taking my time no rush ♡"
       </button>
     `;
     chanceResult.classList.remove('hidden');
-    chanceResetBtn.classList.remove('hidden');
     playSparkleChord();
     spawnConfetti(34, ['💛', '🌸', '🍊', '✨', '☕', '🎉']);
 
@@ -1484,13 +1495,5 @@
     });
   });
 
-  chanceResetBtn.addEventListener('click', () => {
-    const resetHadFocus = document.activeElement === chanceResetBtn;
-    resetChanceSection();
-    if (resetHadFocus) {
-      chanceYesBtn.focus({ preventScroll: true });
-    }
-  });
-
-  resetChanceSection();
+  renderChanceStep();
 })();

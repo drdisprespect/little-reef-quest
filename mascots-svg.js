@@ -19,8 +19,8 @@ window.MascotArt = (() => {
 
   function luluSVG(mood = 'welcome', size = 190) {
     const blush = `
-      <ellipse cx="63" cy="99" rx="11" ry="6.2" fill="#FF8A80" opacity="0.62"/>
-      <ellipse cx="137" cy="99" rx="11" ry="6.2" fill="#FF8A80" opacity="0.62"/>
+      <ellipse cx="55" cy="100" rx="12" ry="6.8" fill="#FF8A80" opacity="0.64"/>
+      <ellipse cx="145" cy="100" rx="12" ry="6.8" fill="#FF8A80" opacity="0.64"/>
     `;
 
     let eyes = `
@@ -35,13 +35,13 @@ window.MascotArt = (() => {
     `;
 
     let mouth = `
-      <path d="M86 110 Q100 119 114 110" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M86 111 Q100 120 114 111" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
     `;
 
     let extras = '';
     let arms = `
-      <path d="M62 135 Q40 128 42 112 Q50 107 64 123" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M138 135 Q160 128 158 112 Q150 107 136 123" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M54 136 Q30 128 33 111 Q42 106 58 123" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M146 136 Q170 128 167 111 Q158 106 142 123" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     `;
 
     if (mood === 'shy') {
@@ -56,14 +56,14 @@ window.MascotArt = (() => {
         <path d="M114 59 Q122 65 132 61" fill="none" stroke="${OUTLINE}" stroke-width="2.5" stroke-linecap="round"/>
       `;
       mouth = `
-        <path d="M90 112 Q100 116 110 112" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M90 113 Q100 117 110 113" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
       `;
       arms = `
-        <path d="M62 136 Q74 152 90 146" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M138 136 Q126 152 110 146" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M54 137 Q70 155 88 148" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M146 137 Q130 155 112 148" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
       `;
       extras = `
-        <path class="sweatdrop" d="M153 60 Q161 72 153 79 Q145 72 153 60 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="2"/>
+        <path class="sweatdrop" d="M161 60 Q169 72 161 79 Q153 72 161 60 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="2"/>
       `;
     } else if (mood === 'flowers' || mood === 'holding-flowers') {
       eyes = `
@@ -77,8 +77,8 @@ window.MascotArt = (() => {
         <circle cx="118" cy="78.5" r="1.3" fill="#FFFFFF"/>
       `;
       arms = `
-        <path d="M62 136 Q74 150 88 143" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M138 136 Q126 150 112 143" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M54 137 Q70 153 86 145" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M146 137 Q130 153 114 145" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
       `;
       extras = `
         <g transform="translate(76, 128)">
@@ -96,22 +96,22 @@ window.MascotArt = (() => {
         <path d="M112 77 Q122 65 132 77" fill="none" stroke="${OUTLINE}" stroke-width="3.2" stroke-linecap="round"/>
       `;
       mouth = `
-        <path d="M84 107 Q100 124 116 107 Z" fill="#FF758F" stroke="${OUTLINE}" stroke-width="2.6" stroke-linejoin="round"/>
-        <path d="M90 113 Q100 120 110 113" fill="#FFB3C6"/>
+        <path d="M84 108 Q100 125 116 108 Z" fill="#FF758F" stroke="${OUTLINE}" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M90 114 Q100 121 110 114" fill="#FFB3C6"/>
       `;
       arms = `
         <g class="arm-wave-left">
-          <path d="M62 135 Q32 110 38 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
-          <path d="M62 135 Q32 110 38 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M54 136 Q24 110 30 86" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
+          <path d="M54 136 Q24 110 30 86" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
         </g>
         <g class="arm-wave-right">
-          <path d="M138 135 Q168 110 162 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
-          <path d="M138 135 Q168 110 162 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+          <path d="M146 136 Q176 110 170 86" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
+          <path d="M146 136 Q176 110 170 86" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
         </g>
       `;
       extras = `
-        <circle cx="34" cy="82" r="10.5" fill="#FF9F43" stroke="${OUTLINE}" stroke-width="2.4"/>
-        <circle cx="166" cy="82" r="10.5" fill="#FFB3C6" stroke="${OUTLINE}" stroke-width="2.4"/>
+        <circle cx="27" cy="81" r="10.5" fill="#FF9F43" stroke="${OUTLINE}" stroke-width="2.4"/>
+        <circle cx="173" cy="81" r="10.5" fill="#FFB3C6" stroke="${OUTLINE}" stroke-width="2.4"/>
         <path d="M40 36 L43 43 L50 46 L43 49 L40 56 L37 49 L30 46 L37 43 Z" fill="#FFE082" stroke="${OUTLINE}" stroke-width="1.5"/>
         <path d="M160 34 L163 40 L169 43 L163 46 L160 52 L157 46 L151 43 L157 40 Z" fill="#FFB3C6" stroke="${OUTLINE}" stroke-width="1.5"/>
       `;
@@ -129,14 +129,42 @@ window.MascotArt = (() => {
         <path d="M134 57 Q123 53 114 59" fill="none" stroke="${OUTLINE}" stroke-width="2.5" stroke-linecap="round"/>
       `;
       mouth = `
-        <path d="M89 113 Q100 108 111 113" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M89 114 Q100 109 111 114" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
       `;
       arms = `
-        <path d="M62 136 Q76 148 90 142" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M138 136 Q124 148 110 142" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M54 137 Q70 151 88 144" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M146 137 Q130 151 112 144" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
       `;
       extras = `
-        <path class="sweatdrop" d="M153 58 Q161 70 153 77 Q145 70 153 58 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="2"/>
+        <path class="sweatdrop" d="M161 58 Q169 70 161 77 Q153 70 161 58 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="2"/>
+      `;
+    } else if (mood === 'crying') {
+      eyes = `
+        <ellipse cx="78" cy="75" rx="10.5" ry="11.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.8"/>
+        <ellipse cx="122" cy="75" rx="10.5" ry="11.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.8"/>
+        <path d="M68 80 Q78 88 88 80 Q82 86 78 86 Q74 86 68 80 Z" fill="#8EDBFF" opacity="0.92"/>
+        <path d="M112 80 Q122 88 132 80 Q126 86 122 86 Q118 86 112 80 Z" fill="#8EDBFF" opacity="0.92"/>
+        <circle cx="79" cy="75" r="7" fill="${OUTLINE}"/>
+        <circle cx="121" cy="75" r="7" fill="${OUTLINE}"/>
+        <circle cx="81.5" cy="71.5" r="3" fill="#FFFFFF"/>
+        <circle cx="123.5" cy="71.5" r="3" fill="#FFFFFF"/>
+        <circle cx="75.5" cy="79" r="1.7" fill="#FFFFFF"/>
+        <circle cx="117.5" cy="79" r="1.7" fill="#FFFFFF"/>
+        <path d="M66 59 Q76 52 85 59" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M134 59 Q124 52 115 59" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
+      `;
+      mouth = `
+        <path d="M89 115 Q95 110 100 114 Q105 110 111 115" fill="none" stroke="${OUTLINE}" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      `;
+      arms = `
+        <path d="M54 136 Q32 122 39 102" fill="none" stroke="#FFD54F" stroke-width="12" stroke-linecap="round"/>
+        <path d="M54 136 Q32 122 39 102" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <path d="M146 136 Q168 122 161 102" fill="none" stroke="#FFD54F" stroke-width="12" stroke-linecap="round"/>
+        <path d="M146 136 Q168 122 161 102" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+      `;
+      extras = `
+        <path class="tear-drop" d="M72 86 Q77 95 72 101 Q67 95 72 86 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.8"/>
+        <path class="tear-drop tear-delay" d="M128 86 Q133 95 128 101 Q123 95 128 86 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.8"/>
       `;
     } else if (mood === 'camera') {
       extras = `
@@ -153,37 +181,37 @@ window.MascotArt = (() => {
     return `
       <svg class="mascot-svg lulu-${mood}" width="${size}" height="${size}" viewBox="0 0 200 212" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lulu (${mood})">
         <!-- Cute little rounded ears -->
-        <circle cx="62" cy="54" r="11" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
-        <circle cx="62" cy="55" r="5" fill="#F5A623"/>
-        <circle cx="138" cy="54" r="11" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
-        <circle cx="138" cy="55" r="5" fill="#F5A623"/>
+        <circle cx="60" cy="53" r="11" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
+        <circle cx="60" cy="54" r="5" fill="#F5A623"/>
+        <circle cx="140" cy="53" r="11" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
+        <circle cx="140" cy="54" r="5" fill="#F5A623"/>
 
         <!-- Chubby feet -->
-        <ellipse cx="78" cy="192" rx="16" ry="9" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
-        <ellipse cx="122" cy="192" rx="16" ry="9" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
+        <ellipse cx="73" cy="193" rx="18" ry="10" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
+        <ellipse cx="127" cy="193" rx="18" ry="10" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3"/>
 
-        <!-- Chubby golden body -->
-        <path d="M62 124 Q52 178 76 186 L124 186 Q148 178 138 124 Z" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linejoin="round"/>
-        <!-- Soft tummy highlight -->
-        <ellipse cx="100" cy="144" rx="22" ry="14" fill="#FFE78C" opacity="0.65"/>
+        <!-- Extra chubby round golden body -->
+        <path d="M54 118 Q28 164 56 187 Q100 197 144 187 Q172 164 146 118 Z" fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Soft round tummy highlight -->
+        <ellipse cx="100" cy="145" rx="31" ry="17" fill="#FFE78C" opacity="0.65"/>
 
         <!-- Iconic sky-blue shorts with strap -->
-        <path d="M58 156 Q100 163 142 156 Q145 182 124 186 L104 186 L100 176 L96 186 L76 186 Q55 182 58 156 Z"
+        <path d="M45 153 Q100 165 155 153 Q160 183 132 189 L105 189 L100 177 L95 189 L68 189 Q40 183 45 153 Z"
               fill="#72C4F8" stroke="${OUTLINE}" stroke-width="2.8" stroke-linejoin="round"/>
-        <path d="M60 160 Q100 167 140 160" fill="none" stroke="#B6E1FC" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M67 128 Q94 146 135 156" fill="none" stroke="#72C4F8" stroke-width="5.5" stroke-linecap="round"/>
-        <path d="M67 128 Q94 146 135 156" fill="none" stroke="${OUTLINE}" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M48 158 Q100 169 152 158" fill="none" stroke="#B6E1FC" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M62 126 Q94 146 144 155" fill="none" stroke="#72C4F8" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M62 126 Q94 146 144 155" fill="none" stroke="${OUTLINE}" stroke-width="2.2" stroke-linecap="round"/>
 
         <!-- Arms -->
         ${arms}
 
-        <!-- Chubby hippo head -->
-        <path d="M52 84 C52 50, 74 38, 100 38 C126 38, 148 50, 148 84 C156 96, 152 126, 100 128 C48 126, 44 96, 52 84 Z"
+        <!-- Chubby wide hippo head & cheeks -->
+        <path d="M46 84 C46 48, 70 38, 100 38 C130 38, 154 48, 154 84 C165 98, 159 131, 100 133 C41 131, 35 98, 46 84 Z"
               fill="#FFD54F" stroke="${OUTLINE}" stroke-width="3.2" stroke-linejoin="round"/>
         <!-- Forehead sheen -->
         <ellipse cx="80" cy="52" rx="14" ry="5.5" fill="#FFF0A8" opacity="0.65" transform="rotate(-14 80 52)"/>
         <!-- Warm snout tint -->
-        <ellipse cx="100" cy="104" rx="45" ry="21" fill="#FFB94A" opacity="0.58"/>
+        <ellipse cx="100" cy="106" rx="52" ry="23" fill="#FFB94A" opacity="0.58"/>
         <!-- Tiny nostrils -->
         <circle cx="91" cy="94" r="2.1" fill="#B5651D" opacity="0.7"/>
         <circle cx="109" cy="94" r="2.1" fill="#B5651D" opacity="0.7"/>
@@ -212,6 +240,8 @@ window.MascotArt = (() => {
     let mouth = `
       <path d="M79 109 Q90 117 101 109" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
     `;
+
+    let tears = '';
 
     let arms = `
       <path d="M56 138 Q42 146 46 156" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
@@ -251,6 +281,36 @@ window.MascotArt = (() => {
       `;
       mouth = `
         <circle cx="90" cy="111" r="3.6" fill="#FF9EB5" stroke="${OUTLINE}" stroke-width="2.2"/>
+      `;
+    } else if (mood === 'crying') {
+      eyes = `
+        <ellipse cx="70" cy="80" rx="9" ry="10" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.5"/>
+        <ellipse cx="110" cy="80" rx="9" ry="10" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.5"/>
+        <path d="M62 84 Q70 91 78 84 Q73 89 70 89 Q67 89 62 84 Z" fill="#8EDBFF" opacity="0.92"/>
+        <path d="M102 84 Q110 91 118 84 Q113 89 110 89 Q107 89 102 84 Z" fill="#8EDBFF" opacity="0.92"/>
+        <circle cx="71" cy="80" r="5.8" fill="${OUTLINE}"/>
+        <circle cx="109" cy="80" r="5.8" fill="${OUTLINE}"/>
+        <circle cx="73" cy="76.5" r="2.5" fill="#FFFFFF"/>
+        <circle cx="111" cy="76.5" r="2.5" fill="#FFFFFF"/>
+        <circle cx="68" cy="83.5" r="1.4" fill="#FFFFFF"/>
+        <circle cx="106" cy="83.5" r="1.4" fill="#FFFFFF"/>
+        <path d="M60 66 Q69 61 77 67" fill="none" stroke="${OUTLINE}" stroke-width="2.3" stroke-linecap="round"/>
+        <path d="M120 66 Q111 61 103 67" fill="none" stroke="${OUTLINE}" stroke-width="2.3" stroke-linecap="round"/>
+      `;
+      mouth = `
+        <path d="M81 112 Q86 108 90 111 Q94 108 99 112" fill="none" stroke="${OUTLINE}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      `;
+      if (!holdingSign) {
+        arms = `
+          <path d="M56 136 Q38 122 44 108" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
+          <path d="M56 136 Q38 122 44 108" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M124 136 Q142 122 136 108" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
+          <path d="M124 136 Q142 122 136 108" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+        `;
+      }
+      tears = `
+        <path class="tear-drop" d="M66 89 Q70 97 66 102 Q62 97 66 89 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.7"/>
+        <path class="tear-drop tear-delay" d="M114 89 Q118 97 114 102 Q110 97 114 89 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.7"/>
       `;
     }
 
@@ -297,6 +357,7 @@ window.MascotArt = (() => {
 
         ${eyes}
         ${mouth}
+        ${tears}
 
         <!-- White Saucer + Tangerine with two green leaves on Bonnet -->
         <ellipse cx="90" cy="36" rx="20" ry="5.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.6"/>
@@ -408,11 +469,34 @@ window.MascotArt = (() => {
     `;
   }
 
+  function miniHangyodonSVG(size = 42) {
+    const hOutline = '#1F4B57';
+    return `
+      <svg width="${size}" height="${size}" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M32 16 Q35 6 40 13 Q45 5 48 16" fill="#5CC8BE" stroke="${hOutline}" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M16 34 Q8 30 10 40 Q6 44 13 48 Q10 54 18 50" fill="#8AE4DC" stroke="${hOutline}" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M64 34 Q72 30 70 40 Q74 44 67 48 Q70 54 62 50" fill="#8AE4DC" stroke="${hOutline}" stroke-width="2.2" stroke-linejoin="round"/>
+        <ellipse cx="40" cy="43" rx="25" ry="23" fill="#5CC8BE" stroke="${hOutline}" stroke-width="2.6"/>
+        <ellipse cx="23" cy="49" rx="4.5" ry="2.6" fill="#FF9EB5" opacity="0.78"/>
+        <ellipse cx="57" cy="49" rx="4.5" ry="2.6" fill="#FF9EB5" opacity="0.78"/>
+        <circle cx="30" cy="38" r="7.5" fill="#FFFFFF" stroke="${hOutline}" stroke-width="2.2"/>
+        <circle cx="50" cy="38" r="7.5" fill="#FFFFFF" stroke="${hOutline}" stroke-width="2.2"/>
+        <circle cx="31" cy="38" r="3.6" fill="${hOutline}"/>
+        <circle cx="49" cy="38" r="3.6" fill="${hOutline}"/>
+        <circle cx="32.2" cy="36.2" r="1.4" fill="#FFFFFF"/>
+        <circle cx="50.2" cy="36.2" r="1.4" fill="#FFFFFF"/>
+        <path d="M29 53 Q40 47 51 53 Q54 58 48 61 Q40 65 32 61 Q26 58 29 53 Z" fill="#FF8EA6" stroke="${hOutline}" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M31 56 Q40 60 49 56" fill="none" stroke="${hOutline}" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    `;
+  }
+
   return {
     luluSVG,
     lumeiSVG,
     basketLuluSVG,
     bouquetSVG,
     tangerineBadgeSVG,
+    miniHangyodonSVG,
   };
 })();
