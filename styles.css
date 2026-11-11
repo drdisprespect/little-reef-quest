@@ -406,11 +406,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 
 .mascot-stage svg,
 .chance-mascots svg,
-.chap1-mascot svg,
-.chap2-mascot svg,
+.chap1-mascots svg,
+.chap2-mascots svg,
+.chap3-cheer-pair svg,
+.envelope-mascots svg,
 .sticker-left svg,
 .sticker-right svg,
-.cheer-mascot svg,
+.cheer-mascots svg,
+.footer-mascots svg,
 .bouquet-art svg {
   max-width: 100%;
   height: auto;
@@ -574,14 +577,23 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 /* Chapter 1: Thought Bubble Reflections */
 .bubble-arena {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 232px 1fr;
   gap: 18px;
   align-items: center;
 }
 
-.chap1-mascot {
+.chap1-mascots {
   display: flex;
+  align-items: flex-end;
   justify-content: center;
+  gap: 2px;
+}
+
+.chap1-mascot,
+.chap1-mascot-lumei {
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .bubbles-grid {
@@ -814,6 +826,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   font-size: 1.05rem;
 }
 
+.chap2-mascots {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
 .chap2-mascot {
   display: inline-flex;
   align-items: center;
@@ -931,11 +951,26 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   text-align: center;
 }
 
+.strip-header-duo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
 .strip-label {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--cocoa-muted);
+}
+
+.chap3-cheer-pair {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
 }
 
 .finale-polaroid-slot {
@@ -1217,7 +1252,15 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .envelope-body {
-  padding: 24px 20px 32px;
+  padding: 20px 20px 32px;
+}
+
+.envelope-mascots {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 6px;
 }
 
 .envelope-to {
@@ -1395,6 +1438,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+}
+
+.cheer-mascots {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  max-width: 100%;
 }
 
 .cheer-caption {
@@ -1754,6 +1805,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   color: var(--cocoa-muted);
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.footer-mascots {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 /* Responsive */

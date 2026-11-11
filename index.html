@@ -98,7 +98,10 @@
       </p>
 
       <div class="bubble-arena">
-        <div class="chap1-mascot" id="chap1-lulu"></div>
+        <div class="chap1-mascots">
+          <button type="button" class="chap1-mascot mascot-btn" id="chap1-lulu" aria-label="Tap Lulu for sparkles"></button>
+          <button type="button" class="chap1-mascot-lumei mascot-btn" id="chap1-lumei" aria-label="Tap Lumei for sparkles"></button>
+        </div>
         <div class="bubbles-grid" id="bubbles-grid"></div>
       </div>
 
@@ -136,7 +139,10 @@
       <div class="keepsake-shelf-wrap">
         <div class="shelf-header">
           <h3 class="shelf-title">Unlocked Polaroids (Tap any memory to read the full story)</h3>
-          <div class="chap2-mascot" id="chap2-lulu" aria-hidden="true"></div>
+          <div class="chap2-mascots">
+            <div class="chap2-mascot" id="chap2-lulu" aria-hidden="true"></div>
+            <div class="chap2-mascot" id="chap2-lumei" aria-hidden="true"></div>
+          </div>
         </div>
         <div class="keepsake-shelf" id="keepsake-shelf"></div>
       </div>
@@ -195,7 +201,13 @@
       </div>
 
       <div class="chapter-polaroid-strip" aria-label="Snack memories">
-        <p class="strip-label">Treats &amp; smiles Lulu is cheering for:</p>
+        <div class="strip-header-duo">
+          <p class="strip-label">Treats &amp; smiles Lulu &amp; Lumei are cheering for:</p>
+          <div class="chap3-cheer-pair" aria-hidden="true">
+            <span id="chap3-lulu"></span>
+            <span id="chap3-lumei"></span>
+          </div>
+        </div>
         <div class="polaroid-row" data-photo-strip="potato-tornado,french-toast"></div>
       </div>
 
@@ -222,6 +234,10 @@
         <div class="envelope-closed" id="envelope-closed">
           <div class="envelope-flap"></div>
           <div class="envelope-body">
+            <div class="envelope-mascots" aria-hidden="true">
+              <span id="envelope-lulu"></span>
+              <span id="envelope-lumei"></span>
+            </div>
             <p class="envelope-to">For Ashley / Lumei / Tooty / Baobao / Baobei / Peanut ♡</p>
             <button type="button" class="wax-seal-btn" id="open-seal-btn" aria-expanded="false" aria-label="Tap tangerine wax seal to open apology letter">
               <span class="seal-icon">🍊</span>
@@ -295,7 +311,10 @@
         <div class="bouquet-panel">
           <div class="bouquet-art" id="bouquet-art"></div>
           <div class="cheer-box">
-            <div class="cheer-mascot" id="finale-lulu"></div>
+            <div class="cheer-mascots">
+              <button type="button" class="cheer-mascot mascot-btn" id="finale-lulu" aria-label="Tap cheering Lulu"></button>
+              <button type="button" class="cheer-mascot mascot-btn" id="finale-lumei" aria-label="Tap cheering Lumei"></button>
+            </div>
             <button type="button" class="btn btn-pink" id="headpat-btn">
               <span>🫶</span>
               <span>Pat Lulu / Cheer Up Lumei! (<span id="headpat-count">0</span>)</span>
@@ -397,6 +416,10 @@
   </div>
 
   <footer class="garden-footer">
+    <div class="footer-mascots">
+      <button type="button" class="mascot-btn" id="footer-lulu" aria-label="Tap Lulu for sparkles"></button>
+      <button type="button" class="mascot-btn" id="footer-lumei" aria-label="Tap Lumei for sparkles"></button>
+    </div>
     <p>Written from the bottom of my heart — love you forever, Lumei / Toot / Tooty / Ashley / Baobao / Baobei / Peanut 🍊</p>
   </footer>
 

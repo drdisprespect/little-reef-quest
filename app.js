@@ -185,32 +185,54 @@
     if (soundEnabled) playChime(587.33, 0.14);
   });
 
-  // ---------- Render Mascot SVGs & Hero Tap Delight ----------
+  // ---------- Render Mascot SVGs & Tap-to-Boop Pairs ----------
   const heroLuluBtn = document.getElementById('hero-lulu');
   const heroLumeiBtn = document.getElementById('hero-lumei');
+  const chap1Lulu = document.getElementById('chap1-lulu');
+  const chap1Lumei = document.getElementById('chap1-lumei');
   const chap2Lulu = document.getElementById('chap2-lulu');
+  const chap2Lumei = document.getElementById('chap2-lumei');
   const finaleLulu = document.getElementById('finale-lulu');
+  const finaleLumei = document.getElementById('finale-lumei');
+  const footerLulu = document.getElementById('footer-lulu');
+  const footerLumei = document.getElementById('footer-lumei');
 
   heroLuluBtn.innerHTML = MascotArt.luluSVG('welcome', 178);
-  heroLumeiBtn.innerHTML = MascotArt.lumeiSVG('happy', 148);
-  document.getElementById('chap1-lulu').innerHTML = MascotArt.luluSVG('shy', 165);
+  heroLumeiBtn.innerHTML = MascotArt.lumeiSVG('happy', 142);
+  chap1Lulu.innerHTML = MascotArt.luluSVG('shy', 144);
+  chap1Lumei.innerHTML = MascotArt.lumeiSVG('curious', 114);
   chap2Lulu.innerHTML = MascotArt.luluSVG('camera', 64);
+  chap2Lumei.innerHTML = MascotArt.lumeiSVG('happy', 52);
+  document.getElementById('chap3-lulu').innerHTML = MascotArt.luluSVG('welcome', 50);
+  document.getElementById('chap3-lumei').innerHTML = MascotArt.lumeiSVG('cheering', 42);
   document.getElementById('basket-player').innerHTML = MascotArt.basketLuluSVG(84);
+  document.getElementById('envelope-lulu').innerHTML = MascotArt.luluSVG('holding-flowers', 60);
+  document.getElementById('envelope-lumei').innerHTML = MascotArt.lumeiSVG('curious', 48);
   document.getElementById('letter-lulu-sticker').innerHTML = MascotArt.luluSVG('holding-flowers', 68);
-  document.getElementById('letter-lumei-sticker').innerHTML = MascotArt.lumeiSVG('happy', 62);
+  document.getElementById('letter-lumei-sticker').innerHTML = MascotArt.lumeiSVG('happy', 56);
   document.getElementById('bouquet-art').innerHTML = MascotArt.bouquetSVG(210);
-  finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 135);
+  finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 134);
+  finaleLumei.innerHTML = MascotArt.lumeiSVG('cheering', 108);
+  footerLulu.innerHTML = MascotArt.luluSVG('welcome', 52);
+  footerLumei.innerHTML = MascotArt.lumeiSVG('happy', 42);
   renderTangerines();
 
-  heroLuluBtn.addEventListener('click', () => {
-    boopMascot(heroLuluBtn, true);
-    playChime(659.25, 0.15);
-  });
+  function bindMascotBoop(el, freq = 659.25, type = 'sine') {
+    if (!el) return;
+    el.addEventListener('click', () => {
+      boopMascot(el, true);
+      playChime(freq, 0.15, type);
+    });
+  }
 
-  heroLumeiBtn.addEventListener('click', () => {
-    boopMascot(heroLumeiBtn, true);
-    playChime(783.99, 0.15, 'triangle');
-  });
+  bindMascotBoop(heroLuluBtn, 659.25, 'sine');
+  bindMascotBoop(heroLumeiBtn, 783.99, 'triangle');
+  bindMascotBoop(chap1Lulu, 622.25, 'sine');
+  bindMascotBoop(chap1Lumei, 740.0, 'triangle');
+  bindMascotBoop(finaleLulu, 659.25, 'sine');
+  bindMascotBoop(finaleLumei, 783.99, 'triangle');
+  bindMascotBoop(footerLulu, 587.33, 'sine');
+  bindMascotBoop(footerLumei, 740.0, 'triangle');
 
   document.getElementById('start-quest-btn').addEventListener('click', () => {
     playChime(587.33, 0.18);
@@ -536,7 +558,8 @@
       statusChap1.textContent = '6 / 6 Complete 🍊';
       revealAllBubblesBtn.disabled = true;
       revealAllBubblesBtn.textContent = '✨ All 6 reflections revealed';
-      document.getElementById('chap1-lulu').innerHTML = MascotArt.luluSVG('welcome', 165);
+      chap1Lulu.innerHTML = MascotArt.luluSVG('welcome', 144);
+      chap1Lumei.innerHTML = MascotArt.lumeiSVG('cheering', 114);
       unlockTangerine(1);
     }
   }
@@ -1107,6 +1130,7 @@
     headpatCountEl.textContent = String(headpats);
     cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
     boopMascot(finaleLulu, false);
+    boopMascot(finaleLumei, false);
     playChime(587.33 + (headpats % 5) * 45, 0.16);
     spawnConfetti(12, ['✨', '💛', '🌸', '🍊']);
   });
@@ -1278,10 +1302,10 @@
     const isTiny = Boolean(step.isTiny);
     const isPixel = Boolean(step.isPixel);
 
-    chanceLulu.innerHTML = MascotArt.luluSVG(step.luluMood, 162);
+    chanceLulu.innerHTML = MascotArt.luluSVG(step.luluMood, 164);
     chanceLumei.innerHTML = chanceNoCount >= 5
-      ? MascotArt.lumeiSVG(step.lumeiMood, 146, { holdingSign: true })
-      : MascotArt.lumeiSVG(step.lumeiMood, 134);
+      ? MascotArt.lumeiSVG(step.lumeiMood, 136, { holdingSign: true })
+      : MascotArt.lumeiSVG(step.lumeiMood, 130);
     chanceDialogue.textContent = step.dialogue;
     chanceYesBtn.textContent = step.yesText;
     chanceYesBtn.style.fontSize = step.yesSize;
@@ -1351,7 +1375,7 @@
   chanceYesBtn.addEventListener('click', () => {
     chanceArena.classList.add('hidden');
     chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
-    chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 142);
+    chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 136);
     chanceDialogue.textContent = '“Haha just kidding about making No 1px — take all your time, zero rush, love you very much ♡”';
     statusChapChance.textContent = 'Take Your Time 💛';
     if (chanceTabPill) chanceTabPill.classList.add('done');
