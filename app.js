@@ -305,112 +305,112 @@
     'goofy-flex': {
       src: 'assets/photos/goofy-flex.jpg',
       caption: 'The “Most Most Retarded Moments” Vault 💪',
-      sub: 'Thank you for laughing at my dumbest moments instead of running away — never taking a single laugh or nag for granted again, muahaha.',
+      sub: 'Thank you for laughing at my dumbest moments instead of judging, never taking a single dumb laugh or nag for granted again muahahha.',
       aspect: 'portrait',
       pos: 'center 20%'
     },
     'escalator-lanyard': {
       src: 'assets/photos/escalator-lanyard-selfie.jpg',
       caption: 'Escalator 0.5x selfie 📸',
-      sub: 'Still wearing my Google lanyard behind you while you lined up the 0.5x angle — even tiny mall errands with Tooty are my favorite moments.',
+      sub: 'Still wearing my Google lanyard behind you while you lined up the 0.5x angle, even tiny mall errands with Tooty are my favorite.',
       aspect: 'portrait',
       pos: '50% 28%'
     },
     'coffee-date': {
       src: 'assets/photos/coffee-date-05x.jpg',
       caption: 'Iced coffee dates ☕',
-      sub: 'That cute 0.5x close-up over iced coffees — I would give anything for another slow afternoon just sitting across from you.',
+      sub: 'That cute 0.5x close-up over iced coffees, would give anything for another chill afternoon just sitting across and talking with you.',
       aspect: 'portrait',
       pos: '50% 15%'
     },
     'ndp-antler': {
       src: 'assets/photos/ndp-antler-couple.jpg',
       caption: 'NDP red & silly hair antlers 🇸🇬',
-      sub: 'Cheek stickers, red jerseys, and my ridiculous little hair horns — thank you for always matching my goofiness with that sweet smile.',
+      sub: 'Cheek stickers, red jerseys, and my ridiculous hair horns. Thank you for always matching my goofiness with that sweet smile.',
       aspect: 'landscape',
       pos: '40% 35%'
     },
     'cooking-roller': {
       src: 'assets/photos/cooking-hair-roller.jpg',
       caption: 'Kitchen prep with the hair roller 🎀',
-      sub: 'Whisking away in your pink hair roller and black glasses — everyday cooking together felt so warm and cozy like home.',
+      sub: 'Whisking away in your pink hair roller and black glasses, seriously missed everyday cooking together like this haizzz.',
       aspect: 'portrait',
       pos: '36% 24%'
     },
     'food-glare': {
       src: 'assets/photos/food-guard-glare.jpg',
       caption: 'Serious food-guard glare 😤',
-      sub: 'The dead-serious look while scooping every last bit of food — even your fierce grumpy face makes me smile every single time.',
+      sub: 'Dead-serious face while scooping every last bit of food, even your fierce grumpy face makes me smile like an idiot every time.',
       aspect: 'portrait',
       pos: '42% 14%'
     },
     'burger-feast': {
       src: 'assets/photos/burger-feast-excited.jpg',
       caption: 'Burger feast hype! 🍔',
-      sub: 'Fork and knife ready at full power for a mountain of fries and burgers — nobody gets adorably happier over good food than Lumei!',
+      sub: 'Fork and knife ready at full power for a mountain of fries and burgers, nobody gets happier over good food than Lumei!',
       aspect: 'portrait',
       pos: '55% 28%'
     },
     'potato-tornado': {
       src: 'assets/photos/potato-tornado-sideeye.jpg',
       caption: 'Side-eyeing the potato tornado 🥔',
-      sub: 'That sneaky side-eye at a crispy pasar malam potato spiral — promised myself I would never take snack walks with you for granted.',
+      sub: 'That sneaky side-eye at a crispy pasar malam potato spiral, next time I am buying two just so Tooty gets extra!',
       aspect: 'portrait',
       pos: '48% 24%'
     },
     'french-toast': {
       src: 'assets/photos/french-toast-lift.jpg',
       caption: 'Elevator French toast kiss 🍞',
-      sub: 'Little celebratory kiss for a golden piece of French toast in the lift — bringing you snacks and smiles is always top priority.',
+      sub: 'Little celebratory kiss for golden French toast in the lift, bringing snacks and seeing you happy is always priority #1.',
       aspect: 'portrait',
       pos: '50% 22%'
     },
     'sleeping-profile': {
       src: 'assets/photos/sleeping-blanket-profile.jpg',
       caption: 'Quiet nap under the blanket 🌙',
-      sub: 'Peaceful sleepy Tooty tucked under the grey blanket — over these 3 weeks, realizing how much I missed taking care of you hurt the most.',
+      sub: 'Peaceful sleepy Tooty tucked under the grey blanket, these 3 weeks made me realise how much I missed taking care of you.',
       aspect: 'landscape',
       pos: '55% 58%'
     },
     'couch-nap': {
       src: 'assets/photos/couch-nap-plushie.jpg',
       caption: 'Sofa nap with your plushie 🧸',
-      sub: 'Fast asleep on the couch hugging your pink plushie with glasses still on — right after meetings, this cozy memory hits me every time.',
+      sub: 'Fast asleep on the couch hugging your pink plushie with glasses still on. Right after my team meeting this popped up in my head and made me miss you so much.',
       aspect: 'portrait',
       pos: '50% 42%'
     },
     'bed-plushies': {
       src: 'assets/photos/bed-plushie-pile.jpg',
       caption: 'Sweet smile & plushie pile 🐰',
-      sub: 'Surrounded by all your little Chimutan bunnies and plushies — I will always protect this gentle, cozy happiness and never shut you out again.',
+      sub: 'Surrounded by all your little Chimutan bunnies and plushies, never going to be avoidant or shut you out of my life again.',
       aspect: 'portrait',
       pos: '50% 25%'
     },
     'mrt-05x': {
       src: 'assets/photos/mrt-05x-selfie.jpg',
       caption: 'MRT 0.5x cuteness 🚇',
-      sub: 'Big 0.5x train selfie eyes — even a random MRT ride feels empty now when I think about how much I missed your voice and nagging.',
+      sub: 'Big 0.5x train selfie eyes, even a random MRT ride feels empty when I think about how badly I missed your nagging and your voice haizzz.',
       aspect: 'portrait',
       pos: '45% 32%'
     },
     'mrt-purple': {
       src: 'assets/photos/mrt-purple-top-commute.jpg',
       caption: 'Purple top commute check-in 💜',
-      sub: 'Seeing you on your commute in your studded purple top — every ordinary day felt brighter knowing we were sharing life together.',
+      sub: 'Seeing you in your studded purple top on the commute. That day you unblocked me was a celebration at my Google office like GUYS SHE UNBLOCKED ME LETS GOOOOO!',
       aspect: 'portrait',
       pos: '20% 38%'
     },
     'grad-bouquet': {
       src: 'assets/photos/nus-grad-bouquet.jpg',
       caption: 'Big bouquet on your NUS grad day 💐',
-      sub: 'Standing beside you while you held those huge graduation bouquets — always so proud of the strongest, smartest woman I know.',
+      sub: 'Standing beside you holding those huge graduation bouquets, always so proud of the strongest, smartest woman I know.',
       aspect: 'portrait',
       pos: '48% 36%'
     },
     'playful-smirk': {
       src: 'assets/photos/playful-smirk-selfie.jpg',
       caption: 'That playful little smirk 😏',
-      sub: 'This cheeky little smile gets me every single time — no excuses, no hiding, just me hoping to earn back this smile in person.',
+      sub: 'This cheeky little smirk gets me every single time, hoping to earn back this smile over a proper heart to heart talk, zero rush ♡',
       aspect: 'landscape',
       pos: '45% 38%'
     }
@@ -425,7 +425,7 @@
     const baseClass = variant === 'chip' ? 'photo-chip' : 'garden-polaroid';
     btn.className = `${baseClass}${photo.aspect === 'landscape' ? ' is-landscape' : ''}`;
     btn.style.setProperty('--photo-pos', photo.pos || 'center 22%');
-    btn.setAttribute('aria-label', `${photo.caption} — tap to zoom`);
+    btn.setAttribute('aria-label', `${photo.caption}, tap to zoom`);
 
     const img = document.createElement('img');
     img.src = photo.src;
@@ -489,41 +489,41 @@
     {
       emoji: '💔',
       label: 'Owning My Mistakes',
-      title: 'Regret Is an Understatement',
-      text: 'I broke up abruptly without giving us a chance to talk, and kept what was happening in my life from you even though we were boyfriend and girlfriend. I know the past 3 weeks must have been hellish for you — I feel so guilty and so sorry.'
+      title: 'I Screwed Up & Regret It So Much',
+      text: 'I broke up so abruptly without giving us a chance for a proper talk, and didn’t tell you what was happening in my life even though we were gf and bf. The past 3 weeks must have been hellish for you, and I feel so so bad and guilty. Regret is an understatement.'
     },
     {
       emoji: '🌇',
       label: 'New Tiong Bahru',
       title: 'New Tiong Bahru & That Night',
-      text: 'From that day at New Tiong Bahru, this could have been avoided so easily and I could have fixed it, but I didn’t. That night was completely my fault — I was the avoidant one, just like you pointed out, and I will never shut you out again.',
+      text: 'From that day at New Tiong Bahru, I could have fixed this easily, but I didn’t. That night was completely my fault, I was the avoidant one just like you pointed out, and I don’t know if I can ever repay or make up for the hurt I caused.',
       photoId: 'bed-plushies'
     },
     {
-      emoji: '🥹',
-      label: 'Your Patience',
-      title: 'How Sweet, Patient & Kind You Were',
-      text: 'Over these 3 weeks I realized how patient, sweet, and kind you actually were even in conflicts when you were trying your best. Every memory keeps replaying — even your nagging, what a joy and a privilege I took for granted.',
-      photoId: 'mrt-05x'
-    },
-    {
-      emoji: '🌟',
-      label: 'Who You Are',
-      title: 'Love of My Life & Best Friend',
-      text: 'You are the strongest woman I know, the smartest, kindest person I have ever known. Deep down from the bottom of my heart, you are my best friend and the love of my life — I couldn’t imagine spending the rest of my life with anyone else.'
-    },
-    {
       emoji: '🤝',
-      label: 'Thick & Thin',
-      title: 'Through Thick & Thin, Moving Forward',
-      text: 'Good times with us are always fun, and loving you through thick and thin means showing up in tough times too — staying open, talking calmly with zero defensiveness, and never guilting or forcing your decision.'
+      label: 'No ChatGPT, Real Talk',
+      title: 'Doing the Thinking & Talking Calmly',
+      text: 'Next time we shouldn’t use ChatGPT to analyze our convo or just hand us points and conclusions. Thinking through everything until we both really GET IT, understand it, and change is what matters. No online texting, no ChatGPT inference, just calm heart to heart talk during bad times with no blame, finger-pointing, or defensiveness on my side.'
+    },
+    {
+      emoji: '🥹',
+      label: 'Missing Your Nagging',
+      title: 'Your Patience, Voice & Office Tears',
+      text: 'The past 3 weeks I realised how sweet, patient, and kind you were even during conflicts when you were trying your best. Maybe your nagging wasn’t annoying at all, OMG I MISSED IT SOOOOOOO MUCH HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ. Teary eyes in office like the good old days muahahha.',
+      photoId: 'mrt-05x'
     },
     {
       emoji: '🪩',
       label: 'Marquee & Unblock',
       title: 'Marquee +1, Meetings & Unblock Day',
-      text: 'Adding a +1 for the Google EOY Party at Marquee hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!',
+      text: '2 weeks ago Google opened their end of year party at Marquee, I added a +1 and was so sad hoping you would go. Just finished my team meeting thinking ughhh miss you so much tooty, and the day you unblocked me was a celebration at my Google office like wow: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!',
       photoId: 'mrt-purple'
+    },
+    {
+      emoji: '🌟',
+      label: 'Love of My Life',
+      title: 'Strongest, Smartest, Best Friend',
+      text: 'You are the strongest woman I know, the smartest, most kind person I have ever known, my best friend in life and the love of my life. I loved you 3 weeks ago and I love you even more now, never guilting or forcing your decision. Take all the time you need ♡'
     }
   ];
 
@@ -539,7 +539,7 @@
     btn.classList.add('popped');
     btn.disabled = true;
     const item = REFLECTIONS[idx];
-    btn.setAttribute('aria-label', `${item.label} — opened`);
+    btn.setAttribute('aria-label', `${item.label}, opened`);
     btn.innerHTML = `<span class="bubble-emoji">✨</span><span>Opened!</span>`;
 
     const note = document.createElement('div');
@@ -597,37 +597,37 @@
       id: 'couple',
       src: 'assets/photos/couple-with-you.jpg',
       caption: 'with you ♡',
-      sub: 'Right next to you is still my favorite place in the entire world — missing Tooty right after every team meeting.'
+      sub: 'Right next to you is still my favorite place, just finished my team meeting and all I can think is ughhh miss you so much tooty.'
     },
     {
       id: 'nus',
       src: 'assets/photos/nus-graduation.jpg',
       caption: 'So Proud! Congratulations!',
-      sub: 'NUS Data Science & Analytics (Honours Highest Distinction) — the smartest, strongest woman I know, always.'
+      sub: 'NUS Data Science & Analytics (Honours Highest Distinction), the smartest and strongest woman I know!'
     },
     {
       id: 'tiong-bahru',
       src: 'assets/photos/tiong-bahru-chimutan.jpg',
       caption: 'Tiong Bahru · Chimutan & you 🐰',
-      sub: 'Hair roller, glasses, Chimutan in a pot — Tiong Bahru and missing your cute nagging voice so much haizzz.'
+      sub: 'Hair roller, glasses, Chimutan in a pot at Tiong Bahru. OMG I missed your nagging and your voice so much haizzz.'
     },
     {
       id: 'popcorn',
       src: 'assets/photos/caramel-popcorn.jpg',
       caption: 'Candid snack times!',
-      sub: 'Holding onto that giant bag of Korean caramel popcorn like treasure — next time I am bringing two bags for Tooty!'
+      sub: 'Holding onto that giant bag of Korean caramel popcorn like treasure, next time I am bringing two bags for Tooty!'
     },
     {
       id: 'sleeping',
       src: 'assets/photos/sleeping-zzz.jpg',
       caption: 'ZZZ... Super cute! hehe :)',
-      sub: 'Peaceful sleepyhead with your signature black glasses — still makes me smile like an idiot, muahaha.'
+      sub: 'Peaceful sleepyhead with your black glasses still on, makes me smile like an idiot every time muahahha.'
     },
     {
       id: 'smiling',
       src: 'assets/photos/keep-smiling.jpg',
       caption: 'Keep smiling ☀️',
-      sub: 'Missing your smile makes me teary-eyed in the office thinking of the good old days — keep shining, Lumei!'
+      sub: 'Looking at your smile gives me teary eyes in office like the good old days muahahha, keep smiling Lumei!'
     }
   ];
 
@@ -657,7 +657,7 @@
     const back = btn.querySelector('.mem-back');
     const front = btn.querySelector('.mem-front');
     if (state === 'matched') {
-      btn.setAttribute('aria-label', `Matched memory: ${mem.caption} — click to zoom`);
+      btn.setAttribute('aria-label', `Matched memory: ${mem.caption}, click to zoom`);
       if (back) back.setAttribute('aria-hidden', 'true');
       if (front) front.setAttribute('aria-hidden', 'false');
     } else if (state === 'flipped') {
@@ -895,10 +895,10 @@
     fallingItems = [];
     resetBasketPosition();
     skipFlowerBtn.disabled = true;
-    skipFlowerBtn.textContent = '💐 All 10 flowers caught — LETS GOOOOO!';
+    skipFlowerBtn.textContent = '💐 All 10 flowers caught, LETS GOOOOO!';
     startOverlay.classList.remove('hidden');
     startOverlay.innerHTML = `
-      <p class="overlay-msg">💐 Yay! Lulu caught all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span> — LETS GOOOOO!</p>
+      <p class="overlay-msg">💐 Yay! Lulu caught all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span>, LETS GOOOOO!</p>
       <button type="button" class="btn btn-soft" id="replay-flower-btn">🌸 Play Again</button>
     `;
     document.getElementById('replay-flower-btn').addEventListener('click', startFlowerGame);
@@ -1119,10 +1119,10 @@
 
   const CHEERS = [
     'Cheer up LUMEI YOU CAN DO THIS, YOUR THE BEST LETS GOOOOOOOO! 💪✨',
-    'OMG missed your nagging and your voice so much haizzz — cheering for you, Tooty! 🍊🌸',
-    'Strongest, smartest, kindest woman I know — even Chimutan agrees, Ashley! 🌟',
-    'Just finished my team meeting and still thinking: ughhh miss you so much Tooty! 💛',
-    'Teary eyes in the office like the good old days, muahaha — love you Peanut! 🌷'
+    'OMG I MISSED UR NAGGING HAHAHA just the voice, what a priviledge haizzz! 🍊🌸',
+    'Strongest, smartest, most kind woman I know (even Chimutan agrees Ashley!) 🌟',
+    'Just finished my team meeting... ughhh miss you so much tooty! 💛',
+    'Teary eyes in office like the good old days muahahha, love you Peanut! 🌷'
   ];
 
   headpatBtn.addEventListener('click', () => {
@@ -1139,7 +1139,7 @@
     openPhotoModal(
       'assets/photos/collage-memories.jpg',
       `Memories with ${getActiveNickname()} · My Best Friend & Favorite Person`,
-      'Tooty / Lumei / Bao Bao / Ashley — every single moment replaying in my head ♡'
+      'Tooty / Lumei / Bao Bao / Ashley, every single moment replaying in my head ♡'
     );
   });
 
@@ -1149,12 +1149,12 @@
   function getReplyHtml(choice) {
     const nick = `<strong class="js-nick-inline">${getActiveNickname()}</strong>`;
     if (choice === 'flowers') {
-      return `🌸 Thank you for accepting these flowers, ${nick}. Hope they make your day brighter — I loved you 3 weeks ago and I love you even more now, and I am ready to earn back your trust honestly.`;
+      return `🌸 Thank you for accepting these flowers, ${nick}. Hope they make your day brighter! I loved you 3 weeks ago and I love you even more now, and I want another chance to earn back your trust and love.`;
     }
     if (choice === 'space') {
-      return `🍊 Take all the time you need to decide, ${nick} — I never want to guilt or force your decision. If you ever feel sad, please reach out to your friends or me whenever you want, and I truly wish you all the happiness.`;
+      return `🍊 Take all the time you need to decide, ${nick}, no rush and zero pressure. If you ever feel sad, please reach out to your friends or me if you really want, truly wishing you all the happiness.`;
     }
-    return `💛 Lulu blushes so hard (teary eyes like in the office, muahaha)! Cheer up ${nick}, you are the best — LETS GOOOOO!`;
+    return `💛 Lulu blushes so hard (teary eyes in office like the good old days muahahha)! Cheer up ${nick}, LETS GOOOOO!`;
   }
 
   const CHOICE_CHIMES = { flowers: 659.25, space: 523.25, pat: 783.99 };
@@ -1231,8 +1231,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“I promise never to be avoidant or shut you out of my life again — just honest calm talks in good times and bad, zero defensiveness.”',
-      yesText: '🕊️ Promise kept — let’s try again',
+      dialogue: '“Next time no avoidant hiding and no ChatGPT guessing for us, just calm heart to heart talks in bad times too until we both GET IT, zero blame or defensiveness on my side.”',
+      yesText: '🕊️ Real talks together, let’s try again',
       noText: '🙈 Hmm not yet',
       yesSize: '1.23rem',
       yesPad: '15px 28px',
@@ -1244,7 +1244,7 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“I loved you 3 weeks ago and I love you even more now. That +1 I added for the Google EOY Party at Marquee is still hoping it’s you...”',
+      dialogue: '“I loved you 3 weeks ago and I love you even more now. 2 weeks ago I added a +1 for the Google EOY Party at Marquee hoping you would go...”',
       yesText: '🪩 Save that Marquee +1 for me!',
       noText: '🤏 tiny maybe',
       yesSize: '1.31rem',
@@ -1258,7 +1258,7 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“OMG I missed your nagging and your voice so much haizzz 😭 You’re my best friend and the love of my life — even Mini Lumei brought out her sign!”',
+      dialogue: '“OMG I MISSED UR NAGGING HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ 😭 Plus Mini Lumei literally brought out her sign!”',
       yesText: '🎙️ Fine, come get nagged by Tooty!',
       noText: '🔬 smaller still',
       yesSize: '1.39rem',
@@ -1272,8 +1272,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“Teary eyes in the office like the good old days, muahaha... strongest, smartest, kindest woman I know. Look how close to 1px this No button is!!”',
-      yesText: '💐 Okay you giant goofball — YES!',
+      dialogue: '“Teary eyes in office like the good old days muahahha... strongest, smartest, most kind woman I know. Look how close to 1px this No button is!!”',
+      yesText: '💐 Okay you giant goofball, YES!',
       noText: '🫧 1px away...',
       yesSize: '1.46rem',
       yesPad: '18px 34px',
@@ -1286,8 +1286,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now) — looks like only Yes is left for Lumei & Lulu 🍊💛”',
-      yesText: '✨ YES — LETS GOOOOO LUMEI & LULU! 🍊',
+      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now)... GUYS ONLY YES IS LEFT LETS GOOOOO 🍊💛”',
+      yesText: '✨ YES, LETS GOOOOO LUMEI & LULU! 🍊',
       noText: '',
       yesSize: '1.54rem',
       yesPad: '19px 36px',
@@ -1376,13 +1376,13 @@
     chanceArena.classList.add('hidden');
     chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
     chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 136);
-    chanceDialogue.textContent = '“Haha just kidding about making No 1px — take all your time, zero rush, love you very much ♡”';
+    chanceDialogue.textContent = '“Haha just kidding about making No 1px, take all your time, zero rush, love you very much ♡”';
     statusChapChance.textContent = 'Take Your Time 💛';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Just kidding about forcing you with a 1px No button, <strong class="js-nick-inline">${getActiveNickname()}</strong> — take your time and don’t feel rushed at all. I love you very much, Lumei / Toot / Tooty / Baobao / Peanut ♡</p>
+      <p>Just kidding about forcing you with a 1px No button, <strong class="js-nick-inline">${getActiveNickname()}</strong>, take your time and don’t feel rushed at all. Love you very much, Lumei / Toot / Tooty / Baobao / Peanut ♡</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
-        📋 Copy quick text: "Hey Lulu 🍊 saw your site — taking my time, no rush ♡"
+        📋 Copy quick text: "Hey Lulu 🍊 saw your site, taking my time no rush ♡"
       </button>
     `;
     chanceResult.classList.remove('hidden');
@@ -1392,7 +1392,7 @@
 
     const copyBtn = document.getElementById('copy-reply-btn');
     copyBtn.addEventListener('click', async () => {
-      const msg = "Hey Lulu 🍊 saw your site — taking my time, no rush ♡";
+      const msg = "Hey Lulu 🍊 saw your site, taking my time no rush ♡";
       try {
         await navigator.clipboard.writeText(msg);
         copyBtn.textContent = '✅ Copied! Take all the time you need ♡';
