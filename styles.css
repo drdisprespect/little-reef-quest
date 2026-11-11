@@ -1821,10 +1821,59 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
     scroll-padding-top: var(--hud-height, 154px);
   }
 
+  .quest-hud {
+    padding: 10px 14px;
+  }
+
+  .hud-inner {
+    gap: 8px 10px;
+  }
+
+  .hud-brand {
+    order: 1;
+  }
+
+  .hud-actions {
+    order: 2;
+    margin-left: auto;
+    gap: 8px;
+  }
+
+  .hud-progress {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding-top: 2px;
+  }
+
+  .nickname-pill,
+  .hud-btn {
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+
+  .sound-toggle {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+  }
+
   .chapter-pills {
+    margin-top: 8px;
+    gap: 8px;
     padding-right: 18px;
     -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
     mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+  }
+
+  .chap-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 6px 13px;
+    font-size: 0.83rem;
   }
 
   .bubble-arena,
@@ -1895,16 +1944,21 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   }
 
   .hud-inner {
-    gap: 6px;
+    gap: 8px;
   }
 
   .nickname-pill {
-    padding: 5px 10px;
-    font-size: 0.85rem;
+    padding: 6px 11px;
+    font-size: 0.86rem;
+  }
+
+  .jump-letter-btn {
+    padding: 6px 11px;
+    font-size: 0.82rem;
   }
 
   .tangerine-count {
-    font-size: 0.8rem;
+    font-size: 0.84rem;
   }
 
   .garden-polaroid {
