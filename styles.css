@@ -528,31 +528,76 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 .lulu-crying,
 .lumei-crying {
   transform-origin: center bottom;
-  animation: crySniffle 0.9s ease-in-out infinite;
+  animation: crySniffle 0.62s ease-in-out infinite;
 }
 
 @keyframes crySniffle {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(1.5px) rotate(-1deg); }
-  50% { transform: translateY(0.5px) rotate(0.8deg); }
-  75% { transform: translateY(2px) rotate(-0.8deg); }
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1, 1); }
+  25% { transform: translateY(-3.5px) rotate(-2.4deg) scale(1.02, 0.98); }
+  50% { transform: translateY(1.5px) rotate(1.8deg) scale(0.99, 1.01); }
+  75% { transform: translateY(-2.5px) rotate(2.4deg) scale(1.01, 0.99); }
+}
+
+.cry-burst {
+  animation: cryBurstShake 0.42s ease;
+}
+
+@keyframes cryBurstShake {
+  0%, 100% { transform: translateX(0) scale(1); }
+  20% { transform: translateX(-6px) rotate(-4deg) scale(1.05); }
+  45% { transform: translateX(6px) rotate(4deg) scale(1.05); }
+  70% { transform: translateX(-4px) rotate(-2deg) scale(1.02); }
+}
+
+.tear-stream {
+  animation: tearStreamPulse 0.55s ease-in-out infinite;
+}
+
+@keyframes tearStreamPulse {
+  0%, 100% { opacity: 0.72; stroke-width: 4.6; }
+  50% { opacity: 0.98; stroke-width: 6; }
 }
 
 .tear-drop {
   transform-box: fill-box;
   transform-origin: center top;
-  animation: tearDropFall 1.15s ease-in infinite;
+  animation: tearDropFall 0.85s ease-in infinite;
 }
 
 .tear-drop.tear-delay {
-  animation-delay: 0.55s;
+  animation-delay: 0.42s;
 }
 
 @keyframes tearDropFall {
-  0% { transform: translateY(0) scale(0.75); opacity: 0; }
-  20% { transform: translateY(3px) scale(1); opacity: 0.95; }
-  80% { transform: translateY(17px) scale(0.95); opacity: 0.9; }
-  100% { transform: translateY(24px) scale(0.7); opacity: 0; }
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  18% { transform: translateY(3px) scale(1.05); opacity: 1; }
+  80% { transform: translateY(19px) scale(1); opacity: 0.95; }
+  100% { transform: translateY(26px) scale(0.75); opacity: 0; }
+}
+
+.tear-splash-left {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tearSplashLeft 0.75s ease-out infinite;
+}
+
+.tear-splash-right {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tearSplashRight 0.75s ease-out infinite;
+  animation-delay: 0.35s;
+}
+
+@keyframes tearSplashLeft {
+  0% { transform: translate(2px, 0) scale(0.6); opacity: 0; }
+  30% { opacity: 0.95; }
+  100% { transform: translate(-11px, 12px) scale(0.85); opacity: 0; }
+}
+
+@keyframes tearSplashRight {
+  0% { transform: translate(-2px, 0) scale(0.6); opacity: 0; }
+  30% { opacity: 0.95; }
+  100% { transform: translate(11px, 12px) scale(0.85); opacity: 0; }
 }
 
 .speech-bubble {
@@ -2155,7 +2200,11 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .sweatdrop,
   .lulu-crying,
   .lumei-crying,
+  .cry-burst,
+  .tear-stream,
   .tear-drop,
+  .tear-splash-left,
+  .tear-splash-right,
   .arm-wave-left,
   .arm-wave-right,
   .reflection-note,

@@ -142,19 +142,20 @@ window.MascotArt = (() => {
       eyes = `
         <ellipse cx="78" cy="75" rx="10.5" ry="11.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.8"/>
         <ellipse cx="122" cy="75" rx="10.5" ry="11.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.8"/>
-        <path d="M68 80 Q78 88 88 80 Q82 86 78 86 Q74 86 68 80 Z" fill="#8EDBFF" opacity="0.92"/>
-        <path d="M112 80 Q122 88 132 80 Q126 86 122 86 Q118 86 112 80 Z" fill="#8EDBFF" opacity="0.92"/>
+        <path d="M68 79 Q78 89 88 79 Q83 87 78 87 Q73 87 68 79 Z" fill="#63C7FF" opacity="0.95"/>
+        <path d="M112 79 Q122 89 132 79 Q127 87 122 87 Q117 87 112 79 Z" fill="#63C7FF" opacity="0.95"/>
         <circle cx="79" cy="75" r="7" fill="${OUTLINE}"/>
         <circle cx="121" cy="75" r="7" fill="${OUTLINE}"/>
-        <circle cx="81.5" cy="71.5" r="3" fill="#FFFFFF"/>
-        <circle cx="123.5" cy="71.5" r="3" fill="#FFFFFF"/>
-        <circle cx="75.5" cy="79" r="1.7" fill="#FFFFFF"/>
-        <circle cx="117.5" cy="79" r="1.7" fill="#FFFFFF"/>
-        <path d="M66 59 Q76 52 85 59" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M134 59 Q124 52 115 59" fill="none" stroke="${OUTLINE}" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="81.5" cy="71.5" r="3.2" fill="#FFFFFF"/>
+        <circle cx="123.5" cy="71.5" r="3.2" fill="#FFFFFF"/>
+        <circle cx="75.5" cy="79" r="1.8" fill="#FFFFFF"/>
+        <circle cx="117.5" cy="79" r="1.8" fill="#FFFFFF"/>
+        <path d="M65 59 Q76 51 86 60" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M135 59 Q124 51 114 60" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
       `;
       mouth = `
-        <path d="M89 115 Q95 110 100 114 Q105 110 111 115" fill="none" stroke="${OUTLINE}" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M86 116 Q100 103 114 116 Q106 123 100 121 Q94 123 86 116 Z" fill="#FF758F" stroke="${OUTLINE}" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M92 117 Q100 112 108 117" fill="#FFB3C6"/>
       `;
       arms = `
         <path d="M54 136 Q32 122 39 102" fill="none" stroke="#FFD54F" stroke-width="12" stroke-linecap="round"/>
@@ -163,8 +164,14 @@ window.MascotArt = (() => {
         <path d="M146 136 Q168 122 161 102" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
       `;
       extras = `
-        <path class="tear-drop" d="M72 86 Q77 95 72 101 Q67 95 72 86 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.8"/>
-        <path class="tear-drop tear-delay" d="M128 86 Q133 95 128 101 Q123 95 128 86 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.8"/>
+        <path class="tear-stream" d="M71 84 Q68 103 71 122" fill="none" stroke="#7AD3FF" stroke-width="5.5" stroke-linecap="round" opacity="0.88"/>
+        <path class="tear-stream" d="M129 84 Q132 103 129 122" fill="none" stroke="#7AD3FF" stroke-width="5.5" stroke-linecap="round" opacity="0.88"/>
+        <path class="tear-drop" d="M71 85 Q77 96 71 103 Q65 96 71 85 Z" fill="#5BC8FF" stroke="${OUTLINE}" stroke-width="1.8"/>
+        <path class="tear-drop tear-delay" d="M76 92 Q81 101 76 107 Q71 101 76 92 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="1.6"/>
+        <path class="tear-drop tear-delay" d="M129 85 Q135 96 129 103 Q123 96 129 85 Z" fill="#5BC8FF" stroke="${OUTLINE}" stroke-width="1.8"/>
+        <path class="tear-drop" d="M124 92 Q129 101 124 107 Q119 101 124 92 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="1.6"/>
+        <circle class="tear-splash-left" cx="56" cy="84" r="3.4" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.5"/>
+        <circle class="tear-splash-right" cx="144" cy="84" r="3.4" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.5"/>
       `;
     } else if (mood === 'camera') {
       extras = `
@@ -286,19 +293,19 @@ window.MascotArt = (() => {
       eyes = `
         <ellipse cx="70" cy="80" rx="9" ry="10" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.5"/>
         <ellipse cx="110" cy="80" rx="9" ry="10" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.5"/>
-        <path d="M62 84 Q70 91 78 84 Q73 89 70 89 Q67 89 62 84 Z" fill="#8EDBFF" opacity="0.92"/>
-        <path d="M102 84 Q110 91 118 84 Q113 89 110 89 Q107 89 102 84 Z" fill="#8EDBFF" opacity="0.92"/>
+        <path d="M61 83 Q70 92 79 83 Q74 90 70 90 Q66 90 61 83 Z" fill="#63C7FF" opacity="0.95"/>
+        <path d="M101 83 Q110 92 119 83 Q114 90 110 90 Q106 90 101 83 Z" fill="#63C7FF" opacity="0.95"/>
         <circle cx="71" cy="80" r="5.8" fill="${OUTLINE}"/>
         <circle cx="109" cy="80" r="5.8" fill="${OUTLINE}"/>
-        <circle cx="73" cy="76.5" r="2.5" fill="#FFFFFF"/>
-        <circle cx="111" cy="76.5" r="2.5" fill="#FFFFFF"/>
-        <circle cx="68" cy="83.5" r="1.4" fill="#FFFFFF"/>
-        <circle cx="106" cy="83.5" r="1.4" fill="#FFFFFF"/>
-        <path d="M60 66 Q69 61 77 67" fill="none" stroke="${OUTLINE}" stroke-width="2.3" stroke-linecap="round"/>
-        <path d="M120 66 Q111 61 103 67" fill="none" stroke="${OUTLINE}" stroke-width="2.3" stroke-linecap="round"/>
+        <circle cx="73" cy="76.5" r="2.6" fill="#FFFFFF"/>
+        <circle cx="111" cy="76.5" r="2.6" fill="#FFFFFF"/>
+        <circle cx="68" cy="83.5" r="1.5" fill="#FFFFFF"/>
+        <circle cx="106" cy="83.5" r="1.5" fill="#FFFFFF"/>
+        <path d="M59 66 Q69 59 78 67" fill="none" stroke="${OUTLINE}" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M121 66 Q111 59 102 67" fill="none" stroke="${OUTLINE}" stroke-width="2.4" stroke-linecap="round"/>
       `;
       mouth = `
-        <path d="M81 112 Q86 108 90 111 Q94 108 99 112" fill="none" stroke="${OUTLINE}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M79 114 Q90 103 101 114 Q95 120 90 118 Q85 120 79 114 Z" fill="#FF758F" stroke="${OUTLINE}" stroke-width="2.4" stroke-linejoin="round"/>
       `;
       if (!holdingSign) {
         arms = `
@@ -309,8 +316,14 @@ window.MascotArt = (() => {
         `;
       }
       tears = `
-        <path class="tear-drop" d="M66 89 Q70 97 66 102 Q62 97 66 89 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.7"/>
-        <path class="tear-drop tear-delay" d="M114 89 Q118 97 114 102 Q110 97 114 89 Z" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.7"/>
+        <path class="tear-stream" d="M65 88 Q63 103 65 118" fill="none" stroke="#7AD3FF" stroke-width="4.8" stroke-linecap="round" opacity="0.88"/>
+        <path class="tear-stream" d="M115 88 Q117 103 115 118" fill="none" stroke="#7AD3FF" stroke-width="4.8" stroke-linecap="round" opacity="0.88"/>
+        <path class="tear-drop" d="M65 88 Q70 97 65 103 Q60 97 65 88 Z" fill="#5BC8FF" stroke="${OUTLINE}" stroke-width="1.7"/>
+        <path class="tear-drop tear-delay" d="M70 94 Q74 102 70 107 Q66 102 70 94 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="1.5"/>
+        <path class="tear-drop tear-delay" d="M115 88 Q120 97 115 103 Q110 97 115 88 Z" fill="#5BC8FF" stroke="${OUTLINE}" stroke-width="1.7"/>
+        <path class="tear-drop" d="M110 94 Q114 102 110 107 Q106 102 110 94 Z" fill="#9AE6FF" stroke="${OUTLINE}" stroke-width="1.5"/>
+        <circle class="tear-splash-left" cx="53" cy="87" r="2.8" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.4"/>
+        <circle class="tear-splash-right" cx="127" cy="87" r="2.8" fill="#7AD3FF" stroke="${OUTLINE}" stroke-width="1.4"/>
       `;
     }
 

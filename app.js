@@ -1245,6 +1245,8 @@
     headpats += 1;
     headpatCountEl.textContent = String(headpats);
     cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
+    if (finaleLulu) finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 112);
+    if (finaleLumei) finaleLumei.innerHTML = MascotArt.lumeiSVG('cheering', 90);
     updateFinaleChonk();
     boopMascot(finaleLulu, false);
     boopMascot(finaleLumei, false);
@@ -1259,6 +1261,8 @@
       headpats += 1;
       headpatCountEl.textContent = String(headpats);
       cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
+      if (finaleLulu) finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 112);
+      if (finaleLumei) finaleLumei.innerHTML = MascotArt.lumeiSVG('cheering', 90);
       updateFinaleChonk();
       spawnHangyodonBurst(3);
     });
@@ -1275,13 +1279,22 @@
   const responseReply = document.getElementById('response-reply');
   const statusChap5 = document.getElementById('status-chap-5');
 
+  function triggerCryBurst(...els) {
+    els.forEach((el) => {
+      if (!el) return;
+      el.classList.remove('cry-burst');
+      void el.offsetWidth;
+      el.classList.add('cry-burst');
+    });
+  }
+
   function getReplyHtml(choice) {
     const nick = `<strong class="js-nick-inline">${getActiveNickname()}</strong>`;
     if (choice === 'flowers') {
       return `🌸 Thank you for accepting these flowers, ${nick}. Hope they make your day brighter! I loved you 3 weeks ago and I love you even more now, and I want another chance to earn back your trust and love.`;
     }
     if (choice === 'space') {
-      return `🍊 Take all the time you need to decide, ${nick}, no rush and zero pressure. If you ever feel sad, please reach out to your friends or me if you really want, truly wishing you all the happiness.`;
+      return `🍊 Lulu & Lumei have teary eyes already 😭 Take all the time you need to decide, ${nick}, no rush and zero pressure. If you ever feel sad, please reach out to your friends or me if you really want, truly wishing you all the happiness.`;
     }
     return `💛 Lulu blushes so hard (teary eyes in office like the good old days muahahha)! Cheer up ${nick}, LETS GOOOOO!`;
   }
@@ -1299,8 +1312,20 @@
       responseReply.innerHTML = getReplyHtml(choice);
       responseReply.classList.remove('hidden');
       statusChap5.textContent = 'Quest Complete 🍊';
-      playChime(CHOICE_CHIMES[choice] || 587.33, 0.18);
-      spawnConfetti(22, ['🌸', '🍊', '💛', '✨']);
+      if (choice === 'space') {
+        if (finaleLulu) finaleLulu.innerHTML = MascotArt.luluSVG('crying', 112);
+        if (finaleLumei) finaleLumei.innerHTML = MascotArt.lumeiSVG('crying', 90);
+        updateFinaleChonk();
+        triggerCryBurst(finaleLulu, finaleLumei);
+        playChime(392, 0.18, 'triangle');
+        spawnConfetti(18, ['💧', '😭', '🍊', '🥺']);
+      } else {
+        if (finaleLulu) finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 112);
+        if (finaleLumei) finaleLumei.innerHTML = MascotArt.lumeiSVG('cheering', 90);
+        updateFinaleChonk();
+        playChime(CHOICE_CHIMES[choice] || 587.33, 0.18);
+        spawnConfetti(22, ['🌸', '🍊', '💛', '✨']);
+      }
       unlockTangerine(5);
     });
   });
@@ -1331,9 +1356,9 @@
       noOpacity: '1'
     },
     {
-      luluMood: 'shy',
-      lumeiMood: 'curious',
-      dialogue: '“Fair, I know I disappointed you and hurt you deeply. What if I spend every day proving I truly treasure you now?”',
+      luluMood: 'crying',
+      lumeiMood: 'crying',
+      dialogue: '“Wait nooo Lulu & Lumei are already tearing up 😭 Fair, I know I disappointed you and hurt you deeply. What if I spend every day proving I truly treasure you now?”',
       yesText: '💛 Earn back my trust step by step',
       noText: '🍊 Still unsure...',
       yesSize: '1.05rem',
@@ -1345,8 +1370,8 @@
     },
     {
       luluMood: 'crying',
-      lumeiMood: 'curious',
-      dialogue: '“Even after my team meeting my first thought is still ‘ughhh miss you so much tooty’... plus I owe you two giant caramel popcorn bags from Tiong Bahru!”',
+      lumeiMood: 'crying',
+      dialogue: '“Both of us are crying rivers now 😭 Even after my team meeting my first thought is still ‘ughhh miss you so much tooty’... plus I owe you two giant caramel popcorn bags from Tiong Bahru!”',
       yesText: '🍿 Two giant caramel popcorn bags!',
       noText: '🤨 Still thinking...',
       yesSize: '1.10rem',
@@ -1386,7 +1411,7 @@
     {
       luluMood: 'crying',
       lumeiMood: 'crying',
-      dialogue: '“OMG I MISSED UR NAGGING HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ 😭 Look, Lulu & Lumei are both crying now... wait don’t shrink it any smaller!!”',
+      dialogue: '“OMG I MISSED UR NAGGING HAHAHA JUST THE VOICE WHAT A PRIVILEDGE HAIZZZ 😭 Look how hard Lulu & Lumei are crying... wait don’t shrink it any smaller!!”',
       yesText: '🎙️ Fine, come wipe my tears & get nagged!',
       noText: '🥹 almost gone...',
       yesSize: '1.25rem',
@@ -1464,6 +1489,8 @@
     chanceNoCount += 1;
     playChime(440 - chanceNoCount * 28, 0.14, 'triangle');
     renderChanceStep();
+    triggerCryBurst(chanceLulu, chanceLumei);
+    spawnConfetti(14, ['💧', '😭', '🥺', '💦']);
   });
 
   chanceYesBtn.addEventListener('click', () => {
