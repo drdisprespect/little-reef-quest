@@ -492,9 +492,9 @@
     },
     {
       emoji: '🤝',
-      label: 'Moving Forward',
-      title: 'I Loved You Then, I Love You More Now',
-      text: 'Good times with us are always fun, and in tough times I promise to stay open, never keep my life from you, and talk calmly with zero defensiveness. Whatever you decide, I never want to guilt or force you — I truly wish you all the happiness.'
+      label: 'Thick & Thin',
+      title: 'Through Thick & Thin, Moving Forward',
+      text: 'Good times with us are always fun, and loving you through thick and thin means showing up in tough times too — staying open, talking calmly with zero defensiveness, and never guilting or forcing your decision.'
     },
     {
       emoji: '🪩',
