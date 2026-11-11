@@ -1352,13 +1352,13 @@
     chanceArena.classList.add('hidden');
     chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
     chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 142);
-    chanceDialogue.textContent = '“WAIT REALLY?! GUYS SHE SAID YES WHAT DOES IT MEAN LETS GOOOOO!!”';
-    statusChapChance.textContent = 'LETS GOOOOO! 🎉';
+    chanceDialogue.textContent = '“Haha just kidding about making No 1px — take all your time, zero rush, love you very much ♡”';
+    statusChapChance.textContent = 'Take Your Time 💛';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Thank you for forgiving me and giving us another chance, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ I will never take you, your patience, or your nagging for granted again — I love you forever, Lumei / Toot / Tooty / Baobao / Peanut.</p>
+      <p>Just kidding about forcing you with a 1px No button, <strong class="js-nick-inline">${getActiveNickname()}</strong> — take your time and don’t feel rushed at all. I love you very much, Lumei / Toot / Tooty / Baobao / Peanut ♡</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
-        📋 Copy quick text: "Hey Lulu 🍊 I saw your site — yes, let's give us another chance ♡"
+        📋 Copy quick text: "Hey Lulu 🍊 saw your site — taking my time, no rush ♡"
       </button>
     `;
     chanceResult.classList.remove('hidden');
@@ -1368,10 +1368,10 @@
 
     const copyBtn = document.getElementById('copy-reply-btn');
     copyBtn.addEventListener('click', async () => {
-      const msg = "Hey Lulu 🍊 I saw your site — yes, let's give us another chance ♡";
+      const msg = "Hey Lulu 🍊 saw your site — taking my time, no rush ♡";
       try {
         await navigator.clipboard.writeText(msg);
-        copyBtn.textContent = '✅ Copied! Ready whenever Tooty is ready';
+        copyBtn.textContent = '✅ Copied! Take all the time you need ♡';
       } catch (_) {
         copyBtn.textContent = `Message: ${msg}`;
       }
