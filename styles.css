@@ -1219,6 +1219,94 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   touch-action: manipulation;
 }
 
+.overlay-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.flower-prize-box {
+  margin-top: 16px;
+}
+
+.flower-prize-locked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 2px dashed var(--outline-soft);
+  background: #fff9ec;
+  text-align: center;
+}
+
+.flower-prize-locked p {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--cocoa-muted);
+}
+
+.prize-lock-badge {
+  display: inline-block;
+  background: #ffe6cc;
+  color: var(--cocoa);
+  border: 1.5px solid var(--outline-soft);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.flower-prize-unlocked {
+  background: linear-gradient(135deg, #fff5d6 0%, #ffe8ee 100%);
+  border: 2.5px solid var(--outline-soft);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: center;
+  animation: popIn 0.35s ease;
+}
+
+.flower-prize-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.prize-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.prize-tag {
+  display: inline-block;
+  background: #ffffff;
+  border: 2px solid var(--outline-soft);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cocoa);
+}
+
+.flower-prize-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
 /* Chapter 4: Unseal the Letter */
 .envelope-closed {
   max-width: 520px;
@@ -1993,6 +2081,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .arm-wave-right,
   .reflection-note,
   .goofy-vault,
+  .flower-prize-unlocked,
   .letter-stationery,
   .response-reply,
   .chance-result,
