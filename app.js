@@ -136,6 +136,7 @@
 
   function closePhotoModal() {
     photoModal.classList.add('hidden');
+    modalImg.removeAttribute('src');
   }
 
   document.getElementById('modal-close').addEventListener('click', closePhotoModal);
@@ -586,6 +587,7 @@
   leftBtn.addEventListener('pointerdown', () => { keysHeld.left = true; });
   leftBtn.addEventListener('pointerup', () => { keysHeld.left = false; });
   leftBtn.addEventListener('pointerleave', () => { keysHeld.left = false; });
+  leftBtn.addEventListener('pointercancel', () => { keysHeld.left = false; });
   leftBtn.addEventListener('click', () => {
     playerXPercent = Math.max(9, playerXPercent - 10);
     basketEl.style.left = `${playerXPercent}%`;
@@ -593,9 +595,14 @@
   rightBtn.addEventListener('pointerdown', () => { keysHeld.right = true; });
   rightBtn.addEventListener('pointerup', () => { keysHeld.right = false; });
   rightBtn.addEventListener('pointerleave', () => { keysHeld.right = false; });
+  rightBtn.addEventListener('pointercancel', () => { keysHeld.right = false; });
   rightBtn.addEventListener('click', () => {
     playerXPercent = Math.min(91, playerXPercent + 10);
     basketEl.style.left = `${playerXPercent}%`;
+  });
+  window.addEventListener('blur', () => {
+    keysHeld.left = false;
+    keysHeld.right = false;
   });
 
   // ---------- CHAPTER 4: UNSEAL THE LETTER ----------
