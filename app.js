@@ -388,7 +388,7 @@
     'playful-smirk': {
       src: 'assets/photos/playful-smirk-selfie.jpg',
       caption: 'That playful little smirk 😏',
-      sub: 'This cheeky little smile gets me every single time — no ChatGPT, no excuses, just me hoping to earn back this look in person.',
+      sub: 'This cheeky little smile gets me every single time — no excuses, no hiding, just me hoping to earn back this smile in person.',
       aspect: 'landscape',
       pos: '45% 38%'
     }
@@ -465,42 +465,42 @@
   // ---------- CHAPTER 1: THOUGHT BUBBLE REFLECTIONS ----------
   const REFLECTIONS = [
     {
-      emoji: '🎙️',
-      label: 'Real Heart-to-Heart',
-      title: 'A Proper Talk Instead of Texting',
-      text: 'I am so sorry for ending things abruptly without giving us a real chance to talk. Next time I want a proper heart-to-heart talk instead of hiding behind online texts or running away.'
-    },
-    {
-      emoji: '🧠',
-      label: 'No ChatGPT',
-      title: 'Real Thinking Ourselves, Not ChatGPT',
-      text: 'No more using ChatGPT to analyze our conversations or tell us what to think. I want us to do the thinking ourselves until we truly get it, understand each other, and actually change.'
-    },
-    {
-      emoji: '🕊️',
-      label: 'Calm Conflicts',
-      title: 'Calm Conflicts When It Matters Most',
-      text: 'Good times with us are always so fun, and during bad or troubled times is where conflict management matters most — talking calmly with zero blame, zero finger-pointing, and zero defensiveness on my side.'
+      emoji: '💔',
+      label: 'Owning My Mistakes',
+      title: 'Regret Is an Understatement',
+      text: 'I broke up abruptly without giving us a chance to talk, and kept what was happening in my life from you even though we were boyfriend and girlfriend. I know the past 3 weeks must have been hellish for you — I feel so guilty and so sorry.'
     },
     {
       emoji: '🌇',
       label: 'New Tiong Bahru',
-      title: 'Opening Up Since New Tiong Bahru',
-      text: 'From that day at New Tiong Bahru and that night where I was completely avoidant, I could have opened up and fixed it so easily. I will never shut you out of my life again.',
+      title: 'New Tiong Bahru & That Night',
+      text: 'From that day at New Tiong Bahru, this could have been avoided so easily and I could have fixed it, but I didn’t. That night was completely my fault — I was the avoidant one, just like you pointed out, and I will never shut you out again.',
       photoId: 'bed-plushies'
     },
     {
       emoji: '🥹',
-      label: 'Missing Your Nagging',
-      title: 'Missing Your Voice & Kindness',
-      text: 'Over the past 3 weeks I realized how sweet, patient, and kind you were even when we argued. Haizzz, I actually missed your nagging SO much — just hearing your voice is such a privilege!',
+      label: 'Your Patience',
+      title: 'How Sweet, Patient & Kind You Were',
+      text: 'Over these 3 weeks I realized how patient, sweet, and kind you actually were even in conflicts when you were trying your best. Every memory keeps replaying — even your nagging, what a joy and a privilege I took for granted.',
       photoId: 'mrt-05x'
+    },
+    {
+      emoji: '🌟',
+      label: 'Who You Are',
+      title: 'Love of My Life & Best Friend',
+      text: 'You are the strongest woman I know, the smartest, kindest person I have ever known. Deep down from the bottom of my heart, you are my best friend and the love of my life — I couldn’t imagine spending the rest of my life with anyone else.'
+    },
+    {
+      emoji: '🤝',
+      label: 'Moving Forward',
+      title: 'I Loved You Then, I Love You More Now',
+      text: 'Good times with us are always fun, and in tough times I promise to stay open, never keep my life from you, and talk calmly with zero defensiveness. Whatever you decide, I never want to guilt or force you — I truly wish you all the happiness.'
     },
     {
       emoji: '🪩',
       label: 'Marquee & Unblock',
       title: 'Marquee +1, Meetings & Unblock Day',
-      text: 'Adding a +1 for the Google EOY Party at Marquee two weeks ago hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!',
+      text: 'Adding a +1 for the Google EOY Party at Marquee hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!',
       photoId: 'mrt-purple'
     }
   ];
@@ -1121,12 +1121,12 @@
   function getReplyHtml(choice) {
     const nick = `<strong class="js-nick-inline">${getActiveNickname()}</strong>`;
     if (choice === 'flowers') {
-      return `🌸 Thank you for accepting these flowers, ${nick}. Zero ChatGPT, zero blame, and zero rush — whenever you want a real heart-to-heart talk, I am here to listen and earn back your trust honestly.`;
+      return `🌸 Thank you for accepting these flowers, ${nick}. Hope they make your day brighter — I loved you 3 weeks ago and I love you even more now, and I am ready to earn back your trust honestly.`;
     }
     if (choice === 'space') {
-      return `🍊 Take it as slow as you need, ${nick} — zero rush and zero pressure ever. I added that Marquee +1 because I just hope for us, never to force you. Lean on your friends whenever you feel sad, and I am right here cheering for you.`;
+      return `🍊 Take all the time you need to decide, ${nick} — I never want to guilt or force your decision. If you ever feel sad, please reach out to your friends or me whenever you want, and I truly wish you all the happiness.`;
     }
-    return `💛 Lulu blushes so hard (teary eyes like in the office, muahaha)! Thank you for visiting this little tangerine garden, ${nick} — LETS GOOOOO!`;
+    return `💛 Lulu blushes so hard (teary eyes like in the office, muahaha)! Cheer up ${nick}, you are the best — LETS GOOOOO!`;
   }
 
   const CHOICE_CHIMES = { flowers: 659.25, space: 523.25, pat: 783.99 };
@@ -1164,9 +1164,9 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Will you give me a real heart-to-heart talk — no ChatGPT, no defensiveness — and one more chance to earn back your trust?”',
-      yesText: "🌸 Let's have a real talk & try again",
-      noText: '🤔 Hmm, not sure yet...',
+      dialogue: '“Will you forgive me and give me one more chance to earn back your trust, your love, and our forever?”',
+      yesText: "🌸 Yes, let's give us another chance ♡",
+      noText: '🤔 Still deciding...',
       yesSize: '1.0rem',
       yesPad: '12px 22px',
       noSize: '0.98rem',
@@ -1177,9 +1177,9 @@
     {
       luluMood: 'shy',
       lumeiMood: 'curious',
-      dialogue: '“Fair, I deserve at least one side-eye first. What about coffee & a real talk — doing the thinking ourselves, zero ChatGPT?”',
-      yesText: '☕ Coffee & real talk (no ChatGPT)',
-      noText: '🍊 Still thinking...',
+      dialogue: '“Fair, I know I disappointed you and hurt you deeply. What if I spend every day proving I truly treasure you now?”',
+      yesText: '💛 Earn back my trust step by step',
+      noText: '🍊 Still unsure...',
       yesSize: '1.07rem',
       yesPad: '13px 24px',
       noSize: '0.84rem',
@@ -1190,9 +1190,9 @@
     {
       luluMood: 'shy',
       lumeiMood: 'happy',
-      dialogue: '“Even after my team meeting my first thought was ‘ughhh miss you so much tooty’... what if I bring two giant caramel popcorn bags from New Tiong Bahru?”',
+      dialogue: '“Even after my team meeting my first thought is still ‘ughhh miss you so much tooty’... plus I owe you two giant caramel popcorn bags from Tiong Bahru!”',
       yesText: '🍿 Two giant caramel popcorn bags!',
-      noText: '🤨 Maybe later?',
+      noText: '🤨 Still thinking...',
       yesSize: '1.15rem',
       yesPad: '14px 26px',
       noSize: '0.70rem',
@@ -1203,9 +1203,9 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Even Chimutan is glaring at me now 🐰😒 I promise calm conflict talks with zero blame, zero finger-pointing, and zero defensiveness.”',
-      yesText: '🕊️ Calm talk & zero blame — deal',
-      noText: '🙈 Still unsure',
+      dialogue: '“I promise never to be avoidant or shut you out of my life again — just honest calm talks in good times and bad, zero defensiveness.”',
+      yesText: '🕊️ Promise kept — let’s try again',
+      noText: '🙈 Hmm not yet',
       yesSize: '1.23rem',
       yesPad: '15px 28px',
       noSize: '0.56rem',
@@ -1216,8 +1216,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Remember the +1 I added two weeks ago for the Google EOY Party at Marquee? Look how tiny this No button is already getting...”',
-      yesText: '🪩 Marquee +1 & real talk? YES',
+      dialogue: '“I loved you 3 weeks ago and I love you even more now. That +1 I added for the Google EOY Party at Marquee is still hoping it’s you...”',
+      yesText: '🪩 Save that Marquee +1 for me!',
       noText: '🤏 tiny maybe',
       yesSize: '1.31rem',
       yesPad: '16px 30px',
@@ -1230,8 +1230,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“OMG I missed your nagging and your voice so much haizzz 😭 Look, Mini Lumei even brought out her cardboard sign now!”',
-      yesText: '🎙️ Come get nagged by Tooty!',
+      dialogue: '“OMG I missed your nagging and your voice so much haizzz 😭 You’re my best friend and the love of my life — even Mini Lumei brought out her sign!”',
+      yesText: '🎙️ Fine, come get nagged by Tooty!',
       noText: '🔬 smaller still',
       yesSize: '1.39rem',
       yesPad: '17px 32px',
@@ -1244,8 +1244,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“Teary eyes in the office like the good old days, muahaha... this No button is literally 1 pixel away from disappearing!!”',
-      yesText: '💛 Okay you giant goofball — YES!',
+      dialogue: '“Teary eyes in the office like the good old days, muahaha... strongest, smartest, kindest woman I know. Look how close to 1px this No button is!!”',
+      yesText: '💐 Okay you giant goofball — YES!',
       noText: '🫧 1px away...',
       yesSize: '1.46rem',
       yesPad: '18px 34px',
@@ -1258,8 +1258,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now) — only Yes remains for Lumei & Lulu 🍊💛”',
-      yesText: '✨ OKAY FINE, LETS HAVE A REAL TALK! 🍊',
+      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now) — looks like only Yes is left for Lumei & Lulu 🍊💛”',
+      yesText: '✨ YES — LETS GOOOOO LUMEI & LULU! 🍊',
       noText: '',
       yesSize: '1.54rem',
       yesPad: '19px 36px',
@@ -1352,9 +1352,9 @@
     statusChapChance.textContent = 'LETS GOOOOO! 🎉';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Thank you for giving us a real heart-to-heart talk and another chance, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ No ChatGPT, no blame, no defensiveness — just me showing up honestly and treasuring you (and your nagging) forever.</p>
+      <p>Thank you for forgiving me and giving us another chance, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ I will never take you, your patience, or your nagging for granted again — I love you forever, Lumei / Toot / Tooty / Baobao / Peanut.</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
-        📋 Copy quick text: "Hey Lulu 🍊 I saw your site, let's have a real talk"
+        📋 Copy quick text: "Hey Lulu 🍊 I saw your site — yes, let's give us another chance ♡"
       </button>
     `;
     chanceResult.classList.remove('hidden');
@@ -1364,7 +1364,7 @@
 
     const copyBtn = document.getElementById('copy-reply-btn');
     copyBtn.addEventListener('click', async () => {
-      const msg = "Hey Lulu 🍊 I saw your site, let's have a real talk";
+      const msg = "Hey Lulu 🍊 I saw your site — yes, let's give us another chance ♡";
       try {
         await navigator.clipboard.writeText(msg);
         copyBtn.textContent = '✅ Copied! Ready whenever Tooty is ready';
