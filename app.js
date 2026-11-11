@@ -995,7 +995,11 @@
     if (gameRunning) moveByPointer(e.clientX);
   });
   flowerStage.addEventListener('pointerdown', (e) => {
-    if (gameRunning) moveByPointer(e.clientX);
+    if (!gameRunning) return;
+    moveByPointer(e.clientX);
+    if (typeof flowerStage.setPointerCapture === 'function') {
+      try { flowerStage.setPointerCapture(e.pointerId); } catch (_) {}
+    }
   });
 
   document.addEventListener('keydown', (e) => {
