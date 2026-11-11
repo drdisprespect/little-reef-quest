@@ -4,36 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Hangyodon's Little Reef Quest — For Ashley ♡</title>
+  <title>Lulu &amp; Lumei&apos;s Little Tangerine Garden — For Ashley ♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Ambient ocean bubbles background -->
-  <div class="ocean-bg" aria-hidden="true">
-    <span class="bg-bubble b1"></span>
-    <span class="bg-bubble b2"></span>
-    <span class="bg-bubble b3"></span>
-    <span class="bg-bubble b4"></span>
-    <span class="bg-bubble b5"></span>
-    <span class="bg-bubble b6"></span>
+  <!-- Ambient warm tangerine & blossom fireflies background -->
+  <div class="garden-bg" aria-hidden="true">
+    <span class="bg-orb o1"></span>
+    <span class="bg-orb o2"></span>
+    <span class="bg-orb o3"></span>
+    <span class="bg-orb o4"></span>
+    <span class="bg-orb o5"></span>
+    <span class="bg-orb o6"></span>
   </div>
 
-  <!-- Persistent Reef Quest HUD -->
+  <!-- Persistent Quest HUD -->
   <header class="quest-hud" id="quest-hud">
     <div class="hud-inner">
       <div class="hud-brand">
-        <button type="button" class="nickname-pill" id="nickname-pill" title="Click to cycle Ashley's cute nicknames!">
-          <span class="pill-heart">🐚</span>
+        <button type="button" class="nickname-pill" id="nickname-pill" title="Tap to cycle Ashley / Tooty / Lumei / Baobao nicknames!">
+          <span class="pill-heart">🍊</span>
           <span>For <strong id="active-nickname">Ashley</strong></span>
         </button>
       </div>
 
       <nav class="hud-progress" aria-label="Quest Chapters">
-        <div class="shells-row" id="shells-row" title="Seashells collected"></div>
-        <span class="shell-count" id="shell-count">0/5 Shells</span>
+        <div class="tangerines-row" id="tangerines-row" title="Tangerines collected"></div>
+        <span class="tangerine-count" id="tangerine-count">0/5 Tangerines</span>
       </nav>
 
       <div class="hud-actions">
@@ -48,8 +48,8 @@
     </div>
 
     <div class="chapter-pills" aria-label="Quick Chapter Navigation">
-      <a href="#welcome-cove" class="chap-pill">🏝️ Cove</a>
-      <a href="#chapter-1" class="chap-pill" data-chap="1">🫧 1. Reflections</a>
+      <a href="#welcome-garden" class="chap-pill">🏡 Garden</a>
+      <a href="#chapter-1" class="chap-pill" data-chap="1">💭 1. Reflections</a>
       <a href="#chapter-2" class="chap-pill" data-chap="2">📸 2. Memories</a>
       <a href="#chapter-3" class="chap-pill" data-chap="3">🌸 3. Flowers</a>
       <a href="#chapter-4" class="chap-pill" data-chap="4">💌 4. Letter</a>
@@ -58,26 +58,26 @@
     </div>
   </header>
 
-  <main class="reef-container">
-    <!-- WELCOME COVE -->
-    <section class="chapter-card hero-cove" id="welcome-cove">
-      <div class="hero-badge">Hangyodon's Little Reef Quest</div>
+  <main class="garden-container">
+    <!-- WELCOME GARDEN -->
+    <section class="chapter-card hero-garden" id="welcome-garden">
+      <div class="hero-badge">Lulu &amp; Lumei&apos;s Sincere Tangerine Garden</div>
       <div class="mascot-stage">
-        <div class="mascot-float" id="hero-hangyodon"></div>
-        <div class="sayuri-float" id="hero-sayuri"></div>
+        <button type="button" class="mascot-float mascot-btn" id="hero-lulu" aria-label="Tap Lulu for sparkles"></button>
+        <button type="button" class="lumei-float mascot-btn" id="hero-lumei" aria-label="Tap Lumei for sparkles"></button>
       </div>
       <div class="speech-bubble">
         <p class="speech-text">
-          “Hi <strong class="js-nick-inline">Ashley</strong>... Hangyodon &amp; Sayuri swam all the way here with some memories, a handful of forgiveness flowers, and a letter from the bottom of my heart.”
+          “Hi <strong class="js-nick-inline">Ashley</strong>... zero ChatGPT, zero excuses, and zero defensiveness — just me missing Tooty right after team meetings, bringing Lumei, our memories, and my honest heart.”
         </p>
       </div>
-      <h1 class="hero-title">A Tiny Undersea Apology &amp; Memory Reef</h1>
+      <h1 class="hero-title">A Sincere Tangerine Garden Apology for My Tooty</h1>
       <p class="hero-subtitle">
-        Collect all <strong>5 pastel seashells</strong> at your own pace — or skip straight to the letter whenever you want. No rush, no pressure.
+        No AI analyzing our talks, no blame, and no rush — collect all <strong>5 sweet tangerines</strong> at your own pace, or jump straight to the letter whenever you want.
       </p>
       <div class="hero-cta-row">
         <button type="button" class="btn btn-primary" id="start-quest-btn">
-          🫧 Start Hangyodon's Little Journey
+          🍊 Walk Through the Garden
         </button>
         <a href="#chapter-4" class="btn btn-soft">
           💌 Read the Letter First
@@ -85,19 +85,19 @@
       </div>
     </section>
 
-    <!-- CHAPTER 1: 3 WEEKS UNDER THE SEA (BUBBLE POP REFLECTIONS) -->
+    <!-- CHAPTER 1: 3 WEEKS THINKING QUIETLY (THOUGHT BUBBLE REFLECTIONS) -->
     <section class="chapter-card" id="chapter-1" data-chapter="1">
       <div class="chapter-header">
-        <span class="chapter-tag">Chapter 1 · Shell #1</span>
-        <span class="chapter-status" id="status-chap-1">0 / 6 Bubbles Popped</span>
+        <span class="chapter-tag">Chapter 1 · Tangerine #1</span>
+        <span class="chapter-status" id="status-chap-1">0 / 6 Thoughts Opened</span>
       </div>
-      <h2 class="chapter-title">3 Weeks Under the Sea</h2>
+      <h2 class="chapter-title">3 Weeks of Real Thinking (Zero ChatGPT)</h2>
       <p class="chapter-desc">
-        Hangyodon has been thinking quietly under the reef for the past 3 weeks. Pop each sea bubble to read what he realized.
+        No ChatGPT analyzing our conversations, no hiding behind texts, and no defensiveness — just 3 weeks of genuinely thinking until I understood and changed. Tap each bubble.
       </p>
 
       <div class="bubble-arena">
-        <div class="chap1-mascot" id="chap1-hangyodon"></div>
+        <div class="chap1-mascot" id="chap1-lulu"></div>
         <div class="bubbles-grid" id="bubbles-grid"></div>
       </div>
 
@@ -105,7 +105,7 @@
 
       <div class="chapter-footer">
         <button type="button" class="btn btn-ghost" id="reveal-all-bubbles-btn">
-          ✨ Reveal all reflections gently
+          ✨ Reveal all 6 honest thoughts
         </button>
         <a href="#chapter-2" class="btn btn-primary next-btn" id="next-to-2">
           Next: Memory Polaroid Match →
@@ -116,12 +116,12 @@
     <!-- CHAPTER 2: MEMORY POLAROID MATCH -->
     <section class="chapter-card" id="chapter-2" data-chapter="2">
       <div class="chapter-header">
-        <span class="chapter-tag">Chapter 2 · Shell #2</span>
+        <span class="chapter-tag">Chapter 2 · Tangerine #2</span>
         <span class="chapter-status" id="status-chap-2">0 / 6 Pairs Matched · 0 Moves</span>
       </div>
       <h2 class="chapter-title">Memory Polaroid Match</h2>
       <p class="chapter-desc">
-        Every moment has been replaying in my head. Flip two pastel cards to match our favorite memories!
+        Every moment keeps replaying in my head — from Tiong Bahru &amp; caramel popcorn to missing your smile in the office. Flip two cards to match our favorite memories!
       </p>
 
       <div class="memory-controls">
@@ -133,7 +133,10 @@
 
       <!-- Unlocked Polaroid Keepsake Shelf -->
       <div class="keepsake-shelf-wrap">
-        <h3 class="shelf-title">Unlocked Polaroids (Click any photo to zoom)</h3>
+        <div class="shelf-header">
+          <h3 class="shelf-title">Unlocked Polaroids (Tap any memory to read the full story)</h3>
+          <div class="chap2-mascot" id="chap2-lulu" aria-hidden="true"></div>
+        </div>
         <div class="keepsake-shelf" id="keepsake-shelf"></div>
       </div>
 
@@ -141,10 +144,12 @@
       <div class="goofy-vault hidden" id="goofy-vault">
         <div class="vault-badge">🏆 Bonus Memory Unlocked!</div>
         <div class="vault-content">
-          <img src="assets/photos/goofy-flex.jpg" alt="Goofy flexing photo" class="vault-thumb" id="vault-photo-btn" />
+          <button type="button" class="vault-thumb-btn" id="vault-photo-btn" aria-label="Inspect goofy flexing photo">
+            <img src="assets/photos/goofy-flex.jpg" alt="Goofy flexing photo" class="vault-thumb" />
+          </button>
           <div class="vault-copy">
             <h4>The “Most Most Retarded Moments” Vault 💪</h4>
-            <p>Thank you for laughing at my dumbest moments and sticking by me even when I acted ridiculous. Click the photo to inspect the flex!</p>
+            <p>Even when I acted ridiculous and flexed like a goofball, you laughed with me instead of judging. Never taking a single dumb, happy laugh for granted again, muahaha — click to zoom!</p>
           </div>
         </div>
       </div>
@@ -160,12 +165,12 @@
     <!-- CHAPTER 3: CATCH THE FORGIVENESS FLOWERS -->
     <section class="chapter-card" id="chapter-3" data-chapter="3">
       <div class="chapter-header">
-        <span class="chapter-tag">Chapter 3 · Shell #3</span>
+        <span class="chapter-tag">Chapter 3 · Tangerine #3</span>
         <span class="chapter-status" id="status-chap-3">0 / 10 Flowers Caught</span>
       </div>
       <h2 class="chapter-title">Catch the Forgiveness Flowers</h2>
       <p class="chapter-desc">
-        Help Hangyodon gather <strong>10 forgiveness flowers</strong> in his seashell basket! Catch caramel popcorn or Chimutan for +2 bonus blooms, and dodge gloomy little rain clouds.
+        Help Lulu catch <strong>10 forgiveness flowers</strong> for Lumei! Grab giant caramel popcorn, sweet tangerines, or Chimutan for +2 bonus blooms, and dodge the gloomy rain clouds from those 3 weeks.
       </p>
 
       <div class="flower-game-wrap">
@@ -178,17 +183,17 @@
 
         <div class="flower-stage" id="flower-stage" tabindex="0" aria-label="Flower catching mini-game area">
           <div class="stage-overlay" id="flower-start-overlay">
-            <p class="overlay-msg">Move with mouse, finger drag, ◀ / ▶ buttons, or ← / → keys!</p>
-            <button type="button" class="btn btn-primary" id="start-flower-game-btn">🌸 Start Gathering Flowers</button>
+            <p class="overlay-msg">Steer Lulu with your mouse, finger drag, ◀ / ▶ buttons, or ← / → keys!</p>
+            <button type="button" class="btn btn-primary" id="start-flower-game-btn">🌸 Start Catching Flowers</button>
           </div>
           <div class="stage-toast" id="flower-stage-toast" aria-live="polite"></div>
           <div class="basket-player" id="basket-player"></div>
         </div>
 
         <div class="touch-controls">
-          <button type="button" class="btn btn-soft touch-arrow" id="move-left-btn" aria-label="Move Hangyodon left">◀ Left</button>
-          <button type="button" class="btn btn-ghost" id="skip-flower-game-btn">🌼 Let Hangyodon gather them</button>
-          <button type="button" class="btn btn-soft touch-arrow" id="move-right-btn" aria-label="Move Hangyodon right">Right ▶</button>
+          <button type="button" class="btn btn-soft touch-arrow" id="move-left-btn" aria-label="Move Lulu left">◀ Left</button>
+          <button type="button" class="btn btn-ghost" id="skip-flower-game-btn">🌼 Let Lulu catch them all for Tooty</button>
+          <button type="button" class="btn btn-soft touch-arrow" id="move-right-btn" aria-label="Move Lulu right">Right ▶</button>
         </div>
       </div>
 
@@ -203,36 +208,62 @@
     <!-- CHAPTER 4: UNSEAL THE LETTER (100% VERBATIM APOLOGY) -->
     <section class="chapter-card" id="chapter-4" data-chapter="4">
       <div class="chapter-header">
-        <span class="chapter-tag">Chapter 4 · Shell #4</span>
+        <span class="chapter-tag">Chapter 4 · Tangerine #4</span>
         <span class="chapter-status" id="status-chap-4">Sealed 💌</span>
       </div>
       <h2 class="chapter-title">A Letter From the Bottom of My Heart</h2>
       <p class="chapter-desc">
-        Tap the Hangyodon wax seal to open the envelope. Every single word inside is unedited and straight from me.
+        Tap the tangerine wax seal to unseal this. Every word inside the letter is unedited and straight from me, followed by a few quiet postscripts I meant with all my heart.
       </p>
 
       <div class="envelope-stage" id="envelope-stage">
         <div class="envelope-closed" id="envelope-closed">
           <div class="envelope-flap"></div>
           <div class="envelope-body">
-            <p class="envelope-to">For Ashley / Lumei / Tooty / Baobao / Peanut ♡</p>
-            <button type="button" class="wax-seal-btn" id="open-seal-btn" aria-label="Tap Hangyodon wax seal to open apology letter">
-              <span class="seal-icon">🐟</span>
+            <p class="envelope-to">For Ashley / Lumei / Tooty / Baobao / Baobei / Peanut ♡</p>
+            <button type="button" class="wax-seal-btn" id="open-seal-btn" aria-expanded="false" aria-label="Tap tangerine wax seal to open apology letter">
+              <span class="seal-icon">🍊</span>
               <span class="seal-label">Tap to Unseal</span>
             </button>
           </div>
         </div>
 
-        <article class="letter-stationery hidden" id="letter-stationery" aria-label="Apology Letter">
+        <article class="letter-stationery hidden" id="letter-stationery" tabindex="-1" aria-label="Apology Letter">
           <div class="letter-stickers">
-            <span class="sticker-left" id="letter-hangyodon-sticker"></span>
-            <span class="letter-date-tag">With all my honesty &amp; love 🐚</span>
-            <span class="sticker-right" id="letter-sayuri-sticker"></span>
+            <span class="sticker-left" id="letter-lulu-sticker"></span>
+            <span class="letter-date-tag">Straight from my heart, no filters 🍊</span>
+            <span class="sticker-right" id="letter-lumei-sticker"></span>
           </div>
 
           <div class="letter-body">
             <p id="apology-p1">Hi Ashley, just want to say from the bottom of my heart, i apologise for what I have done, disappointing you, breaking up so abruptly without giving chance for us to talk, the past 3 weeks must be hellish for you and I feel so so so so bad, so guilty, i am not sure what I can do, how I can make up for this, I apologise. Sorry for not telling you whats happening in my life even though we were gf and bf, regret is a understatement. I think the past 3 weeks, i have learnt so much about myself, my problems, our relationship, you, I never truly treasured you, every moment replaying in my head, the memories, the most most retarded moments, your nagging especially, what a joy, what a privilege and i took it for granted. I love you so much, more than I could show, you mean so much to me, more than I knew, never truly understood until i lost you completely. I screwed up, this could have been avoided easily, from that day at new tiong bahru, i could have fixed it, but i didnt. Please forgive me, i do not want to guilt you or force you or whatever to your decision. I love you very much, i loved you 3 weeks ago and I love you even more now thats the truth, if possible I want another chance to earn back your trust, your love, your forgiveness and at the end of the day, regardless of what happen, I truly wish you all the best, all the happiness, hope you are satisfied with your life, hope you become the best possible version of yourself, your the strongest woman I know, the smartest, most kind person I have ever known. I think deep down from the bottom of my heart, you are really the love of my life, my best friend in life and someone i want to spend my rest of the life with, coudnt imagine anyone else. That night was completely my fault, i was the avoidant u pointed it out perfectly. i regret it so much. My 3 weeks of reflection, i really realised how maby mistakes i made, how patient u ACTUALLY were, how sweet kind u were even in conflicts i realised now u were trying ur best, well i have given too many apologies. </p>
             <p id="apology-p2">Please accept these flowers, they represent forgiveness or something i heard, take your time, no rush, if you ever feel sad, please reach out to ur friends or me if you really want. Hope they make ur day brighter! Cheer up LUMEI YOU CAN DO THIS, YOUR THE BEST LETS GOOOOOOOO. LOVE YOU LUMEI/TOOT/TOOTY/ASHLEY/BAOBAO/BAOBEI/PEANUT</p>
+          </div>
+
+          <div class="letter-ps" aria-label="Personal postscripts from the heart">
+            <h3 class="letter-ps-title">P.S. A Few More Honest Thoughts I Meant Every Word Of ♡</h3>
+            <div class="ps-notes-grid">
+              <div class="ps-note-card ps-note-wide">
+                <h4>💬 Next Time: Real Thinking, No ChatGPT</h4>
+                <p>No more running to ChatGPT to analyze our conversations or tell us what to feel. Next time we do the thinking ourselves until we truly get it, understand each other, and actually change — and handle conflicts calmly with zero blame, zero finger-pointing, and zero defensiveness.</p>
+              </div>
+              <div class="ps-note-card">
+                <h4>🎙️ That Night, Real Talk &amp; Missing Your Nagging</h4>
+                <p>That night was completely on me for being avoidant, and I want a proper heart-to-heart talk instead of hiding behind online texts or ChatGPT guesses. Over these 3 weeks I realized how sweet, patient, and kind you were even in conflicts — OMG I missed your nagging and your voice so much haizzz, getting teary-eyed in the office like the good old days, muahaha.</p>
+              </div>
+              <div class="ps-note-card">
+                <h4>🪩 Google EOY Party at Marquee (+1)</h4>
+                <p>Even two weeks ago, I quietly added a +1 for the Google EOY Party at Marquee hoping with all my heart that you would go with me.</p>
+              </div>
+              <div class="ps-note-card">
+                <h4>💼 Right After My Team Meeting</h4>
+                <p>Right after finishing my team meeting, the very first thought that hit me was still just: “ughhh miss you so much tooty.”</p>
+              </div>
+              <div class="ps-note-card">
+                <h4>🎉 The Day You Unblocked Me</h4>
+                <p>The moment I noticed you unblocked me, I literally wanted to celebrate around the Google office: <em>“GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!”</em></p>
+              </div>
+            </div>
           </div>
         </article>
       </div>
@@ -248,34 +279,34 @@
     <!-- CHAPTER 5: BOUQUET & CHEER-UP FINALE -->
     <section class="chapter-card" id="chapter-5" data-chapter="5">
       <div class="chapter-header">
-        <span class="chapter-tag">Chapter 5 · Shell #5</span>
+        <span class="chapter-tag">Chapter 5 · Tangerine #5</span>
         <span class="chapter-status" id="status-chap-5">Ready for You 💐</span>
       </div>
       <h2 class="chapter-title">Flowers &amp; Cheers for Lumei</h2>
       <p class="chapter-desc">
-        No pressure, no rush — just a bouquet, our scrapbook keepsake, and Hangyodon cheering you on!
+        Zero pressure, zero guilt — just forgiveness flowers, our scrapbook, and Lulu cheering Lumei on like always!
       </p>
 
       <div class="finale-grid">
         <div class="bouquet-panel">
           <div class="bouquet-art" id="bouquet-art"></div>
           <div class="cheer-box">
-            <div class="cheer-mascot" id="finale-hangyodon"></div>
+            <div class="cheer-mascot" id="finale-lulu"></div>
             <button type="button" class="btn btn-pink" id="headpat-btn">
               <span>🫶</span>
-              <span>Pat Hangyodon / Cheer Up Lumei! (<span id="headpat-count">0</span>)</span>
+              <span>Pat Lulu / Cheer Up Lumei! (<span id="headpat-count">0</span>)</span>
             </button>
-            <p class="cheer-caption" id="cheer-caption">Tap for an instant Hangyodon cheer burst!</p>
+            <p class="cheer-caption" id="cheer-caption">Tap for an instant cheer burst (plus Lulu missing your nagging energy)!</p>
           </div>
         </div>
 
         <div class="collage-panel">
           <h3 class="collage-heading">Memories with Ashley Scrapbook</h3>
           <button type="button" class="collage-frame" id="open-collage-modal" aria-label="View full Memories with Ashley collage">
-            <img src="assets/photos/collage-memories.jpg" alt="Memories with Ashley Hangyodon Collage" />
+            <img src="assets/photos/collage-memories.jpg" alt="Memories with Ashley Collage" />
             <span class="zoom-hint">🔍 Tap to view full size</span>
           </button>
-          <a href="assets/photos/collage-memories.jpg" download="memories-with-ashley-hangyodon.jpg" class="btn btn-soft download-btn">
+          <a href="assets/photos/collage-memories.jpg" download="memories-with-ashley.jpg" class="btn btn-soft download-btn">
             💾 Download Keepsake Collage
           </a>
         </div>
@@ -283,17 +314,17 @@
 
       <!-- Respectful Zero-Pressure Response Zone -->
       <div class="response-zone">
-        <h3>Whenever you're ready — every answer is completely okay</h3>
-        <p class="response-sub">There is zero pressure here. Pick whichever feels right to you right now:</p>
+        <h3>Whenever you're ready — take it at your own cozy pace</h3>
+        <p class="response-sub">Zero blame, zero pressure, zero rush — pick whatever feels right to Tooty right now:</p>
         <div class="response-buttons">
           <button type="button" class="btn btn-primary response-choice" data-choice="flowers">
             🌸 Accept the Flowers
           </button>
           <button type="button" class="btn btn-soft response-choice" data-choice="space">
-            🐚 I Need Time &amp; Space
+            🍊 Taking It Slow (Zero Rush)
           </button>
           <button type="button" class="btn btn-pink response-choice" data-choice="pat">
-            💙 Send a Head-Pat Back
+            💛 Send a Head-Pat Back
           </button>
         </div>
         <div class="response-reply hidden" id="response-reply" aria-live="polite"></div>
@@ -302,7 +333,7 @@
       <div class="chapter-footer">
         <span></span>
         <a href="#chapter-chance" class="btn btn-primary next-btn">
-          ✨ P.S. One More Question from Hangyodon →
+          ✨ P.S. One More Question from Lulu →
         </a>
       </div>
     </section>
@@ -311,26 +342,26 @@
     <section class="chapter-card chance-card" id="chapter-chance" data-chapter="chance">
       <div class="chapter-header">
         <span class="chapter-tag chance-tag">✨ Bonus Tab · Honest Question</span>
-        <span class="chapter-status" id="status-chap-chance">Waiting on You 🐟</span>
+        <span class="chapter-status" id="status-chap-chance">Waiting on You 🍊</span>
       </div>
-      <h2 class="chapter-title">Can Hangyodon &amp; I Have Another Chance?</h2>
+      <h2 class="chapter-title">Can Lulu Have One Real Talk &amp; Another Chance with Lumei?</h2>
       <p class="chapter-desc">
-        Okay, Sayuri dared me to ask properly instead of swimming away like an avoidant fish. No pressure at all — just an honest (slightly dramatic) question for <strong class="js-nick-inline">Ashley</strong>:
+        Okay, even little Lumei told me to show up with my own real words — zero ChatGPT, zero avoidant disappearing, and zero defensiveness. Honest question for <strong class="js-nick-inline">Ashley</strong>:
       </p>
 
       <div class="chance-stage">
         <div class="chance-mascots">
-          <div id="chance-hangyodon"></div>
-          <div class="chance-sayuri-wrap" id="chance-sayuri"></div>
+          <div id="chance-lulu"></div>
+          <div class="chance-lumei-wrap" id="chance-lumei"></div>
         </div>
 
         <div class="chance-dialogue" id="chance-dialogue" aria-live="polite">
-          “Will you give me one more chance to talk things through properly and earn back your trust?”
+          “Will you give me a real heart-to-heart talk — no ChatGPT, no defensiveness — and one more chance to earn back your trust?”
         </div>
 
         <div class="chance-arena" id="chance-arena">
           <button type="button" class="btn btn-primary chance-yes-btn" id="chance-yes-btn">
-            🌸 Okay, let's talk &amp; try again
+            🌸 Let&apos;s have a real talk &amp; try again
           </button>
           <button type="button" class="btn btn-soft chance-no-btn" id="chance-no-btn">
             🤔 Hmm, not sure yet...
@@ -350,7 +381,7 @@
   <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
 
   <!-- Polaroid / Collage Zoom Modal -->
-  <div class="modal-backdrop hidden" id="photo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-caption">
+  <div class="modal-backdrop hidden" id="photo-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-caption">
     <div class="modal-card">
       <button type="button" class="modal-close" id="modal-close" aria-label="Close photo preview">✕</button>
       <img alt="" id="modal-img" />
@@ -359,11 +390,11 @@
     </div>
   </div>
 
-  <footer class="reef-footer">
-    <p>Made with sincerity, reflection &amp; Hangyodon sparkles · Take your time, Lumei 🐚</p>
+  <footer class="garden-footer">
+    <p>Written with my own heart (zero ChatGPT), zero blame &amp; all my love for Tooty / Lumei 🍊</p>
   </footer>
 
-  <script src="hangyodon-svg.js"></script>
+  <script src="mascots-svg.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

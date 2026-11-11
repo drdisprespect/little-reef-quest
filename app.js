@@ -2,9 +2,16 @@
   const NICKNAMES = ['Ashley', 'Lumei', 'Toot', 'Tooty', 'Baobao', 'Baobei', 'Peanut'];
   let nickIdx = 0;
 
-  const unlockedShells = new Set();
+  const unlockedTangerines = new Set();
   let soundEnabled = true;
   let audioCtx = null;
+
+  const prefersReducedMotion = () =>
+    Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function getActiveNickname() {
+    return NICKNAMES[nickIdx];
+  }
 
   // ---------- Audio (Soft Music-Box Chimes) ----------
   function playChime(freq = 523.25, duration = 0.16, type = 'sine', delay = 0) {
@@ -13,19 +20,32 @@
     if (!AudioContextClass) return;
     try {
       if (!audioCtx) audioCtx = new AudioContextClass();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      const now = audioCtx.currentTime + delay;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, now);
-      gain.gain.setValueAtTime(0.001, now);
-      gain.gain.exponentialRampToValueAtTime(0.09, now + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start(now);
-      osc.stop(now + duration + 0.02);
+
+      const scheduleNote = () => {
+        if (!soundEnabled || !audioCtx || audioCtx.state !== 'running') return;
+        const now = audioCtx.currentTime + delay;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.09, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + duration + 0.02);
+      };
+
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().then(() => {
+          if (soundEnabled && audioCtx && audioCtx.state === 'running') {
+            scheduleNote();
+          }
+        }).catch(() => {});
+      } else {
+        scheduleNote();
+      }
     } catch (_) {
       // Ignore audio errors when autoplay/audio is restricted
     }
@@ -35,9 +55,10 @@
     [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => playChime(f, 0.24, 'triangle', idx * 0.07));
   }
 
-  // ---------- Confetti Burst ----------
+  // ---------- Confetti & Mascot Reaction Helpers ----------
   const confettiLayer = document.getElementById('confetti-layer');
-  function spawnConfetti(count = 20, emojis = ['🌸', '🫧', '🐚', '💙', '✨', '🌷']) {
+  function spawnConfetti(count = 20, emojis = ['🌸', '🍊', '💛', '✨', '🌷', '🍓']) {
+    if (prefersReducedMotion()) return;
     for (let i = 0; i < count; i++) {
       const piece = document.createElement('span');
       piece.className = 'confetti-piece';
@@ -50,32 +71,72 @@
     }
   }
 
-  // ---------- HUD & Shells ----------
-  const shellsRow = document.getElementById('shells-row');
-  const shellCountEl = document.getElementById('shell-count');
-
-  function renderShells() {
-    shellsRow.innerHTML = '';
-    for (let i = 1; i <= 5; i++) {
-      const slot = document.createElement('span');
-      const has = unlockedShells.has(i);
-      slot.className = `shell-badge-slot${has ? ' unlocked' : ''}`;
-      slot.innerHTML = HangyodonArt.shellSVG(has, 23);
-      slot.title = has ? `Shell #${i} collected!` : `Shell #${i} (Chapter ${i})`;
-      shellsRow.appendChild(slot);
+  function boopMascot(el, withSparkles = false) {
+    if (!el) return;
+    if (!prefersReducedMotion()) {
+      el.classList.remove('mascot-boop');
+      void el.offsetWidth;
+      el.classList.add('mascot-boop');
+      clearTimeout(el._boopTimer);
+      el._boopTimer = setTimeout(() => el.classList.remove('mascot-boop'), 520);
     }
-    shellCountEl.textContent = `${unlockedShells.size}/5 Shells`;
+    if (withSparkles && !prefersReducedMotion()) {
+      const symbols = ['✨', '💛', '🍊', '🌸', '🍓'];
+      for (let i = 0; i < 5; i++) {
+        const sp = document.createElement('span');
+        sp.className = 'mascot-sparkle';
+        sp.setAttribute('aria-hidden', 'true');
+        sp.textContent = symbols[i % symbols.length];
+        const angle = (-135 + i * 38) * (Math.PI / 180);
+        const dist = 26 + (i % 2) * 14;
+        sp.style.left = `${44 + (i - 2) * 12}%`;
+        sp.style.top = `${26 + (i % 2) * 14}%`;
+        sp.style.setProperty('--sx', `${Math.round(Math.cos(angle) * dist)}px`);
+        sp.style.setProperty('--sy', `${Math.round(Math.sin(angle) * dist)}px`);
+        el.appendChild(sp);
+        setTimeout(() => sp.remove(), 880);
+      }
+    }
   }
 
-  function unlockShell(chapterNum) {
-    if (unlockedShells.has(chapterNum)) return;
-    unlockedShells.add(chapterNum);
-    renderShells();
+  // ---------- HUD, Sticky Height Sync & Tangerines ----------
+  const questHud = document.getElementById('quest-hud');
+  function syncHudHeight() {
+    if (!questHud) return;
+    const h = Math.ceil(questHud.getBoundingClientRect().height) + 12;
+    document.documentElement.style.setProperty('--hud-height', `${h}px`);
+  }
+  syncHudHeight();
+  if (typeof ResizeObserver === 'function' && questHud) {
+    new ResizeObserver(syncHudHeight).observe(questHud);
+  }
+  window.addEventListener('resize', syncHudHeight);
+
+  const tangerinesRow = document.getElementById('tangerines-row');
+  const tangerineCountEl = document.getElementById('tangerine-count');
+
+  function renderTangerines() {
+    tangerinesRow.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+      const slot = document.createElement('span');
+      const has = unlockedTangerines.has(i);
+      slot.className = `tangerine-badge-slot${has ? ' unlocked' : ''}`;
+      slot.innerHTML = MascotArt.tangerineBadgeSVG(has, 23);
+      slot.title = has ? `Tangerine #${i} collected!` : `Tangerine #${i} (Chapter ${i})`;
+      tangerinesRow.appendChild(slot);
+    }
+    tangerineCountEl.textContent = `${unlockedTangerines.size}/5 Tangerines`;
+  }
+
+  function unlockTangerine(chapterNum) {
+    if (unlockedTangerines.has(chapterNum)) return;
+    unlockedTangerines.add(chapterNum);
+    renderTangerines();
     const pill = document.querySelector(`.chap-pill[data-chap="${chapterNum}"]`);
     if (pill) pill.classList.add('done');
     playSparkleChord();
-    if (unlockedShells.size === 5) {
-      spawnConfetti(36, ['🐚', '💐', '🌸', '✨', '💙', '🎉']);
+    if (unlockedTangerines.size === 5) {
+      spawnConfetti(36, ['🍊', '💐', '🌸', '✨', '💛', '🎉']);
     }
   }
 
@@ -83,13 +144,17 @@
   const nicknamePill = document.getElementById('nickname-pill');
   const activeNicknameEl = document.getElementById('active-nickname');
 
-  nicknamePill.addEventListener('click', () => {
-    nickIdx = (nickIdx + 1) % NICKNAMES.length;
-    const nick = NICKNAMES[nickIdx];
+  function refreshInlineNicknames() {
+    const nick = getActiveNickname();
     activeNicknameEl.textContent = nick;
     document.querySelectorAll('.js-nick-inline').forEach((el) => {
       el.textContent = nick;
     });
+  }
+
+  nicknamePill.addEventListener('click', () => {
+    nickIdx = (nickIdx + 1) % NICKNAMES.length;
+    refreshInlineNicknames();
     playChime(659.25 + nickIdx * 28, 0.14);
   });
 
@@ -98,71 +163,125 @@
   soundToggleBtn.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
     soundToggleBtn.setAttribute('aria-pressed', String(soundEnabled));
+    soundToggleBtn.setAttribute(
+      'aria-label',
+      soundEnabled ? 'Toggle cute chimes (currently on)' : 'Toggle cute chimes (currently muted)'
+    );
     soundIcon.textContent = soundEnabled ? '🔔' : '🔕';
     const label = soundToggleBtn.querySelector('.hide-sm');
     if (label) label.textContent = soundEnabled ? 'Chimes On' : 'Muted';
     if (soundEnabled) playChime(587.33, 0.14);
   });
 
-  // ---------- Render Mascot SVGs ----------
-  document.getElementById('hero-hangyodon').innerHTML = HangyodonArt.hangyodonSVG('welcome', 180);
-  document.getElementById('hero-sayuri').innerHTML = HangyodonArt.sayuriSVG(82);
-  document.getElementById('chap1-hangyodon').innerHTML = HangyodonArt.hangyodonSVG('shy', 165);
-  document.getElementById('basket-player').innerHTML = HangyodonArt.basketHangyodonSVG(84);
-  document.getElementById('letter-hangyodon-sticker').innerHTML = HangyodonArt.hangyodonSVG('holding-flowers', 64);
-  document.getElementById('letter-sayuri-sticker').innerHTML = HangyodonArt.sayuriSVG(56);
-  document.getElementById('bouquet-art').innerHTML = HangyodonArt.bouquetSVG(210);
-  document.getElementById('finale-hangyodon').innerHTML = HangyodonArt.hangyodonSVG('cheering', 135);
-  renderShells();
+  // ---------- Render Mascot SVGs & Hero Tap Delight ----------
+  const heroLuluBtn = document.getElementById('hero-lulu');
+  const heroLumeiBtn = document.getElementById('hero-lumei');
+  const chap2Lulu = document.getElementById('chap2-lulu');
+  const finaleLulu = document.getElementById('finale-lulu');
+
+  heroLuluBtn.innerHTML = MascotArt.luluSVG('welcome', 178);
+  heroLumeiBtn.innerHTML = MascotArt.lumeiSVG('happy', 148);
+  document.getElementById('chap1-lulu').innerHTML = MascotArt.luluSVG('shy', 165);
+  chap2Lulu.innerHTML = MascotArt.luluSVG('camera', 64);
+  document.getElementById('basket-player').innerHTML = MascotArt.basketLuluSVG(84);
+  document.getElementById('letter-lulu-sticker').innerHTML = MascotArt.luluSVG('holding-flowers', 68);
+  document.getElementById('letter-lumei-sticker').innerHTML = MascotArt.lumeiSVG('happy', 62);
+  document.getElementById('bouquet-art').innerHTML = MascotArt.bouquetSVG(210);
+  finaleLulu.innerHTML = MascotArt.luluSVG('cheering', 135);
+  renderTangerines();
+
+  heroLuluBtn.addEventListener('click', () => {
+    boopMascot(heroLuluBtn, true);
+    playChime(659.25, 0.15);
+  });
+
+  heroLumeiBtn.addEventListener('click', () => {
+    boopMascot(heroLumeiBtn, true);
+    playChime(783.99, 0.15, 'triangle');
+  });
 
   document.getElementById('start-quest-btn').addEventListener('click', () => {
     playChime(587.33, 0.18);
-    document.getElementById('chapter-1').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('chapter-1').scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+    });
   });
 
-  // ---------- Photo Modal ----------
+  // ---------- Photo Modal (Accessible Focus Trap & Scroll Lock) ----------
   const photoModal = document.getElementById('photo-modal');
+  const modalCloseBtn = document.getElementById('modal-close');
   const modalImg = document.getElementById('modal-img');
   const modalCaption = document.getElementById('modal-caption');
   const modalSub = document.getElementById('modal-sub');
+  let lastFocusedEl = null;
 
   function openPhotoModal(src, caption, sub = '') {
+    lastFocusedEl = document.activeElement;
     modalImg.src = src;
     modalImg.alt = caption;
     modalCaption.textContent = caption;
     modalSub.textContent = sub;
     photoModal.classList.remove('hidden');
+    photoModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    modalCloseBtn.focus({ preventScroll: true });
   }
 
   function closePhotoModal() {
     photoModal.classList.add('hidden');
+    photoModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     modalImg.removeAttribute('src');
+    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function' && document.contains(lastFocusedEl)) {
+      lastFocusedEl.focus({ preventScroll: true });
+    }
+    lastFocusedEl = null;
   }
 
-  document.getElementById('modal-close').addEventListener('click', closePhotoModal);
+  modalCloseBtn.addEventListener('click', closePhotoModal);
   photoModal.addEventListener('click', (e) => {
     if (e.target === photoModal) closePhotoModal();
+  });
+  photoModal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusables = Array.from(
+      photoModal.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => el.offsetParent !== null);
+    if (focusables.length <= 1) {
+      e.preventDefault();
+      if (focusables[0]) focusables[0].focus();
+      return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !photoModal.classList.contains('hidden')) closePhotoModal();
   });
 
-  // ---------- CHAPTER 1: BUBBLE POP REFLECTIONS ----------
+  // ---------- CHAPTER 1: THOUGHT BUBBLE REFLECTIONS ----------
   const REFLECTIONS = [
     {
-      emoji: '🫧',
+      emoji: '💭',
       label: 'Opening Up',
       title: 'Keeping You Out Was Wrong',
       text: 'I am sorry for not telling you what was happening in my life even when we were together, and for ending things abruptly without giving us a chance to talk.'
     },
     {
-      emoji: '🌊',
+      emoji: '🌇',
       label: 'New Tiong Bahru',
       title: 'That Day at New Tiong Bahru',
       text: 'I screwed up. From that day at New Tiong Bahru, it could have been fixed so easily — I could have chosen honesty and communication, and I did not.'
     },
     {
-      emoji: '🐚',
+      emoji: '🍊',
       label: 'Avoidant Habits',
       title: 'You Were Right About That Night',
       text: 'That night was completely my fault. You pointed out that I was being avoidant, and you called it perfectly.'
@@ -190,6 +309,7 @@
   const bubblesGrid = document.getElementById('bubbles-grid');
   const reflectionsBox = document.getElementById('revealed-reflections');
   const statusChap1 = document.getElementById('status-chap-1');
+  const revealAllBubblesBtn = document.getElementById('reveal-all-bubbles-btn');
   const poppedBubbles = new Set();
 
   function popBubble(idx, btn) {
@@ -198,7 +318,8 @@
     btn.classList.add('popped');
     btn.disabled = true;
     const item = REFLECTIONS[idx];
-    btn.innerHTML = `<span class="bubble-emoji">✨</span><span>Popped!</span>`;
+    btn.setAttribute('aria-label', `${item.label} — opened`);
+    btn.innerHTML = `<span class="bubble-emoji">✨</span><span>Opened!</span>`;
 
     const note = document.createElement('div');
     note.className = 'reflection-note';
@@ -206,27 +327,41 @@
     reflectionsBox.appendChild(note);
 
     playChime(440 + idx * 55, 0.16);
-    statusChap1.textContent = `${poppedBubbles.size} / ${REFLECTIONS.length} Bubbles Popped`;
+    statusChap1.textContent = `${poppedBubbles.size} / ${REFLECTIONS.length} Thoughts Opened`;
 
     if (poppedBubbles.size === REFLECTIONS.length) {
-      statusChap1.textContent = '6 / 6 Complete 🐚';
-      document.getElementById('chap1-hangyodon').innerHTML = HangyodonArt.hangyodonSVG('welcome', 165);
-      unlockShell(1);
+      statusChap1.textContent = '6 / 6 Complete 🍊';
+      revealAllBubblesBtn.disabled = true;
+      revealAllBubblesBtn.textContent = '✨ All 6 reflections revealed';
+      document.getElementById('chap1-lulu').innerHTML = MascotArt.luluSVG('welcome', 165);
+      unlockTangerine(1);
     }
   }
 
   REFLECTIONS.forEach((item, idx) => {
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'sea-bubble-btn';
+    btn.className = 'thought-bubble-btn';
+    btn.setAttribute('aria-label', `${item.label} thought bubble`);
     btn.innerHTML = `<span class="bubble-emoji">${item.emoji}</span><span>${item.label}</span>`;
     btn.addEventListener('click', () => popBubble(idx, btn));
     bubblesGrid.appendChild(btn);
   });
 
-  document.getElementById('reveal-all-bubbles-btn').addEventListener('click', () => {
-    const btns = bubblesGrid.querySelectorAll('.sea-bubble-btn');
-    btns.forEach((btn, idx) => popBubble(idx, btn));
+  revealAllBubblesBtn.addEventListener('click', () => {
+    revealAllBubblesBtn.disabled = true;
+    const unpopped = Array.from(bubblesGrid.querySelectorAll('.thought-bubble-btn'))
+      .map((btn, idx) => ({ btn, idx }))
+      .filter(({ idx }) => !poppedBubbles.has(idx));
+
+    const reduced = prefersReducedMotion();
+    unpopped.forEach(({ btn, idx }, orderIdx) => {
+      if (reduced) {
+        popBubble(idx, btn);
+      } else {
+        setTimeout(() => popBubble(idx, btn), orderIdx * 160);
+      }
+    });
   });
 
   // ---------- CHAPTER 2: MEMORY POLAROID MATCH ----------
@@ -273,12 +408,14 @@
   const keepsakeShelf = document.getElementById('keepsake-shelf');
   const statusChap2 = document.getElementById('status-chap-2');
   const goofyVault = document.getElementById('goofy-vault');
+  const revealMemoryBtn = document.getElementById('reveal-memory-btn');
 
   let deck = [];
   let flippedIndices = [];
   let matchedIds = new Set();
   let movesCount = 0;
   let boardLocked = false;
+  let mismatchTimer = null;
 
   function shuffleArray(arr) {
     const copy = [...arr];
@@ -287,6 +424,24 @@
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function syncCardAccessibility(btn, mem, idx, state) {
+    const back = btn.querySelector('.mem-back');
+    const front = btn.querySelector('.mem-front');
+    if (state === 'matched') {
+      btn.setAttribute('aria-label', `Matched memory: ${mem.caption} — click to zoom`);
+      if (back) back.setAttribute('aria-hidden', 'true');
+      if (front) front.setAttribute('aria-hidden', 'false');
+    } else if (state === 'flipped') {
+      btn.setAttribute('aria-label', `Memory card ${idx + 1}: ${mem.caption}`);
+      if (back) back.setAttribute('aria-hidden', 'true');
+      if (front) front.setAttribute('aria-hidden', 'false');
+    } else {
+      btn.setAttribute('aria-label', `Memory card ${idx + 1}, face down`);
+      if (back) back.setAttribute('aria-hidden', 'false');
+      if (front) front.setAttribute('aria-hidden', 'true');
+    }
   }
 
   function renderKeepsakeShelf() {
@@ -309,38 +464,44 @@
   function updateMemoryStatus() {
     statusChap2.textContent = `${matchedIds.size} / ${MEMORIES.length} Pairs Matched · ${movesCount} Moves`;
     if (matchedIds.size === MEMORIES.length) {
-      statusChap2.textContent = `6 / 6 Matched 🐚`;
+      statusChap2.textContent = '6 / 6 Matched 🍊';
       goofyVault.classList.remove('hidden');
-      unlockShell(2);
+      revealMemoryBtn.disabled = true;
+      revealMemoryBtn.textContent = '📸 All 6 Memories Revealed';
+      unlockTangerine(2);
     }
   }
 
   function initMemoryBoard() {
+    clearTimeout(mismatchTimer);
+    mismatchTimer = null;
     deck = shuffleArray([...MEMORIES, ...MEMORIES]);
     flippedIndices = [];
     matchedIds = new Set();
     movesCount = 0;
     boardLocked = false;
     goofyVault.classList.add('hidden');
+    revealMemoryBtn.disabled = false;
+    revealMemoryBtn.textContent = '📸 Reveal All Memories';
     memoryGrid.innerHTML = '';
 
     deck.forEach((mem, idx) => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'mem-card';
-      btn.setAttribute('aria-label', `Memory card ${idx + 1}`);
       btn.innerHTML = `
         <div class="mem-card-inner">
-          <div class="mem-face mem-back">
-            <span class="mem-back-icon">🐚</span>
+          <div class="mem-face mem-back" aria-hidden="false">
+            <span class="mem-back-icon">🍊</span>
             <span>Flip</span>
           </div>
-          <div class="mem-face mem-front">
+          <div class="mem-face mem-front" aria-hidden="true">
             <img src="${mem.src}" alt="${mem.caption}" />
             <span class="mem-caption-mini">${mem.caption}</span>
           </div>
         </div>
       `;
+      syncCardAccessibility(btn, mem, idx, 'facedown');
       btn.addEventListener('click', () => handleCardFlip(idx, btn));
       memoryGrid.appendChild(btn);
     });
@@ -350,12 +511,18 @@
   }
 
   function handleCardFlip(idx, btn) {
+    const mem = deck[idx];
+    if (btn.classList.contains('matched')) {
+      openPhotoModal(mem.src, mem.caption, mem.sub);
+      return;
+    }
     if (boardLocked) return;
-    if (btn.classList.contains('flipped') || btn.classList.contains('matched')) return;
+    if (btn.classList.contains('flipped')) return;
 
     btn.classList.add('flipped');
+    syncCardAccessibility(btn, mem, idx, 'flipped');
     playChime(523.25, 0.1);
-    flippedIndices.push({ idx, btn, id: deck[idx].id });
+    flippedIndices.push({ idx, btn, id: mem.id, mem });
 
     if (flippedIndices.length < 2) return;
 
@@ -365,28 +532,43 @@
     if (first.id === second.id) {
       first.btn.classList.add('matched');
       second.btn.classList.add('matched');
+      syncCardAccessibility(first.btn, first.mem, first.idx, 'matched');
+      syncCardAccessibility(second.btn, second.mem, second.idx, 'matched');
       matchedIds.add(first.id);
       flippedIndices = [];
       playChime(783.99, 0.2);
+      boopMascot(chap2Lulu, false);
       renderKeepsakeShelf();
       updateMemoryStatus();
     } else {
       boardLocked = true;
-      setTimeout(() => {
+      clearTimeout(mismatchTimer);
+      mismatchTimer = setTimeout(() => {
         first.btn.classList.remove('flipped');
         second.btn.classList.remove('flipped');
+        syncCardAccessibility(first.btn, first.mem, first.idx, 'facedown');
+        syncCardAccessibility(second.btn, second.mem, second.idx, 'facedown');
         flippedIndices = [];
         boardLocked = false;
+        mismatchTimer = null;
       }, 720);
       updateMemoryStatus();
     }
   }
 
   document.getElementById('shuffle-memory-btn').addEventListener('click', initMemoryBoard);
-  document.getElementById('reveal-memory-btn').addEventListener('click', () => {
+  revealMemoryBtn.addEventListener('click', () => {
+    clearTimeout(mismatchTimer);
+    mismatchTimer = null;
+    flippedIndices = [];
+    boardLocked = false;
     const cards = memoryGrid.querySelectorAll('.mem-card');
-    cards.forEach((c) => c.classList.add('flipped', 'matched'));
+    cards.forEach((c, idx) => {
+      c.classList.add('flipped', 'matched');
+      syncCardAccessibility(c, deck[idx], idx, 'matched');
+    });
     MEMORIES.forEach((m) => matchedIds.add(m.id));
+    boopMascot(chap2Lulu, false);
     renderKeepsakeShelf();
     updateMemoryStatus();
   });
@@ -409,6 +591,7 @@
   const meterFill = document.getElementById('flower-meter-fill');
   const scoreLabel = document.getElementById('flower-score-label');
   const statusChap3 = document.getElementById('status-chap-3');
+  const skipFlowerBtn = document.getElementById('skip-flower-game-btn');
 
   const GOAL_FLOWERS = 10;
   let flowerScore = 0;
@@ -419,15 +602,29 @@
   let lastFrameTime = 0;
   let fallingItems = [];
   let keysHeld = { left: false, right: false };
+  let stageWidth = flowerStage.clientWidth || 600;
+  let stageHeight = flowerStage.clientHeight || 340;
+
+  function updateStageMetrics() {
+    const rect = flowerStage.getBoundingClientRect();
+    if (rect.width > 0) stageWidth = rect.width;
+    if (rect.height > 0) stageHeight = rect.height;
+  }
+
+  if (typeof ResizeObserver === 'function') {
+    new ResizeObserver(updateStageMetrics).observe(flowerStage);
+  }
+  window.addEventListener('resize', updateStageMetrics);
 
   const ITEM_POOL = [
     { emoji: '🌸', points: 1, label: '+1 Cherry Blossom' },
     { emoji: '🌷', points: 1, label: '+1 Pink Tulip' },
     { emoji: '🌼', points: 1, label: '+1 Sunny Daisy' },
     { emoji: '💐', points: 1, label: '+1 Mini Bouquet' },
+    { emoji: '🍊', points: 2, label: '+2 Sweet Tangerine Bonus!' },
     { emoji: '🍿', points: 2, label: '+2 Caramel Popcorn Bonus!' },
     { emoji: '🐰', points: 2, label: '+2 Chimutan Cheer!' },
-    { emoji: '🌧️', points: 0, label: 'Oops, soggy fin! Keep going!' }
+    { emoji: '🌧️', points: 0, label: 'Oops, soggy tangerine! Keep going!' }
   ];
 
   function showStageToast(msg) {
@@ -437,13 +634,19 @@
     showStageToast._timer = setTimeout(() => stageToast.classList.remove('show'), 1200);
   }
 
+  function resetBasketPosition() {
+    playerXPercent = 50;
+    basketEl.style.left = '50%';
+    keysHeld = { left: false, right: false };
+  }
+
   function updateFlowerProgress() {
     const clamped = Math.min(flowerScore, GOAL_FLOWERS);
     const pct = (clamped / GOAL_FLOWERS) * 100;
     meterFill.style.width = `${pct}%`;
     scoreLabel.textContent = `${clamped} / ${GOAL_FLOWERS} 🌸`;
     statusChap3.textContent = clamped >= GOAL_FLOWERS
-      ? '10 / 10 Bouquet Ready 🐚'
+      ? '10 / 10 Bouquet Ready 🍊'
       : `${clamped} / ${GOAL_FLOWERS} Flowers Caught`;
 
     if (clamped >= GOAL_FLOWERS) {
@@ -456,13 +659,16 @@
     cancelAnimationFrame(animFrameId);
     fallingItems.forEach((it) => it.el.remove());
     fallingItems = [];
+    resetBasketPosition();
+    skipFlowerBtn.disabled = true;
+    skipFlowerBtn.textContent = '💐 All 10 flowers gathered!';
     startOverlay.classList.remove('hidden');
     startOverlay.innerHTML = `
-      <p class="overlay-msg">💐 Yay! Hangyodon gathered all 10 forgiveness flowers for Ashley!</p>
+      <p class="overlay-msg">💐 Yay! Lulu gathered all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span>!</p>
       <button type="button" class="btn btn-soft" id="replay-flower-btn">🌸 Play Again</button>
     `;
     document.getElementById('replay-flower-btn').addEventListener('click', startFlowerGame);
-    unlockShell(3);
+    unlockTangerine(3);
   }
 
   function spawnFallingItem() {
@@ -472,7 +678,7 @@
     el.textContent = pick.emoji;
     const xPct = 8 + Math.random() * 84;
     el.style.left = `${xPct}%`;
-    el.style.top = '-34px';
+    el.style.transform = 'translate3d(-50%, -34px, 0)';
     flowerStage.appendChild(el);
     fallingItems.push({
       el,
@@ -499,16 +705,15 @@
       lastSpawnTime = ts;
     }
 
-    const stageRect = flowerStage.getBoundingClientRect();
-    const stageH = stageRect.height || 340;
-    const stageW = stageRect.width || 600;
+    const stageH = stageHeight || 340;
+    const stageW = stageWidth || 600;
     const basketX = (playerXPercent / 100) * stageW;
     const catchTop = stageH - 86;
 
     for (let i = fallingItems.length - 1; i >= 0; i--) {
       const item = fallingItems[i];
       item.yPx += item.speed * dt;
-      item.el.style.top = `${item.yPx}px`;
+      item.el.style.transform = `translate3d(-50%, ${item.yPx}px, 0)`;
 
       const itemX = (item.xPct / 100) * stageW;
       const caught = item.yPx >= catchTop && item.yPx <= stageH - 12 && Math.abs(itemX - basketX) < 52;
@@ -521,6 +726,7 @@
           playChime(659.25 + flowerScore * 20, 0.14);
           showStageToast(item.label);
           updateFlowerProgress();
+          if (!gameRunning) break;
         } else {
           playChime(240, 0.15, 'triangle');
           basketEl.classList.remove('wobble');
@@ -541,11 +747,16 @@
   }
 
   function startFlowerGame() {
+    cancelAnimationFrame(animFrameId);
+    updateStageMetrics();
     flowerScore = 0;
     fallingItems.forEach((it) => it.el.remove());
     fallingItems = [];
     lastSpawnTime = 0;
     lastFrameTime = 0;
+    resetBasketPosition();
+    skipFlowerBtn.disabled = false;
+    skipFlowerBtn.textContent = '🌼 Let Lulu gather them';
     gameRunning = true;
     startOverlay.classList.add('hidden');
     updateFlowerProgress();
@@ -554,14 +765,15 @@
   }
 
   document.getElementById('start-flower-game-btn').addEventListener('click', startFlowerGame);
-  document.getElementById('skip-flower-game-btn').addEventListener('click', () => {
+  skipFlowerBtn.addEventListener('click', () => {
     flowerScore = GOAL_FLOWERS;
     updateFlowerProgress();
   });
 
   function moveByPointer(clientX) {
     const rect = flowerStage.getBoundingClientRect();
-    const pct = ((clientX - rect.left) / rect.width) * 100;
+    const width = rect.width || stageWidth || 600;
+    const pct = ((clientX - rect.left) / width) * 100;
     playerXPercent = Math.max(9, Math.min(91, pct));
     basketEl.style.left = `${playerXPercent}%`;
   }
@@ -574,6 +786,9 @@
   });
 
   document.addEventListener('keydown', (e) => {
+    if (!gameRunning) return;
+    if (e.key === 'ArrowLeft') e.preventDefault();
+    if (e.key === 'ArrowRight') e.preventDefault();
     if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysHeld.left = true;
     if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysHeld.right = true;
   });
@@ -584,22 +799,40 @@
 
   const leftBtn = document.getElementById('move-left-btn');
   const rightBtn = document.getElementById('move-right-btn');
-  leftBtn.addEventListener('pointerdown', () => { keysHeld.left = true; });
-  leftBtn.addEventListener('pointerup', () => { keysHeld.left = false; });
-  leftBtn.addEventListener('pointerleave', () => { keysHeld.left = false; });
-  leftBtn.addEventListener('pointercancel', () => { keysHeld.left = false; });
-  leftBtn.addEventListener('click', () => {
-    playerXPercent = Math.max(9, playerXPercent - 10);
-    basketEl.style.left = `${playerXPercent}%`;
-  });
-  rightBtn.addEventListener('pointerdown', () => { keysHeld.right = true; });
-  rightBtn.addEventListener('pointerup', () => { keysHeld.right = false; });
-  rightBtn.addEventListener('pointerleave', () => { keysHeld.right = false; });
-  rightBtn.addEventListener('pointercancel', () => { keysHeld.right = false; });
-  rightBtn.addEventListener('click', () => {
-    playerXPercent = Math.min(91, playerXPercent + 10);
-    basketEl.style.left = `${playerXPercent}%`;
-  });
+
+  function bindMoveArrowBtn(btn, dirKey, delta) {
+    let usedPointer = false;
+    btn.addEventListener('pointerdown', (e) => {
+      if (!gameRunning) return;
+      usedPointer = true;
+      keysHeld[dirKey] = true;
+      playerXPercent = Math.max(9, Math.min(91, playerXPercent + delta * 0.4));
+      basketEl.style.left = `${playerXPercent}%`;
+      if (typeof btn.setPointerCapture === 'function') {
+        try { btn.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+    });
+    const release = () => {
+      keysHeld[dirKey] = false;
+    };
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointercancel', release);
+    btn.addEventListener('lostpointercapture', release);
+    btn.addEventListener('click', (e) => {
+      if (!gameRunning) return;
+      if (usedPointer && e.detail !== 0) {
+        usedPointer = false;
+        return;
+      }
+      usedPointer = false;
+      playerXPercent = Math.max(9, Math.min(91, playerXPercent + delta));
+      basketEl.style.left = `${playerXPercent}%`;
+    });
+  }
+
+  bindMoveArrowBtn(leftBtn, 'left', -10);
+  bindMoveArrowBtn(rightBtn, 'right', 10);
+
   window.addEventListener('blur', () => {
     keysHeld.left = false;
     keysHeld.right = false;
@@ -610,18 +843,32 @@
   const envelopeClosed = document.getElementById('envelope-closed');
   const letterStationery = document.getElementById('letter-stationery');
   const statusChap4 = document.getElementById('status-chap-4');
+  let isUnsealing = false;
 
   function unsealLetter() {
-    if (!envelopeClosed.classList.contains('hidden')) {
+    if (isUnsealing || envelopeClosed.classList.contains('hidden')) return;
+    isUnsealing = true;
+    openSealBtn.disabled = true;
+    openSealBtn.setAttribute('aria-expanded', 'true');
+    envelopeClosed.classList.add('opening');
+
+    const reveal = () => {
       envelopeClosed.classList.add('hidden');
       letterStationery.classList.remove('hidden');
-      statusChap4.textContent = 'Unsealed ♡ 🐚';
-      spawnConfetti(18, ['💌', '🌸', '🐚', '💙']);
-      unlockShell(4);
+      statusChap4.textContent = 'Unsealed ♡ 🍊';
+      letterStationery.focus({ preventScroll: true });
+      spawnConfetti(18, ['💌', '🌸', '🍊', '💛']);
+      unlockTangerine(4);
+    };
+
+    if (prefersReducedMotion()) {
+      reveal();
+    } else {
+      setTimeout(reveal, 220);
     }
   }
 
-  openSealBtn.addEventListener('click', unsealLetter);
+  envelopeClosed.addEventListener('click', unsealLetter);
 
   // ---------- CHAPTER 5: FINALE, CHEER BURSTS & ZERO-PRESSURE RESPONSE ----------
   const headpatBtn = document.getElementById('headpat-btn');
@@ -631,24 +878,25 @@
 
   const CHEERS = [
     'Cheer up LUMEI YOU CAN DO THIS, YOUR THE BEST LETS GOOOOOOOO! 💪✨',
-    'Hangyodon & Sayuri are cheering for you, Tooty! 🐟🐙',
+    'Lulu & Lumei are cheering for you, Tooty! 🍊🌸',
     'You are the strongest, smartest, kindest person ever, Ashley! 🌟',
-    'Sending a giant cozy coral-reef hug, Baobao! 💙',
-    'Hope these flowers make your day a little brighter, Peanut! 🌸'
+    'Sending a giant cozy tangerine-garden hug, Baobao! 💛',
+    'Hope these flowers make your day a little brighter, Peanut! 🌷'
   ];
 
   headpatBtn.addEventListener('click', () => {
     headpats += 1;
     headpatCountEl.textContent = String(headpats);
     cheerCaption.textContent = CHEERS[(headpats - 1) % CHEERS.length];
+    boopMascot(finaleLulu, false);
     playChime(587.33 + (headpats % 5) * 45, 0.16);
-    spawnConfetti(12, ['✨', '💙', '🌸', '🫧']);
+    spawnConfetti(12, ['✨', '💛', '🌸', '🍊']);
   });
 
   document.getElementById('open-collage-modal').addEventListener('click', () => {
     openPhotoModal(
       'assets/photos/collage-memories.jpg',
-      'Memories with Ashley · You are my favorite!',
+      `Memories with ${getActiveNickname()} · You are my favorite!`,
       'Tooty / Bao Bao / Ashley'
     );
   });
@@ -656,26 +904,39 @@
   const responseReply = document.getElementById('response-reply');
   const statusChap5 = document.getElementById('status-chap-5');
 
-  const REPLIES = {
-    flowers: '🌸 Thank you for accepting these flowers, Ashley. There is no rush at all — whenever you feel ready, I am here to listen and earn back your trust honestly.',
-    space: '🐚 That is 100% okay. Take all the time and space you need — zero pressure, ever. Please take care of yourself, lean on your friends if you ever feel sad, and I truly wish you all the happiness.',
-    pat: '💙 Hangyodon blushes happily! Thank you for visiting this little reef, Lumei. Wishing you the brightest, happiest days ahead — you are the best!'
-  };
+  function getReplyHtml(choice) {
+    const nick = `<strong class="js-nick-inline">${getActiveNickname()}</strong>`;
+    if (choice === 'flowers') {
+      return `🌸 Thank you for accepting these flowers, ${nick}. There is no rush at all — whenever you feel ready, I am here to listen and earn back your trust honestly.`;
+    }
+    if (choice === 'space') {
+      return `🍊 That is 100% okay, ${nick}. Take all the time and space you need — zero pressure, ever. Please take care of yourself, lean on your friends if you ever feel sad, and I truly wish you all the happiness.`;
+    }
+    return `💛 Lulu blushes happily! Thank you for visiting this little tangerine garden, ${nick}. Wishing you the brightest, happiest days ahead — you are the best!`;
+  }
 
-  document.querySelectorAll('.response-choice').forEach((btn) => {
+  const CHOICE_CHIMES = { flowers: 659.25, space: 523.25, pat: 783.99 };
+  const choiceBtns = document.querySelectorAll('.response-choice');
+  choiceBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const choice = btn.getAttribute('data-choice');
-      responseReply.textContent = REPLIES[choice];
+      choiceBtns.forEach((other) => {
+        const active = other === btn;
+        other.classList.toggle('is-selected', active);
+        other.setAttribute('aria-pressed', String(active));
+      });
+      responseReply.innerHTML = getReplyHtml(choice);
       responseReply.classList.remove('hidden');
-      statusChap5.textContent = 'Quest Complete 🐚';
-      spawnConfetti(22, ['🌸', '🐚', '💙', '✨']);
-      unlockShell(5);
+      statusChap5.textContent = 'Quest Complete 🍊';
+      playChime(CHOICE_CHIMES[choice] || 587.33, 0.18);
+      spawnConfetti(22, ['🌸', '🍊', '💛', '✨']);
+      unlockTangerine(5);
     });
   });
 
   // ---------- BONUS TAB: ONE MORE CHANCE? (CUTE SHRINK/GROW BIT) ----------
-  const chanceHangyodon = document.getElementById('chance-hangyodon');
-  const chanceSayuri = document.getElementById('chance-sayuri');
+  const chanceLulu = document.getElementById('chance-lulu');
+  const chanceLumei = document.getElementById('chance-lumei');
   const chanceDialogue = document.getElementById('chance-dialogue');
   const chanceArena = document.getElementById('chance-arena');
   const chanceYesBtn = document.getElementById('chance-yes-btn');
@@ -687,7 +948,8 @@
 
   const CHANCE_STEPS = [
     {
-      mood: 'pleading',
+      luluMood: 'pleading',
+      lumeiMood: 'curious',
       dialogue: '“Will you give me one more chance to talk things through properly and earn back your trust?”',
       yesText: "🌸 Okay, let's talk & try again",
       noText: '🤔 Hmm, not sure yet...',
@@ -698,10 +960,11 @@
       noOpacity: '1'
     },
     {
-      mood: 'shy',
-      dialogue: '“Fair, Sayuri says I deserve at least one side-eye first. What about a zero-pressure coffee chat?”',
+      luluMood: 'shy',
+      lumeiMood: 'curious',
+      dialogue: '“Fair, Lumei says I deserve at least one side-eye first. What about a zero-pressure coffee chat?”',
       yesText: "☕ Let's grab coffee & talk properly?",
-      noText: '🐟 Still thinking...',
+      noText: '🍊 Still thinking...',
       yesSize: '1.08rem',
       yesPad: '14px 26px',
       noSize: '0.88rem',
@@ -709,8 +972,9 @@
       noOpacity: '0.96'
     },
     {
-      mood: 'shy',
-      dialogue: '“Okay valid, I really fumbled at New Tiong Bahru... Hangyodon is doing push-ups to prove he’s serious.”',
+      luluMood: 'shy',
+      lumeiMood: 'happy',
+      dialogue: '“Okay valid, I really fumbled at New Tiong Bahru... Lulu is doing push-ups to prove he’s serious.”',
       yesText: "🍿 I'll bring giant caramel popcorn!",
       noText: '🤨 Maybe later?',
       yesSize: '1.18rem',
@@ -720,9 +984,10 @@
       noOpacity: '0.92'
     },
     {
-      mood: 'pleading',
+      luluMood: 'pleading',
+      lumeiMood: 'curious',
       dialogue: '“Even Chimutan is glaring at me now 🐰😒 What if I promise zero avoidant disappearing acts ever again?”',
-      yesText: '🐰 Chimutan & Hangyodon vote YES!',
+      yesText: '🐰 Chimutan & Lulu vote YES!',
       noText: '🙈 Still unsure',
       yesSize: '1.28rem',
       yesPad: '18px 34px',
@@ -731,10 +996,11 @@
       noOpacity: '0.88'
     },
     {
-      mood: 'pleading',
-      dialogue: '“Look how tiny this button is getting... Sayuri is holding a cardboard sign that says ‘pls talk to this dummy fish’.”',
-      yesText: "💙 Okay let's talk!! (Hangyodon is ready)",
-      noText: '🫧 Tiny maybe-no',
+      luluMood: 'pleading',
+      lumeiMood: 'happy',
+      dialogue: '“Look how tiny this button is getting... Mini Lumei is holding a cardboard sign that says ‘pls talk to this dummy 🍊’.”',
+      yesText: "💛 Okay let's talk!! (Lulu is ready)",
+      noText: '🍊 Tiny maybe-no',
       yesSize: '1.38rem',
       yesPad: '20px 38px',
       noSize: '0.64rem',
@@ -747,8 +1013,10 @@
 
   function renderChanceStep() {
     const step = CHANCE_STEPS[chanceNoCount];
-    chanceHangyodon.innerHTML = HangyodonArt.hangyodonSVG(step.mood, 165);
-    chanceSayuri.innerHTML = HangyodonArt.sayuriSVG(76);
+    chanceLulu.innerHTML = MascotArt.luluSVG(step.luluMood, 162);
+    chanceLumei.innerHTML = chanceNoCount === 4
+      ? MascotArt.lumeiSVG(step.lumeiMood, 146, { holdingSign: true })
+      : MascotArt.lumeiSVG(step.lumeiMood, 134);
     chanceDialogue.textContent = step.dialogue;
     chanceYesBtn.textContent = step.yesText;
     chanceYesBtn.style.fontSize = step.yesSize;
@@ -765,7 +1033,8 @@
     chanceResult.classList.add('hidden');
     chanceResult.innerHTML = '';
     chanceResetBtn.classList.add('hidden');
-    statusChapChance.textContent = 'Waiting on You 🐟';
+    statusChapChance.textContent = 'Waiting on You 🍊';
+    if (chanceTabPill) chanceTabPill.classList.remove('done');
     renderChanceStep();
   }
 
@@ -779,12 +1048,13 @@
 
     // Final click genuinely respects her answer without guilt
     chanceArena.classList.add('hidden');
-    chanceHangyodon.innerHTML = HangyodonArt.hangyodonSVG('holding-flowers', 165);
-    chanceDialogue.textContent = '“Okay, message received loud and clear! Hangyodon bows politely.”';
-    statusChapChance.textContent = 'Respected Always 💙';
+    chanceLulu.innerHTML = MascotArt.luluSVG('holding-flowers', 162);
+    chanceLumei.innerHTML = MascotArt.lumeiSVG('happy', 134);
+    chanceDialogue.textContent = '“Okay, message received loud and clear! Lulu bows politely.”';
+    statusChapChance.textContent = 'Respected Always 💛';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>No guilt and no rushing — I truly meant it when I said I never want to force your decision. Take all the time and space you need, Lumei. Wishing you the brightest, happiest days ahead. 🌸</p>
+      <p>No guilt and no rushing — I truly meant it when I said I never want to force your decision. Take all the time and space you need, <strong class="js-nick-inline">${getActiveNickname()}</strong>. Wishing you the brightest, happiest days ahead. 🌸</p>
     `;
     chanceResult.classList.remove('hidden');
     chanceResetBtn.classList.remove('hidden');
@@ -793,24 +1063,25 @@
 
   chanceYesBtn.addEventListener('click', () => {
     chanceArena.classList.add('hidden');
-    chanceHangyodon.innerHTML = HangyodonArt.hangyodonSVG('cheering', 175);
-    chanceDialogue.textContent = '“WAIT REALLY?! Hangyodon & Sayuri are doing celebratory backflips!!”';
+    chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
+    chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 142);
+    chanceDialogue.textContent = '“WAIT REALLY?! Lulu & Lumei are doing celebratory backflips!!”';
     statusChapChance.textContent = 'Another Chance! 🎉';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Thank you for giving us another chance to talk, Ashley ♡ I promise to show up honestly, never shut you out again, and earn back your trust step by step.</p>
+      <p>Thank you for giving us another chance to talk, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ I promise to show up honestly, never shut you out again, and earn back your trust step by step.</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
-        📋 Copy quick text: "Hey Hangyodon 🐟 I saw your site, let's talk"
+        📋 Copy quick text: "Hey Lulu 🍊 I saw your site, let's talk"
       </button>
     `;
     chanceResult.classList.remove('hidden');
     chanceResetBtn.classList.remove('hidden');
     playSparkleChord();
-    spawnConfetti(34, ['💙', '🌸', '🐚', '✨', '☕', '🎉']);
+    spawnConfetti(34, ['💛', '🌸', '🍊', '✨', '☕', '🎉']);
 
     const copyBtn = document.getElementById('copy-reply-btn');
     copyBtn.addEventListener('click', async () => {
-      const msg = "Hey Hangyodon 🐟 I saw your site, let's talk";
+      const msg = "Hey Lulu 🍊 I saw your site, let's talk";
       try {
         await navigator.clipboard.writeText(msg);
         copyBtn.textContent = '✅ Copied! Ready to paste whenever you want';

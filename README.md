@@ -1,6 +1,6 @@
-# Hangyodon's Little Reef Quest
+# Lulu & Lumei's Little Tangerine Quest
 
-A zero-build static frontend apology website built with HTML5, CSS3, ES6 JavaScript, bespoke Hangyodon & Sayuri SVGs, and bundled keepsake photos.
+A zero-build static frontend apology website built with HTML5, CSS3, ES6 JavaScript, bespoke Lulu & Lumei SVGs, and bundled keepsake photos.
 
 ## Local Preview
 
