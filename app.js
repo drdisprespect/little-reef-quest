@@ -413,6 +413,27 @@
       sub: 'This cheeky little smirk gets me every single time, hoping to earn back this smile over a proper heart to heart talk, zero rush ♡',
       aspect: 'landscape',
       pos: '45% 38%'
+    },
+    'couple-us': {
+      src: 'assets/photos/couple-with-you.jpg',
+      caption: 'with you ♡',
+      sub: 'Right next to you is still my favorite place, just finished my team meeting and all I can think is ughhh miss you so much tooty.',
+      aspect: 'landscape',
+      pos: '50% 28%'
+    },
+    'keep-smiling-lumei': {
+      src: 'assets/photos/keep-smiling.jpg',
+      caption: 'Keep smiling ☀️',
+      sub: 'Looking at your smile gives me teary eyes in office like the good old days muahahha, keep smiling Lumei!',
+      aspect: 'portrait',
+      pos: '50% 24%'
+    },
+    'nus-grad-hero': {
+      src: 'assets/photos/nus-graduation.jpg',
+      caption: 'So Proud! Congratulations!',
+      sub: 'NUS Data Science & Analytics (Honours Highest Distinction), the smartest and strongest woman I know!',
+      aspect: 'portrait',
+      pos: '50% 24%'
     }
   };
 
@@ -501,9 +522,9 @@
     },
     {
       emoji: '🤝',
-      label: 'No ChatGPT, Real Talk',
-      title: 'Doing the Thinking & Talking Calmly',
-      text: 'Next time we shouldn’t use ChatGPT to analyze our convo or just hand us points and conclusions. Thinking through everything until we both really GET IT, understand it, and change is what matters. No online texting, no ChatGPT inference, just calm heart to heart talk during bad times with no blame, finger-pointing, or defensiveness on my side.'
+      label: 'Future Conflicts',
+      title: 'Talking It Out Through Thick & Thin',
+      text: 'We already had our real talk, and whenever we have a problem in the future I want us to talk it out calmly ourselves until we both really get it, understand it, and change, with zero blame, finger-pointing, or defensiveness on my side.'
     },
     {
       emoji: '🥹',
@@ -811,6 +832,50 @@
   const scoreLabel = document.getElementById('flower-score-label');
   const statusChap3 = document.getElementById('status-chap-3');
   const skipFlowerBtn = document.getElementById('skip-flower-game-btn');
+  const flowerPrizeBox = document.getElementById('flower-prize-box');
+  const flowerPrizeLocked = document.getElementById('flower-prize-locked');
+  const flowerPrizeUnlocked = document.getElementById('flower-prize-unlocked');
+  const flowerPrizeGrid = document.getElementById('flower-prize-grid');
+  const shuffleFlowerPrizeBtn = document.getElementById('shuffle-flower-prize-btn');
+
+  const PRIZE_US_IDS = ['couple-us', 'escalator-lanyard', 'coffee-date', 'ndp-antler'];
+  const PRIZE_HER_IDS = ['keep-smiling-lumei', 'bed-plushies', 'mrt-05x', 'nus-grad-hero', 'grad-bouquet', 'playful-smirk'];
+  let prizeUnlocked = false;
+  let prizeUsIdx = 0;
+  let prizeHerIdx = 0;
+
+  function renderFlowerPrize(advance = false) {
+    if (!flowerPrizeGrid) return;
+    if (advance) {
+      prizeUsIdx = (prizeUsIdx + 1) % PRIZE_US_IDS.length;
+      prizeHerIdx = (prizeHerIdx + 1) % PRIZE_HER_IDS.length;
+    }
+
+    flowerPrizeGrid.textContent = '';
+    const slots = [
+      { tag: 'Photo of Us ♡', id: PRIZE_US_IDS[prizeUsIdx] },
+      { tag: 'Photo of Lumei 🍊', id: PRIZE_HER_IDS[prizeHerIdx] }
+    ];
+    slots.forEach(({ tag, id }) => {
+      const slot = document.createElement('div');
+      slot.className = 'prize-slot';
+      const label = document.createElement('span');
+      label.className = 'prize-tag';
+      label.textContent = tag;
+      slot.appendChild(label);
+      const card = createPhotoButton(id, 'polaroid');
+      if (card) slot.appendChild(card);
+      flowerPrizeGrid.appendChild(slot);
+    });
+  }
+
+  if (shuffleFlowerPrizeBtn) {
+    shuffleFlowerPrizeBtn.addEventListener('click', () => {
+      renderFlowerPrize(true);
+      playChime(659.25, 0.14);
+      spawnConfetti(10, ['📸', '🌸', '🍊', '💛']);
+    });
+  }
 
   const GOAL_FLOWERS = 10;
   let flowerScore = 0;
@@ -896,11 +961,28 @@
     resetBasketPosition();
     skipFlowerBtn.disabled = true;
     skipFlowerBtn.textContent = '💐 All 10 flowers caught, LETS GOOOOO!';
+
+    const wasAlreadyUnlocked = prizeUnlocked;
+    prizeUnlocked = true;
+    if (flowerPrizeLocked) flowerPrizeLocked.classList.add('hidden');
+    if (flowerPrizeUnlocked) flowerPrizeUnlocked.classList.remove('hidden');
+    renderFlowerPrize(wasAlreadyUnlocked);
+
     startOverlay.classList.remove('hidden');
     startOverlay.innerHTML = `
-      <p class="overlay-msg">💐 Yay! Lulu caught all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span>, LETS GOOOOO!</p>
-      <button type="button" class="btn btn-soft" id="replay-flower-btn">🌸 Play Again</button>
+      <p class="overlay-msg">💐 Yay! Lulu caught all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span>, LETS GOOOOO! Your photo prize is unlocked below!</p>
+      <div class="overlay-btn-row">
+        <button type="button" class="btn btn-primary" id="view-flower-prize-btn">🎁 See Photo Prize ↓</button>
+        <button type="button" class="btn btn-soft" id="replay-flower-btn">🌸 Play Again</button>
+      </div>
     `;
+    const viewPrizeBtn = document.getElementById('view-flower-prize-btn');
+    if (viewPrizeBtn && flowerPrizeBox) {
+      viewPrizeBtn.addEventListener('click', () => {
+        flowerPrizeBox.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
+        spawnConfetti(14, ['📸', '🌸', '🍊', '💛']);
+      });
+    }
     document.getElementById('replay-flower-btn').addEventListener('click', startFlowerGame);
     unlockTangerine(3);
   }
@@ -1231,8 +1313,8 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Next time no avoidant hiding and no ChatGPT guessing for us, just calm heart to heart talks in bad times too until we both GET IT, zero blame or defensiveness on my side.”',
-      yesText: '🕊️ Real talks together, let’s try again',
+      dialogue: '“We already had our real talk, and whenever we hit a problem in the future I promise we’ll talk it out calmly together through thick and thin, zero blame or defensiveness on my side.”',
+      yesText: '🕊️ Talking it out together, let’s try again',
       noText: '🙈 Hmm not yet',
       yesSize: '1.23rem',
       yesPad: '15px 28px',
