@@ -26,8 +26,8 @@ window.MascotArt = (() => {
     let eyes = `
       <ellipse cx="78" cy="75" rx="9.5" ry="10.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.6"/>
       <ellipse cx="122" cy="75" rx="9.5" ry="10.5" fill="#FFFFFF" stroke="${OUTLINE}" stroke-width="2.6"/>
-      <circle class="h-pupil" cx="79.5" cy="76" r="6" fill="${OUTLINE}"/>
-      <circle class="h-pupil" cx="120.5" cy="76" r="6" fill="${OUTLINE}"/>
+      <circle class="lulu-pupil" cx="79.5" cy="76" r="6" fill="${OUTLINE}"/>
+      <circle class="lulu-pupil" cx="120.5" cy="76" r="6" fill="${OUTLINE}"/>
       <circle cx="81.5" cy="73" r="2.3" fill="#FFFFFF"/>
       <circle cx="122.5" cy="73" r="2.3" fill="#FFFFFF"/>
       <path d="M70 59 Q78 56 85 59" fill="none" stroke="#C97B18" stroke-width="2.5" stroke-linecap="round"/>
@@ -100,10 +100,14 @@ window.MascotArt = (() => {
         <path d="M90 113 Q100 120 110 113" fill="#FFB3C6"/>
       `;
       arms = `
-        <path class="arm-wave-left" d="M62 135 Q32 110 38 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
-        <path class="arm-wave-left" d="M62 135 Q32 110 38 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
-        <path class="arm-wave-right" d="M138 135 Q168 110 162 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
-        <path class="arm-wave-right" d="M138 135 Q168 110 162 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        <g class="arm-wave-left">
+          <path d="M62 135 Q32 110 38 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
+          <path d="M62 135 Q32 110 38 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="arm-wave-right">
+          <path d="M138 135 Q168 110 162 88" fill="none" stroke="#FFD54F" stroke-width="13" stroke-linecap="round"/>
+          <path d="M138 135 Q168 110 162 88" fill="none" stroke="${OUTLINE}" stroke-width="3" stroke-linecap="round"/>
+        </g>
       `;
       extras = `
         <circle cx="34" cy="82" r="10.5" fill="#FF9F43" stroke="${OUTLINE}" stroke-width="2.4"/>
@@ -225,10 +229,14 @@ window.MascotArt = (() => {
         <path d="M77 106 Q90 122 103 106 Z" fill="#FF758F" stroke="${OUTLINE}" stroke-width="2.4" stroke-linejoin="round"/>
       `;
       arms = `
-        <path class="arm-wave-left" d="M56 136 Q38 118 42 102" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
-        <path class="arm-wave-left" d="M56 136 Q38 118 42 102" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
-        <path class="arm-wave-right" d="M124 136 Q142 118 138 102" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
-        <path class="arm-wave-right" d="M124 136 Q142 118 138 102" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+        <g class="arm-wave-left">
+          <path d="M56 136 Q38 118 42 102" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
+          <path d="M56 136 Q38 118 42 102" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+        </g>
+        <g class="arm-wave-right">
+          <path d="M124 136 Q142 118 138 102" fill="none" stroke="#FFD54F" stroke-width="10" stroke-linecap="round"/>
+          <path d="M124 136 Q142 118 138 102" fill="none" stroke="${OUTLINE}" stroke-width="2.8" stroke-linecap="round"/>
+        </g>
       `;
     } else if (mood === 'curious') {
       eyes = `
@@ -297,10 +305,10 @@ window.MascotArt = (() => {
         <path d="M90 17 Q82 9 76 14 Q81 20 90 17 Z" fill="#5CB849" stroke="${OUTLINE}" stroke-width="2" stroke-linejoin="round"/>
         <path d="M90 17 Q98 9 104 14 Q99 20 90 17 Z" fill="#6BCB57" stroke="${OUTLINE}" stroke-width="2" stroke-linejoin="round"/>
         ${holdingSign ? `
-          <g transform="translate(94, 108) rotate(-5)">
-            <rect x="0" y="0" width="84" height="46" rx="8" fill="#FFF4DC" stroke="${OUTLINE}" stroke-width="2.5"/>
-            <text x="42" y="19" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="11.5" font-weight="700" fill="${OUTLINE}">pls talk to</text>
-            <text x="42" y="34" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="11" font-weight="700" fill="#D95B76">this dummy 🍊</text>
+          <g transform="translate(86, 118) rotate(-5)">
+            <rect x="0" y="0" width="82" height="46" rx="8" fill="#FFF4DC" stroke="${OUTLINE}" stroke-width="2.5"/>
+            <text x="41" y="19" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="11.5" font-weight="700" fill="${OUTLINE}">pls talk to</text>
+            <text x="41" y="34" text-anchor="middle" font-family="Fredoka, Nunito, sans-serif" font-size="11" font-weight="700" fill="#D95B76">this dummy 🍊</text>
           </g>
         ` : ''}
       </svg>

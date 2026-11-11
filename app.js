@@ -14,13 +14,25 @@
   }
 
   // ---------- Audio (Soft Music-Box Chimes) ----------
-  function playChime(freq = 523.25, duration = 0.16, type = 'sine', delay = 0) {
-    if (!soundEnabled) return;
+  function unlockAudio() {
+    if (!soundEnabled) return null;
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
+    if (!AudioContextClass) return null;
     try {
       if (!audioCtx) audioCtx = new AudioContextClass();
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
+    } catch (_) {
+      return null;
+    }
+  }
 
+  function playChime(freq = 523.25, duration = 0.16, type = 'sine', delay = 0) {
+    const ctx = unlockAudio();
+    if (!ctx) return;
+    try {
       const scheduleNote = () => {
         if (!soundEnabled || !audioCtx || audioCtx.state !== 'running') return;
         const now = audioCtx.currentTime + delay;
@@ -37,8 +49,8 @@
         osc.stop(now + duration + 0.02);
       };
 
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume().then(() => {
+      if (ctx.state === 'suspended') {
+        ctx.resume().then(() => {
           if (soundEnabled && audioCtx && audioCtx.state === 'running') {
             scheduleNote();
           }
@@ -266,6 +278,190 @@
     if (e.key === 'Escape' && !photoModal.classList.contains('hidden')) closePhotoModal();
   });
 
+  // ---------- Distributed Garden Photos & Hydration ----------
+  const GARDEN_PHOTOS = {
+    'goofy-flex': {
+      src: 'assets/photos/goofy-flex.jpg',
+      caption: 'The “Most Most Retarded Moments” Vault 💪',
+      sub: 'Thank you for laughing at my dumbest moments instead of running away — never taking a single laugh or nag for granted again, muahaha.',
+      aspect: 'portrait',
+      pos: 'center 20%'
+    },
+    'escalator-lanyard': {
+      src: 'assets/photos/escalator-lanyard-selfie.jpg',
+      caption: 'Escalator 0.5x selfie 📸',
+      sub: 'Still wearing my Google lanyard behind you while you lined up the 0.5x angle — even tiny mall errands with Tooty are my favorite moments.',
+      aspect: 'portrait',
+      pos: '50% 28%'
+    },
+    'coffee-date': {
+      src: 'assets/photos/coffee-date-05x.jpg',
+      caption: 'Iced coffee dates ☕',
+      sub: 'That cute 0.5x close-up over iced coffees — I would give anything for another slow afternoon just sitting across from you.',
+      aspect: 'portrait',
+      pos: '50% 15%'
+    },
+    'ndp-antler': {
+      src: 'assets/photos/ndp-antler-couple.jpg',
+      caption: 'NDP red & silly hair antlers 🇸🇬',
+      sub: 'Cheek stickers, red jerseys, and my ridiculous little hair horns — thank you for always matching my goofiness with that sweet smile.',
+      aspect: 'landscape',
+      pos: '40% 35%'
+    },
+    'cooking-roller': {
+      src: 'assets/photos/cooking-hair-roller.jpg',
+      caption: 'Kitchen prep with the hair roller 🎀',
+      sub: 'Whisking away in your pink hair roller and black glasses — everyday cooking together felt so warm and cozy like home.',
+      aspect: 'portrait',
+      pos: '36% 24%'
+    },
+    'food-glare': {
+      src: 'assets/photos/food-guard-glare.jpg',
+      caption: 'Serious food-guard glare 😤',
+      sub: 'The dead-serious look while scooping every last bit of food — even your fierce grumpy face makes me smile every single time.',
+      aspect: 'portrait',
+      pos: '42% 14%'
+    },
+    'burger-feast': {
+      src: 'assets/photos/burger-feast-excited.jpg',
+      caption: 'Burger feast hype! 🍔',
+      sub: 'Fork and knife ready at full power for a mountain of fries and burgers — nobody gets adorably happier over good food than Lumei!',
+      aspect: 'portrait',
+      pos: '55% 28%'
+    },
+    'potato-tornado': {
+      src: 'assets/photos/potato-tornado-sideeye.jpg',
+      caption: 'Side-eyeing the potato tornado 🥔',
+      sub: 'That sneaky side-eye at a crispy pasar malam potato spiral — promised myself I would never take snack walks with you for granted.',
+      aspect: 'portrait',
+      pos: '48% 24%'
+    },
+    'french-toast': {
+      src: 'assets/photos/french-toast-lift.jpg',
+      caption: 'Elevator French toast kiss 🍞',
+      sub: 'Little celebratory kiss for a golden piece of French toast in the lift — bringing you snacks and smiles is always top priority.',
+      aspect: 'portrait',
+      pos: '50% 22%'
+    },
+    'sleeping-profile': {
+      src: 'assets/photos/sleeping-blanket-profile.jpg',
+      caption: 'Quiet nap under the blanket 🌙',
+      sub: 'Peaceful sleepy Tooty tucked under the grey blanket — over these 3 weeks, realizing how much I missed taking care of you hurt the most.',
+      aspect: 'landscape',
+      pos: '55% 58%'
+    },
+    'couch-nap': {
+      src: 'assets/photos/couch-nap-plushie.jpg',
+      caption: 'Sofa nap with your plushie 🧸',
+      sub: 'Fast asleep on the couch hugging your pink plushie with glasses still on — right after meetings, this cozy memory hits me every time.',
+      aspect: 'portrait',
+      pos: '50% 42%'
+    },
+    'bed-plushies': {
+      src: 'assets/photos/bed-plushie-pile.jpg',
+      caption: 'Sweet smile & plushie pile 🐰',
+      sub: 'Surrounded by all your little Chimutan bunnies and plushies — I will always protect this gentle, cozy happiness and never shut you out again.',
+      aspect: 'portrait',
+      pos: '50% 25%'
+    },
+    'mrt-05x': {
+      src: 'assets/photos/mrt-05x-selfie.jpg',
+      caption: 'MRT 0.5x cuteness 🚇',
+      sub: 'Big 0.5x train selfie eyes — even a random MRT ride feels empty now when I think about how much I missed your voice and nagging.',
+      aspect: 'portrait',
+      pos: '45% 32%'
+    },
+    'mrt-purple': {
+      src: 'assets/photos/mrt-purple-top-commute.jpg',
+      caption: 'Purple top commute check-in 💜',
+      sub: 'Seeing you on your commute in your studded purple top — every ordinary day felt brighter knowing we were sharing life together.',
+      aspect: 'portrait',
+      pos: '20% 38%'
+    },
+    'grad-bouquet': {
+      src: 'assets/photos/nus-grad-bouquet.jpg',
+      caption: 'Big bouquet on your NUS grad day 💐',
+      sub: 'Standing beside you while you held those huge graduation bouquets — always so proud of the strongest, smartest woman I know.',
+      aspect: 'portrait',
+      pos: '48% 36%'
+    },
+    'playful-smirk': {
+      src: 'assets/photos/playful-smirk-selfie.jpg',
+      caption: 'That playful little smirk 😏',
+      sub: 'This cheeky little smile gets me every single time — no ChatGPT, no excuses, just me hoping to earn back this look in person.',
+      aspect: 'landscape',
+      pos: '45% 38%'
+    }
+  };
+
+  function createPhotoButton(id, variant = 'polaroid') {
+    const photo = GARDEN_PHOTOS[id];
+    if (!photo) return null;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    const baseClass = variant === 'chip' ? 'photo-chip' : 'garden-polaroid';
+    btn.className = `${baseClass}${photo.aspect === 'landscape' ? ' is-landscape' : ''}`;
+    btn.style.setProperty('--photo-pos', photo.pos || 'center 22%');
+    btn.setAttribute('aria-label', `${photo.caption} — tap to zoom`);
+
+    const img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    btn.appendChild(img);
+
+    if (variant === 'chip') {
+      const copy = document.createElement('span');
+      copy.className = 'photo-chip-copy';
+
+      const cap = document.createElement('span');
+      cap.className = 'photo-chip-cap';
+      cap.textContent = photo.caption;
+
+      const hint = document.createElement('span');
+      hint.className = 'photo-chip-hint';
+      hint.textContent = '🔍 Tap to zoom';
+
+      copy.appendChild(cap);
+      copy.appendChild(hint);
+      btn.appendChild(copy);
+    } else {
+      const cap = document.createElement('span');
+      cap.className = 'polaroid-cap';
+      cap.textContent = photo.caption;
+      btn.appendChild(cap);
+    }
+
+    btn.addEventListener('click', () => openPhotoModal(photo.src, photo.caption, photo.sub));
+    return btn;
+  }
+
+  function hydratePhotoSlots() {
+    document.querySelectorAll('[data-photo-strip]').forEach((container) => {
+      const ids = (container.dataset.photoStrip || '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+      container.textContent = '';
+      ids.forEach((id) => {
+        const btn = createPhotoButton(id, 'polaroid');
+        if (btn) container.appendChild(btn);
+      });
+    });
+
+    document.querySelectorAll('[data-photo-chip]').forEach((container) => {
+      const id = (container.dataset.photoChip || '').trim();
+      container.textContent = '';
+      if (!id) return;
+      const btn = createPhotoButton(id, 'chip');
+      if (btn) container.appendChild(btn);
+    });
+  }
+
+  hydratePhotoSlots();
+
   // ---------- CHAPTER 1: THOUGHT BUBBLE REFLECTIONS ----------
   const REFLECTIONS = [
     {
@@ -283,26 +479,29 @@
     {
       emoji: '🕊️',
       label: 'Calm Conflicts',
-      title: 'Zero Blame, Zero Defensiveness',
-      text: 'When disagreements come up, I promise calm conflict management — zero blame, zero finger-pointing, and zero defensiveness. Just listening to Tooty first, like you always deserved.'
+      title: 'Calm Conflicts When It Matters Most',
+      text: 'Good times with us are always so fun, and during bad or troubled times is where conflict management matters most — talking calmly with zero blame, zero finger-pointing, and zero defensiveness on my side.'
     },
     {
       emoji: '🌇',
       label: 'New Tiong Bahru',
       title: 'Opening Up Since New Tiong Bahru',
-      text: 'From that day at New Tiong Bahru and that night where I was completely avoidant, I could have opened up and fixed it so easily. I will never shut you out of my life again.'
+      text: 'From that day at New Tiong Bahru and that night where I was completely avoidant, I could have opened up and fixed it so easily. I will never shut you out of my life again.',
+      photoId: 'bed-plushies'
     },
     {
       emoji: '🥹',
       label: 'Missing Your Nagging',
-      title: 'Teary Eyes & Missing Your Voice',
-      text: 'Over these 3 weeks I realized how sweet, patient, and kind you were even in conflicts. OMG I missed your nagging and your voice so much haizzz — getting teary-eyed in the office like the good old days, muahaha.'
+      title: 'Missing Your Voice & Kindness',
+      text: 'Over the past 3 weeks I realized how sweet, patient, and kind you were even when we argued. Haizzz, I actually missed your nagging SO much — just hearing your voice is such a privilege!',
+      photoId: 'mrt-05x'
     },
     {
       emoji: '🪩',
       label: 'Marquee & Unblock',
       title: 'Marquee +1, Meetings & Unblock Day',
-      text: 'Adding a +1 for the Google EOY Party at Marquee two weeks ago hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!'
+      text: 'Adding a +1 for the Google EOY Party at Marquee two weeks ago hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!',
+      photoId: 'mrt-purple'
     }
   ];
 
@@ -324,6 +523,10 @@
     const note = document.createElement('div');
     note.className = 'reflection-note';
     note.innerHTML = `<h4>${item.emoji} ${item.title}</h4><p>${item.text}</p>`;
+    if (item.photoId) {
+      const photoBtn = createPhotoButton(item.photoId, 'chip');
+      if (photoBtn) note.appendChild(photoBtn);
+    }
     reflectionsBox.appendChild(note);
 
     playChime(440 + idx * 55, 0.16);
@@ -349,6 +552,7 @@
   });
 
   revealAllBubblesBtn.addEventListener('click', () => {
+    unlockAudio();
     revealAllBubblesBtn.disabled = true;
     const unpopped = Array.from(bubblesGrid.querySelectorAll('.thought-bubble-btn'))
       .map((btn, idx) => ({ btn, idx }))
@@ -573,14 +777,6 @@
     updateMemoryStatus();
   });
 
-  document.getElementById('vault-photo-btn').addEventListener('click', () => {
-    openPhotoModal(
-      'assets/photos/goofy-flex.jpg',
-      'The “Most Most Retarded Moments” Vault 💪',
-      'Thank you for laughing at my dumbest moments instead of running away — never taking a single laugh or nag for granted again, muahaha.'
-    );
-  });
-
   initMemoryBoard();
 
   // ---------- CHAPTER 3: CATCH THE FORGIVENESS FLOWERS ----------
@@ -605,10 +801,25 @@
   let stageWidth = flowerStage.clientWidth || 600;
   let stageHeight = flowerStage.clientHeight || 340;
 
+  function clampBasketPercent(pct) {
+    const w = stageWidth || flowerStage.clientWidth || 600;
+    const halfBasket = (basketEl.offsetWidth || 84) / 2;
+    const minPct = Math.min(45, Math.max(9, ((halfBasket + 4) / w) * 100));
+    return Math.max(minPct, Math.min(100 - minPct, pct));
+  }
+
   function updateStageMetrics() {
-    const rect = flowerStage.getBoundingClientRect();
-    if (rect.width > 0) stageWidth = rect.width;
-    if (rect.height > 0) stageHeight = rect.height;
+    let w = flowerStage.clientWidth;
+    let h = flowerStage.clientHeight;
+    if (!w || !h) {
+      const rect = flowerStage.getBoundingClientRect();
+      if (!w) w = rect.width;
+      if (!h) h = rect.height;
+    }
+    if (w > 0) stageWidth = w;
+    if (h > 0) stageHeight = h;
+    playerXPercent = clampBasketPercent(playerXPercent);
+    basketEl.style.left = `${playerXPercent}%`;
   }
 
   if (typeof ResizeObserver === 'function') {
@@ -696,8 +907,8 @@
     const dt = Math.min((ts - lastFrameTime) / 1000, 0.05);
     lastFrameTime = ts;
 
-    if (keysHeld.left) playerXPercent = Math.max(9, playerXPercent - 62 * dt);
-    if (keysHeld.right) playerXPercent = Math.min(91, playerXPercent + 62 * dt);
+    if (keysHeld.left) playerXPercent = clampBasketPercent(playerXPercent - 62 * dt);
+    if (keysHeld.right) playerXPercent = clampBasketPercent(playerXPercent + 62 * dt);
     basketEl.style.left = `${playerXPercent}%`;
 
     if (ts - lastSpawnTime > 780) {
@@ -747,6 +958,7 @@
   }
 
   function startFlowerGame() {
+    unlockAudio();
     cancelAnimationFrame(animFrameId);
     updateStageMetrics();
     flowerScore = 0;
@@ -772,9 +984,10 @@
 
   function moveByPointer(clientX) {
     const rect = flowerStage.getBoundingClientRect();
-    const width = rect.width || stageWidth || 600;
-    const pct = ((clientX - rect.left) / width) * 100;
-    playerXPercent = Math.max(9, Math.min(91, pct));
+    const innerLeft = rect.left + (flowerStage.clientLeft || 0);
+    const width = flowerStage.clientWidth || rect.width || stageWidth || 600;
+    const pct = ((clientX - innerLeft) / width) * 100;
+    playerXPercent = clampBasketPercent(pct);
     basketEl.style.left = `${playerXPercent}%`;
   }
 
@@ -806,7 +1019,7 @@
       if (!gameRunning) return;
       usedPointer = true;
       keysHeld[dirKey] = true;
-      playerXPercent = Math.max(9, Math.min(91, playerXPercent + delta * 0.4));
+      playerXPercent = clampBasketPercent(playerXPercent + delta * 0.4);
       basketEl.style.left = `${playerXPercent}%`;
       if (typeof btn.setPointerCapture === 'function') {
         try { btn.setPointerCapture(e.pointerId); } catch (_) {}
@@ -825,7 +1038,7 @@
         return;
       }
       usedPointer = false;
-      playerXPercent = Math.max(9, Math.min(91, playerXPercent + delta));
+      playerXPercent = clampBasketPercent(playerXPercent + delta);
       basketEl.style.left = `${playerXPercent}%`;
     });
   }
@@ -847,6 +1060,7 @@
 
   function unsealLetter() {
     if (isUnsealing || envelopeClosed.classList.contains('hidden')) return;
+    unlockAudio();
     isUnsealing = true;
     openSealBtn.disabled = true;
     openSealBtn.setAttribute('aria-expanded', 'true');
@@ -1160,7 +1374,13 @@
     });
   });
 
-  chanceResetBtn.addEventListener('click', resetChanceSection);
+  chanceResetBtn.addEventListener('click', () => {
+    const resetHadFocus = document.activeElement === chanceResetBtn;
+    resetChanceSection();
+    if (resetHadFocus) {
+      chanceYesBtn.focus({ preventScroll: true });
+    }
+  });
 
   resetChanceSection();
 })();

@@ -1,6 +1,4 @@
 :root {
-  --cream-bg: #fff9eb;
-  --card-bg: #ffffff;
   --tangerine-main: #ffae42;
   --tangerine-dark: #a65200;
   --tangerine-soft: #fff0d4;
@@ -16,7 +14,6 @@
   --shadow-card: 0 14px 36px rgba(74, 46, 27, 0.1);
   --shadow-btn: 0 4px 0 #4a2e1b;
   --radius-lg: 28px;
-  --radius-md: 18px;
 }
 
 *,
@@ -36,7 +33,7 @@ body {
   color: var(--cocoa);
   background: linear-gradient(170deg, #fff9ea 0%, #ffefd6 38%, #fff6ea 72%, #ffeef2 100%);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.65;
 }
 
@@ -407,14 +404,16 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 .mascot-stage svg,
 .chance-mascots svg,
 .chap1-mascot svg,
+.chap2-mascot svg,
+.sticker-left svg,
+.sticker-right svg,
 .cheer-mascot svg,
 .bouquet-art svg {
   max-width: 100%;
   height: auto;
 }
 
-.mascot-btn,
-.vault-thumb-btn {
+.mascot-btn {
   appearance: none;
   background: transparent;
   border: 0;
@@ -475,7 +474,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 /* SVG internal micro-animations */
-.h-pupil {
+.lulu-pupil {
   transform-box: fill-box;
   transform-origin: center;
   animation: pupilLook 5.2s ease-in-out infinite;
@@ -647,11 +646,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 .revealed-reflections {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 12px;
 }
 
 .reflection-note {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   background: var(--cream);
   border: 2px solid #ffd28a;
   border-left: 6px solid var(--pink-lumei);
@@ -667,9 +669,17 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .reflection-note p {
-  margin: 0;
+  margin: 0 0 10px;
   font-size: 0.92rem;
   color: var(--cocoa);
+}
+
+.reflection-note p:last-child {
+  margin-bottom: 0;
+}
+
+.reflection-note .photo-chip {
+  margin-top: auto;
 }
 
 @keyframes popIn {
@@ -814,7 +824,8 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   gap: 12px;
 }
 
-.shelf-polaroid {
+.shelf-polaroid,
+.garden-polaroid {
   position: relative;
   background: #ffffff;
   border: 2px solid var(--outline-soft);
@@ -822,11 +833,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   padding: 10px 7px 10px;
   cursor: pointer;
   text-align: center;
+  font: inherit;
+  color: var(--cocoa);
   box-shadow: 0 6px 14px rgba(74, 46, 27, 0.1);
   transition: transform 0.18s ease;
 }
 
-.shelf-polaroid::before {
+.shelf-polaroid::before,
+.garden-polaroid::before {
   content: "";
   position: absolute;
   top: -6px;
@@ -843,7 +857,9 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   transform: rotate(-1.5deg) translateY(-3px);
 }
 
-.shelf-polaroid img {
+.shelf-polaroid img,
+.garden-polaroid img {
+  display: block;
   width: 100%;
   aspect-ratio: 1 / 1.1;
   object-fit: cover;
@@ -851,13 +867,141 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   border-radius: 8px;
 }
 
-.shelf-polaroid span {
+.shelf-polaroid span,
+.garden-polaroid .polaroid-cap {
   display: block;
   margin-top: 5px;
   font-family: 'Caveat', cursive;
   font-size: 1.05rem;
   font-weight: 700;
+  line-height: 1.15;
   color: var(--cocoa);
+}
+
+.garden-polaroid {
+  width: 100%;
+  max-width: 185px;
+  margin: 0;
+  transform: rotate(-1.6deg);
+}
+
+.garden-polaroid:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.garden-polaroid:hover {
+  transform: translateY(-4px) rotate(0deg);
+}
+
+.garden-polaroid img {
+  aspect-ratio: 1 / 1.15;
+  height: auto;
+  object-position: var(--photo-pos, center 22%);
+}
+
+.garden-polaroid.is-landscape {
+  max-width: 235px;
+}
+
+.garden-polaroid.is-landscape img {
+  aspect-ratio: 4 / 3;
+}
+
+.hero-polaroids,
+.polaroid-row,
+.vault-gallery,
+.finale-polaroid-slot,
+.chance-polaroid-slot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.hero-polaroids {
+  margin-top: 20px;
+}
+
+.chapter-polaroid-strip {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.strip-label {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--cocoa-muted);
+}
+
+.finale-polaroid-slot {
+  margin-top: 16px;
+}
+
+.chance-polaroid-slot {
+  margin-top: 6px;
+}
+
+.photo-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  padding: 6px 10px 6px 6px;
+  background: #fff9ee;
+  border: 2px solid var(--outline-soft);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--cocoa);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 3px 0 rgba(74, 46, 27, 0.18);
+}
+
+.photo-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 rgba(74, 46, 27, 0.22);
+}
+
+.photo-chip img {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: var(--photo-pos, center 22%);
+  border-radius: 9px;
+  border: 1.5px solid var(--outline-soft);
+}
+
+.photo-chip.is-landscape img {
+  width: 76px;
+  height: 57px;
+}
+
+.photo-chip-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.photo-chip-cap {
+  font-family: 'Caveat', cursive;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.photo-chip-hint {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--tangerine-dark);
 }
 
 .shelf-placeholder {
@@ -887,32 +1031,9 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   margin-bottom: 10px;
 }
 
-.vault-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.vault-thumb-btn {
-  display: inline-block;
-  border-radius: 14px;
-  flex-shrink: 0;
-}
-
-.vault-thumb {
-  display: block;
-  width: 96px;
-  height: 120px;
-  object-fit: cover;
-  object-position: center 20%;
-  border-radius: 12px;
-  border: 2.5px solid var(--outline-soft);
-}
-
 .vault-copy {
-  flex: 1;
   min-width: 0;
+  margin-bottom: 14px;
 }
 
 .vault-copy h4 {
@@ -1154,6 +1275,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 14px;
 }
@@ -1169,6 +1291,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   font-size: 1.05rem;
   line-height: 1.85;
   color: #3a2314;
+  overflow-wrap: anywhere;
 }
 
 .letter-body p {
@@ -1201,12 +1324,20 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .ps-note-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   background: #fffdf9;
   border: 2px solid rgba(255, 174, 66, 0.45);
   border-left: 5px solid var(--pink-lumei);
   border-radius: 16px;
   padding: 13px 15px;
   box-shadow: 0 4px 12px rgba(74, 46, 27, 0.05);
+}
+
+.ps-photo-slot {
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .ps-note-card h4 {
@@ -1288,11 +1419,12 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .collage-frame img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   max-height: 500px;
+  margin: 0 auto;
   object-fit: contain;
-  background: #fff4df;
   border-radius: 10px;
   display: block;
 }
@@ -1377,7 +1509,6 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   align-items: flex-end;
   justify-content: center;
   gap: 4px;
-  flex-wrap: wrap;
   max-width: 100%;
 }
 
@@ -1432,7 +1563,6 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .chance-yes-btn {
-  background: #ffbf47;
   overflow-wrap: anywhere;
 }
 
@@ -1444,12 +1574,6 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   padding: var(--no-pad, 12px 22px);
   border-width: var(--no-bw, 2.5px);
   opacity: var(--no-op, 1);
-}
-
-.chance-no-btn::after {
-  content: "";
-  position: absolute;
-  inset: -10px -6px;
 }
 
 .chance-no-btn.is-tiny {
@@ -1467,6 +1591,8 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .chance-no-btn.is-tiny:not(.is-pixel)::after {
+  content: "";
+  position: absolute;
   inset: -6px -4px;
 }
 
@@ -1496,10 +1622,6 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   pointer-events: none;
   cursor: default;
   outline: none;
-}
-
-.chance-no-btn.is-pixel::after {
-  display: none;
 }
 
 .chance-result {
@@ -1547,7 +1669,7 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   background: #ffffff;
   border: 2.5px solid var(--outline-soft);
   border-radius: 22px;
-  padding: 16px 16px 20px;
+  padding: 12px 16px 20px;
   max-width: 540px;
   width: 100%;
   max-height: calc(100dvh - 36px);
@@ -1565,11 +1687,15 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 }
 
 .modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
+  position: sticky;
+  top: 0;
+  margin: 0 0 8px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  z-index: 2;
   border-radius: 50%;
   border: 2px solid var(--outline-soft);
   background: #ffe6ec;
@@ -1676,8 +1802,26 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .mascot-btn {
+  .mascot-btn,
+  #chance-lulu,
+  .chance-lumei-wrap {
     max-width: 48%;
+  }
+
+  .letter-stationery {
+    padding: 18px 16px 22px;
+  }
+
+  .letter-stickers {
+    justify-content: center;
+    gap: 8px 14px;
+  }
+
+  .letter-date-tag {
+    flex-basis: 100%;
+    order: 3;
+    text-align: center;
+    font-size: 1.2rem;
   }
 
   .hud-inner {
@@ -1691,6 +1835,14 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 
   .tangerine-count {
     font-size: 0.8rem;
+  }
+
+  .garden-polaroid {
+    max-width: 148px;
+  }
+
+  .garden-polaroid.is-landscape {
+    max-width: 215px;
   }
 }
 
@@ -1711,10 +1863,16 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
   .bouquet-art,
   .chance-lumei-wrap,
   .wax-seal-btn,
-  .h-pupil,
+  .lulu-pupil,
   .sweatdrop,
   .arm-wave-left,
-  .arm-wave-right {
+  .arm-wave-right,
+  .reflection-note,
+  .goofy-vault,
+  .letter-stationery,
+  .response-reply,
+  .chance-result,
+  .basket-player.wobble {
     animation: none !important;
   }
 
@@ -1730,7 +1888,28 @@ h1, h2, h3, h4, .hero-badge, .chapter-tag, .btn {
 
   .chance-yes-btn,
   .chance-no-btn,
-  .chance-arena {
+  .chance-arena,
+  .mem-card-inner,
+  .envelope-closed,
+  .wax-seal-btn,
+  .btn,
+  .thought-bubble-btn,
+  .shelf-polaroid,
+  .garden-polaroid,
+  .photo-chip,
+  .collage-frame,
+  .nickname-pill,
+  .hud-btn,
+  .chap-pill,
+  .flower-meter-fill,
+  .stage-toast,
+  .tangerine-badge-slot,
+  .chance-dialogue {
     transition: none !important;
+  }
+
+  .garden-polaroid:hover,
+  .photo-chip:hover {
+    transform: none !important;
   }
 }
