@@ -269,40 +269,40 @@
   // ---------- CHAPTER 1: THOUGHT BUBBLE REFLECTIONS ----------
   const REFLECTIONS = [
     {
-      emoji: '💭',
-      label: 'Opening Up',
-      title: 'Keeping You Out Was Wrong',
-      text: 'I am sorry for not telling you what was happening in my life even when we were together, and for ending things abruptly without giving us a chance to talk.'
+      emoji: '🎙️',
+      label: 'Real Heart-to-Heart',
+      title: 'A Proper Talk Instead of Texting',
+      text: 'I am so sorry for ending things abruptly without giving us a real chance to talk. Next time I want a proper heart-to-heart talk instead of hiding behind online texts or running away.'
+    },
+    {
+      emoji: '🧠',
+      label: 'No ChatGPT',
+      title: 'Real Thinking Ourselves, Not ChatGPT',
+      text: 'No more using ChatGPT to analyze our conversations or tell us what to think. I want us to do the thinking ourselves until we truly get it, understand each other, and actually change.'
+    },
+    {
+      emoji: '🕊️',
+      label: 'Calm Conflicts',
+      title: 'Zero Blame, Zero Defensiveness',
+      text: 'When disagreements come up, I promise calm conflict management — zero blame, zero finger-pointing, and zero defensiveness. Just listening to Tooty first, like you always deserved.'
     },
     {
       emoji: '🌇',
       label: 'New Tiong Bahru',
-      title: 'That Day at New Tiong Bahru',
-      text: 'I screwed up. From that day at New Tiong Bahru, it could have been fixed so easily — I could have chosen honesty and communication, and I did not.'
+      title: 'Opening Up Since New Tiong Bahru',
+      text: 'From that day at New Tiong Bahru and that night where I was completely avoidant, I could have opened up and fixed it so easily. I will never shut you out of my life again.'
     },
     {
-      emoji: '🍊',
-      label: 'Avoidant Habits',
-      title: 'You Were Right About That Night',
-      text: 'That night was completely my fault. You pointed out that I was being avoidant, and you called it perfectly.'
+      emoji: '🥹',
+      label: 'Missing Your Nagging',
+      title: 'Teary Eyes & Missing Your Voice',
+      text: 'Over these 3 weeks I realized how sweet, patient, and kind you were even in conflicts. OMG I missed your nagging and your voice so much haizzz — getting teary-eyed in the office like the good old days, muahaha.'
     },
     {
-      emoji: '💛',
-      label: 'Little Things',
-      title: 'Even Your Nagging Was a Privilege',
-      text: 'Every memory keeps replaying in my head — the goofy moments and even your nagging. What a joy and a privilege to be cared for like that, and I took it for granted.'
-    },
-    {
-      emoji: '🌸',
-      label: 'Your Patience',
-      title: 'Seeing How Patient You Actually Were',
-      text: 'Over these 3 weeks, I realized how many mistakes I made and how sweet, patient, and kind you truly were even during conflicts.'
-    },
-    {
-      emoji: '🌟',
-      label: 'Who You Are',
-      title: 'Strongest, Smartest, Kindest',
-      text: 'You are my best friend and the strongest, smartest, kindest woman I have ever known. Whatever you decide, I never want to guilt or rush you.'
+      emoji: '🪩',
+      label: 'Marquee & Unblock',
+      title: 'Marquee +1, Meetings & Unblock Day',
+      text: 'Adding a +1 for the Google EOY Party at Marquee two weeks ago hoping you would go, missing Tooty right after my team meeting, and celebrating in the Google office when you unblocked me: GUYS SHE UNBLOCKED ME WHAT DOES IT MEAN LETS GOOOOO!'
     }
   ];
 
@@ -370,37 +370,37 @@
       id: 'couple',
       src: 'assets/photos/couple-with-you.jpg',
       caption: 'with you ♡',
-      sub: 'My favorite place to be — right next to you.'
+      sub: 'Right next to you is still my favorite place in the entire world — missing Tooty right after every team meeting.'
     },
     {
       id: 'nus',
       src: 'assets/photos/nus-graduation.jpg',
       caption: 'So Proud! Congratulations!',
-      sub: 'NUS Data Science & Analytics (Honours Highest Distinction) — smartest woman I know!'
+      sub: 'NUS Data Science & Analytics (Honours Highest Distinction) — the smartest, strongest woman I know, always.'
     },
     {
       id: 'tiong-bahru',
       src: 'assets/photos/tiong-bahru-chimutan.jpg',
       caption: 'Tiong Bahru · Chimutan & you 🐰',
-      sub: 'Hair roller, glasses, Chimutan in a pot — one of our cutest memories.'
+      sub: 'Hair roller, glasses, Chimutan in a pot — Tiong Bahru and missing your cute nagging voice so much haizzz.'
     },
     {
       id: 'popcorn',
       src: 'assets/photos/caramel-popcorn.jpg',
       caption: 'Candid snack times!',
-      sub: 'Holding onto a giant bag of Korean caramel popcorn like treasure.'
+      sub: 'Holding onto that giant bag of Korean caramel popcorn like treasure — next time I am bringing two bags for Tooty!'
     },
     {
       id: 'sleeping',
       src: 'assets/photos/sleeping-zzz.jpg',
       caption: 'ZZZ... Super cute! hehe :)',
-      sub: 'Peaceful sleepyhead with your signature black glasses.'
+      sub: 'Peaceful sleepyhead with your signature black glasses — still makes me smile like an idiot, muahaha.'
     },
     {
       id: 'smiling',
       src: 'assets/photos/keep-smiling.jpg',
       caption: 'Keep smiling ☀️',
-      sub: 'Your smile brightens every single day.'
+      sub: 'Missing your smile makes me teary-eyed in the office thinking of the good old days — keep shining, Lumei!'
     }
   ];
 
@@ -577,7 +577,7 @@
     openPhotoModal(
       'assets/photos/goofy-flex.jpg',
       'The “Most Most Retarded Moments” Vault 💪',
-      'Thank you for loving even my silliest self — never taking a single laugh for granted again.'
+      'Thank you for laughing at my dumbest moments instead of running away — never taking a single laugh or nag for granted again, muahaha.'
     );
   });
 
@@ -617,14 +617,14 @@
   window.addEventListener('resize', updateStageMetrics);
 
   const ITEM_POOL = [
-    { emoji: '🌸', points: 1, label: '+1 Cherry Blossom' },
-    { emoji: '🌷', points: 1, label: '+1 Pink Tulip' },
-    { emoji: '🌼', points: 1, label: '+1 Sunny Daisy' },
-    { emoji: '💐', points: 1, label: '+1 Mini Bouquet' },
-    { emoji: '🍊', points: 2, label: '+2 Sweet Tangerine Bonus!' },
-    { emoji: '🍿', points: 2, label: '+2 Caramel Popcorn Bonus!' },
-    { emoji: '🐰', points: 2, label: '+2 Chimutan Cheer!' },
-    { emoji: '🌧️', points: 0, label: 'Oops, soggy tangerine! Keep going!' }
+    { emoji: '🌸', points: 1, label: '+1 Forgiveness Blossom' },
+    { emoji: '🌷', points: 1, label: '+1 Pink Tulip for Lumei' },
+    { emoji: '🌼', points: 1, label: '+1 Calm-Talk Daisy' },
+    { emoji: '💐', points: 1, label: '+1 Zero-Blame Bouquet' },
+    { emoji: '🍊', points: 2, label: '+2 Sweet Tangerine for Tooty!' },
+    { emoji: '🍿', points: 2, label: '+2 Giant Caramel Popcorn!' },
+    { emoji: '🐰', points: 2, label: '+2 Chimutan Nagging Cheer!' },
+    { emoji: '🌧️', points: 0, label: 'Oops, 3-week rain cloud! Keep going!' }
   ];
 
   function showStageToast(msg) {
@@ -661,10 +661,10 @@
     fallingItems = [];
     resetBasketPosition();
     skipFlowerBtn.disabled = true;
-    skipFlowerBtn.textContent = '💐 All 10 flowers gathered!';
+    skipFlowerBtn.textContent = '💐 All 10 flowers caught — LETS GOOOOO!';
     startOverlay.classList.remove('hidden');
     startOverlay.innerHTML = `
-      <p class="overlay-msg">💐 Yay! Lulu gathered all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span>!</p>
+      <p class="overlay-msg">💐 Yay! Lulu caught all 10 forgiveness flowers for <span class="js-nick-inline">${getActiveNickname()}</span> — LETS GOOOOO!</p>
       <button type="button" class="btn btn-soft" id="replay-flower-btn">🌸 Play Again</button>
     `;
     document.getElementById('replay-flower-btn').addEventListener('click', startFlowerGame);
@@ -756,7 +756,7 @@
     lastFrameTime = 0;
     resetBasketPosition();
     skipFlowerBtn.disabled = false;
-    skipFlowerBtn.textContent = '🌼 Let Lulu gather them';
+    skipFlowerBtn.textContent = '🌼 Let Lulu catch them all for Tooty';
     gameRunning = true;
     startOverlay.classList.add('hidden');
     updateFlowerProgress();
@@ -878,10 +878,10 @@
 
   const CHEERS = [
     'Cheer up LUMEI YOU CAN DO THIS, YOUR THE BEST LETS GOOOOOOOO! 💪✨',
-    'Lulu & Lumei are cheering for you, Tooty! 🍊🌸',
-    'You are the strongest, smartest, kindest person ever, Ashley! 🌟',
-    'Sending a giant cozy tangerine-garden hug, Baobao! 💛',
-    'Hope these flowers make your day a little brighter, Peanut! 🌷'
+    'OMG missed your nagging and your voice so much haizzz — cheering for you, Tooty! 🍊🌸',
+    'Strongest, smartest, kindest woman I know — even Chimutan agrees, Ashley! 🌟',
+    'Just finished my team meeting and still thinking: ughhh miss you so much Tooty! 💛',
+    'Teary eyes in the office like the good old days, muahaha — love you Peanut! 🌷'
   ];
 
   headpatBtn.addEventListener('click', () => {
@@ -896,8 +896,8 @@
   document.getElementById('open-collage-modal').addEventListener('click', () => {
     openPhotoModal(
       'assets/photos/collage-memories.jpg',
-      `Memories with ${getActiveNickname()} · You are my favorite!`,
-      'Tooty / Bao Bao / Ashley'
+      `Memories with ${getActiveNickname()} · My Best Friend & Favorite Person`,
+      'Tooty / Lumei / Bao Bao / Ashley — every single moment replaying in my head ♡'
     );
   });
 
@@ -907,12 +907,12 @@
   function getReplyHtml(choice) {
     const nick = `<strong class="js-nick-inline">${getActiveNickname()}</strong>`;
     if (choice === 'flowers') {
-      return `🌸 Thank you for accepting these flowers, ${nick}. There is no rush at all — whenever you feel ready, I am here to listen and earn back your trust honestly.`;
+      return `🌸 Thank you for accepting these flowers, ${nick}. Zero ChatGPT, zero blame, and zero rush — whenever you want a real heart-to-heart talk, I am here to listen and earn back your trust honestly.`;
     }
     if (choice === 'space') {
-      return `🍊 That is 100% okay, ${nick}. Take all the time and space you need — zero pressure, ever. Please take care of yourself, lean on your friends if you ever feel sad, and I truly wish you all the happiness.`;
+      return `🍊 Take it as slow as you need, ${nick} — zero rush and zero pressure ever. I added that Marquee +1 because I just hope for us, never to force you. Lean on your friends whenever you feel sad, and I am right here cheering for you.`;
     }
-    return `💛 Lulu blushes happily! Thank you for visiting this little tangerine garden, ${nick}. Wishing you the brightest, happiest days ahead — you are the best!`;
+    return `💛 Lulu blushes so hard (teary eyes like in the office, muahaha)! Thank you for visiting this little tangerine garden, ${nick} — LETS GOOOOO!`;
   }
 
   const CHOICE_CHIMES = { flowers: 659.25, space: 523.25, pat: 783.99 };
@@ -950,62 +950,106 @@
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Will you give me one more chance to talk things through properly and earn back your trust?”',
-      yesText: "🌸 Okay, let's talk & try again",
+      dialogue: '“Will you give me a real heart-to-heart talk — no ChatGPT, no defensiveness — and one more chance to earn back your trust?”',
+      yesText: "🌸 Let's have a real talk & try again",
       noText: '🤔 Hmm, not sure yet...',
       yesSize: '1.0rem',
       yesPad: '12px 22px',
       noSize: '0.98rem',
       noPad: '12px 22px',
+      noBw: '2.5px',
       noOpacity: '1'
     },
     {
       luluMood: 'shy',
       lumeiMood: 'curious',
-      dialogue: '“Fair, Lumei says I deserve at least one side-eye first. What about a zero-pressure coffee chat?”',
-      yesText: "☕ Let's grab coffee & talk properly?",
+      dialogue: '“Fair, I deserve at least one side-eye first. What about coffee & a real talk — doing the thinking ourselves, zero ChatGPT?”',
+      yesText: '☕ Coffee & real talk (no ChatGPT)',
       noText: '🍊 Still thinking...',
-      yesSize: '1.08rem',
-      yesPad: '14px 26px',
-      noSize: '0.88rem',
+      yesSize: '1.07rem',
+      yesPad: '13px 24px',
+      noSize: '0.84rem',
       noPad: '9px 16px',
+      noBw: '2px',
       noOpacity: '0.96'
     },
     {
       luluMood: 'shy',
       lumeiMood: 'happy',
-      dialogue: '“Okay valid, I really fumbled at New Tiong Bahru... Lulu is doing push-ups to prove he’s serious.”',
-      yesText: "🍿 I'll bring giant caramel popcorn!",
+      dialogue: '“Even after my team meeting my first thought was ‘ughhh miss you so much tooty’... what if I bring two giant caramel popcorn bags from New Tiong Bahru?”',
+      yesText: '🍿 Two giant caramel popcorn bags!',
       noText: '🤨 Maybe later?',
-      yesSize: '1.18rem',
-      yesPad: '16px 30px',
-      noSize: '0.78rem',
-      noPad: '7px 14px',
+      yesSize: '1.15rem',
+      yesPad: '14px 26px',
+      noSize: '0.70rem',
+      noPad: '6px 12px',
+      noBw: '2px',
       noOpacity: '0.92'
     },
     {
       luluMood: 'pleading',
       lumeiMood: 'curious',
-      dialogue: '“Even Chimutan is glaring at me now 🐰😒 What if I promise zero avoidant disappearing acts ever again?”',
-      yesText: '🐰 Chimutan & Lulu vote YES!',
+      dialogue: '“Even Chimutan is glaring at me now 🐰😒 I promise calm conflict talks with zero blame, zero finger-pointing, and zero defensiveness.”',
+      yesText: '🕊️ Calm talk & zero blame — deal',
       noText: '🙈 Still unsure',
-      yesSize: '1.28rem',
-      yesPad: '18px 34px',
-      noSize: '0.70rem',
-      noPad: '6px 12px',
+      yesSize: '1.23rem',
+      yesPad: '15px 28px',
+      noSize: '0.56rem',
+      noPad: '4px 9px',
+      noBw: '1.5px',
       noOpacity: '0.88'
     },
     {
       luluMood: 'pleading',
+      lumeiMood: 'curious',
+      dialogue: '“Remember the +1 I added two weeks ago for the Google EOY Party at Marquee? Look how tiny this No button is already getting...”',
+      yesText: '🪩 Marquee +1 & real talk? YES',
+      noText: '🤏 tiny maybe',
+      yesSize: '1.31rem',
+      yesPad: '16px 30px',
+      noSize: '0.42rem',
+      noPad: '3px 7px',
+      noBw: '1.5px',
+      noOpacity: '0.82',
+      isTiny: true
+    },
+    {
+      luluMood: 'pleading',
       lumeiMood: 'happy',
-      dialogue: '“Look how tiny this button is getting... Mini Lumei is holding a cardboard sign that says ‘pls talk to this dummy 🍊’.”',
-      yesText: "💛 Okay let's talk!! (Lulu is ready)",
-      noText: '🍊 Tiny maybe-no',
-      yesSize: '1.38rem',
-      yesPad: '20px 38px',
-      noSize: '0.64rem',
-      noPad: '5px 10px',
-      noOpacity: '0.84'
+      dialogue: '“OMG I missed your nagging and your voice so much haizzz 😭 Look, Mini Lumei even brought out her cardboard sign now!”',
+      yesText: '🎙️ Come get nagged by Tooty!',
+      noText: '🔬 smaller still',
+      yesSize: '1.39rem',
+      yesPad: '17px 32px',
+      noSize: '0.30rem',
+      noPad: '2px 5px',
+      noBw: '1px',
+      noOpacity: '0.76',
+      isTiny: true
+    },
+    {
+      luluMood: 'pleading',
+      lumeiMood: 'happy',
+      dialogue: '“Teary eyes in the office like the good old days, muahaha... this No button is literally 1 pixel away from disappearing!!”',
+      yesText: '💛 Okay you giant goofball — YES!',
+      noText: '🫧 1px away...',
+      yesSize: '1.46rem',
+      yesPad: '18px 34px',
+      noSize: '0.22rem',
+      noPad: '1px 3px',
+      noBw: '1px',
+      noOpacity: '0.70',
+      isTiny: true
+    },
+    {
+      luluMood: 'pleading',
+      lumeiMood: 'happy',
+      dialogue: '“Oops!! The No button literally shrank down to 1 single pixel (you can’t even click it now) — only Yes remains for Lumei & Lulu 🍊💛”',
+      yesText: '✨ OKAY FINE, LETS HAVE A REAL TALK! 🍊',
+      noText: '',
+      yesSize: '1.54rem',
+      yesPad: '19px 36px',
+      isPixel: true
     }
   ];
 
@@ -1013,23 +1057,64 @@
 
   function renderChanceStep() {
     const step = CHANCE_STEPS[chanceNoCount];
+    const isTiny = Boolean(step.isTiny);
+    const isPixel = Boolean(step.isPixel);
+
     chanceLulu.innerHTML = MascotArt.luluSVG(step.luluMood, 162);
-    chanceLumei.innerHTML = chanceNoCount === 4
+    chanceLumei.innerHTML = chanceNoCount >= 5
       ? MascotArt.lumeiSVG(step.lumeiMood, 146, { holdingSign: true })
       : MascotArt.lumeiSVG(step.lumeiMood, 134);
     chanceDialogue.textContent = step.dialogue;
     chanceYesBtn.textContent = step.yesText;
     chanceYesBtn.style.fontSize = step.yesSize;
     chanceYesBtn.style.padding = step.yesPad;
+
+    chanceArena.classList.toggle('no-is-pixel', isPixel);
+    chanceNoBtn.classList.toggle('is-tiny', isTiny);
+    chanceNoBtn.classList.toggle('is-pixel', isPixel);
+
+    if (isPixel) {
+      const noHadFocus = document.activeElement === chanceNoBtn;
+      if (noHadFocus) {
+        chanceYesBtn.focus({ preventScroll: true });
+      }
+      chanceNoBtn.textContent = '';
+      chanceNoBtn.style.removeProperty('--no-fs');
+      chanceNoBtn.style.removeProperty('--no-pad');
+      chanceNoBtn.style.removeProperty('--no-bw');
+      chanceNoBtn.style.removeProperty('--no-op');
+      chanceNoBtn.setAttribute('aria-hidden', 'true');
+      chanceNoBtn.disabled = true;
+      chanceNoBtn.setAttribute('aria-disabled', 'true');
+      chanceNoBtn.tabIndex = -1;
+      statusChapChance.textContent = 'Only 1px Left 👀';
+      chanceResetBtn.classList.remove('hidden');
+      return;
+    }
+
+    chanceNoBtn.disabled = false;
+    chanceNoBtn.removeAttribute('aria-disabled');
+    chanceNoBtn.removeAttribute('aria-hidden');
+    chanceNoBtn.tabIndex = 0;
     chanceNoBtn.textContent = step.noText;
-    chanceNoBtn.style.fontSize = step.noSize;
-    chanceNoBtn.style.padding = step.noPad;
-    chanceNoBtn.style.opacity = step.noOpacity;
+    chanceNoBtn.style.setProperty('--no-fs', step.noSize);
+    chanceNoBtn.style.setProperty('--no-pad', step.noPad);
+    chanceNoBtn.style.setProperty('--no-bw', step.noBw);
+    chanceNoBtn.style.setProperty('--no-op', step.noOpacity);
   }
 
   function resetChanceSection() {
     chanceNoCount = 0;
-    chanceArena.classList.remove('hidden');
+    chanceArena.classList.remove('hidden', 'no-is-pixel');
+    chanceNoBtn.classList.remove('is-tiny', 'is-pixel');
+    chanceNoBtn.style.removeProperty('--no-fs');
+    chanceNoBtn.style.removeProperty('--no-pad');
+    chanceNoBtn.style.removeProperty('--no-bw');
+    chanceNoBtn.style.removeProperty('--no-op');
+    chanceNoBtn.disabled = false;
+    chanceNoBtn.removeAttribute('aria-disabled');
+    chanceNoBtn.removeAttribute('aria-hidden');
+    chanceNoBtn.tabIndex = 0;
     chanceResult.classList.add('hidden');
     chanceResult.innerHTML = '';
     chanceResetBtn.classList.add('hidden');
@@ -1039,39 +1124,23 @@
   }
 
   chanceNoBtn.addEventListener('click', () => {
-    if (chanceNoCount < CHANCE_STEPS.length - 1) {
-      chanceNoCount += 1;
-      playChime(440 - chanceNoCount * 32, 0.14, 'triangle');
-      renderChanceStep();
-      return;
-    }
-
-    // Final click genuinely respects her answer without guilt
-    chanceArena.classList.add('hidden');
-    chanceLulu.innerHTML = MascotArt.luluSVG('holding-flowers', 162);
-    chanceLumei.innerHTML = MascotArt.lumeiSVG('happy', 134);
-    chanceDialogue.textContent = '“Okay, message received loud and clear! Lulu bows politely.”';
-    statusChapChance.textContent = 'Respected Always 💛';
-    if (chanceTabPill) chanceTabPill.classList.add('done');
-    chanceResult.innerHTML = `
-      <p>No guilt and no rushing — I truly meant it when I said I never want to force your decision. Take all the time and space you need, <strong class="js-nick-inline">${getActiveNickname()}</strong>. Wishing you the brightest, happiest days ahead. 🌸</p>
-    `;
-    chanceResult.classList.remove('hidden');
-    chanceResetBtn.classList.remove('hidden');
-    playChime(523.25, 0.2);
+    if (chanceNoCount >= CHANCE_STEPS.length - 1) return;
+    chanceNoCount += 1;
+    playChime(440 - chanceNoCount * 28, 0.14, 'triangle');
+    renderChanceStep();
   });
 
   chanceYesBtn.addEventListener('click', () => {
     chanceArena.classList.add('hidden');
     chanceLulu.innerHTML = MascotArt.luluSVG('cheering', 170);
     chanceLumei.innerHTML = MascotArt.lumeiSVG('cheering', 142);
-    chanceDialogue.textContent = '“WAIT REALLY?! Lulu & Lumei are doing celebratory backflips!!”';
-    statusChapChance.textContent = 'Another Chance! 🎉';
+    chanceDialogue.textContent = '“WAIT REALLY?! GUYS SHE SAID YES WHAT DOES IT MEAN LETS GOOOOO!!”';
+    statusChapChance.textContent = 'LETS GOOOOO! 🎉';
     if (chanceTabPill) chanceTabPill.classList.add('done');
     chanceResult.innerHTML = `
-      <p>Thank you for giving us another chance to talk, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ I promise to show up honestly, never shut you out again, and earn back your trust step by step.</p>
+      <p>Thank you for giving us a real heart-to-heart talk and another chance, <strong class="js-nick-inline">${getActiveNickname()}</strong> ♡ No ChatGPT, no blame, no defensiveness — just me showing up honestly and treasuring you (and your nagging) forever.</p>
       <button type="button" class="btn btn-soft copy-reply-btn" id="copy-reply-btn">
-        📋 Copy quick text: "Hey Lulu 🍊 I saw your site, let's talk"
+        📋 Copy quick text: "Hey Lulu 🍊 I saw your site, let's have a real talk"
       </button>
     `;
     chanceResult.classList.remove('hidden');
@@ -1081,10 +1150,10 @@
 
     const copyBtn = document.getElementById('copy-reply-btn');
     copyBtn.addEventListener('click', async () => {
-      const msg = "Hey Lulu 🍊 I saw your site, let's talk";
+      const msg = "Hey Lulu 🍊 I saw your site, let's have a real talk";
       try {
         await navigator.clipboard.writeText(msg);
-        copyBtn.textContent = '✅ Copied! Ready to paste whenever you want';
+        copyBtn.textContent = '✅ Copied! Ready whenever Tooty is ready';
       } catch (_) {
         copyBtn.textContent = `Message: ${msg}`;
       }
